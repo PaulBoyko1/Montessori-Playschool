@@ -91,10 +91,10 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
           <option value="" disabled>
             Choose a program
           </option>
-          <option>Infant care</option>
-          <option>Toddler care</option>
-          <option>Preschool</option>
-          <option>School-age care</option>
+          <option>Infant Program · 6 weeks–1.5 years</option>
+          <option>Toddler Program · 1.5–3 years</option>
+          <option>Preschool Program · 3–6 years</option>
+          <option>School-Age Program · 6–13 years</option>
           <option>Not sure yet</option>
         </select>
       </div>

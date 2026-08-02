@@ -1,46 +1,81 @@
 import type { Metadata } from "next";
+import CurriculumAccordion from "../components/CurriculumAccordion";
+import { programs } from "../site-data";
 import { InnerHero, SiteFooter, SiteHeader } from "../site-chrome";
 
 export const metadata: Metadata = {
   title: "Programs",
   description:
-    "Explore Montessori Playschool programs for infants, toddlers, preschoolers, and school-age children in Carmichael.",
+    "Explore infant, toddler, preschool, school-age, Montessori curriculum, and enrichment programs for children ages 6 weeks to 13 years.",
 };
 
-const learningAreas = [
-  ["Practical Life", "Purposeful routines that build coordination, focus, and independence."],
-  ["Sensorial", "Hands-on materials that sharpen observation and organize experience."],
-  ["Language", "Conversation, stories, sound work, and early reading and writing."],
-  ["Mathematics", "Concrete materials that make number, quantity, and patterns visible."],
-  ["Culture & Science", "Nature, geography, community, art, music, and open-ended discovery."],
-  ["Movement", "Daily opportunities for coordination, outdoor activity, and joyful play."],
+const programDetails = [
+  {
+    ...programs[0],
+    title: "Security first. Discovery follows.",
+    points: [
+      "Responsive care and family communication",
+      "Individual feeding, rest, and diapering rhythms",
+      "Safe movement, sensory discovery, songs, and language",
+      "A calm environment that supports trust and connection",
+    ],
+  },
+  {
+    ...programs[1],
+    title: "Independence begins with everyday practice.",
+    points: [
+      "Practical-life activities and child-sized routines",
+      "Language, movement, music, and hands-on exploration",
+      "Early recognition of colors, shapes, quantity, and sequence",
+      "Guided play that supports confidence and social development",
+    ],
+  },
+  {
+    ...programs[2],
+    title: "Curiosity becomes capability.",
+    points: [
+      "Montessori-inspired, play-based learning",
+      "Early literacy, math, science, culture, art, and movement",
+      "Problem-solving, teamwork, creativity, and concentration",
+      "Preparation for the next stage of school",
+    ],
+  },
+  {
+    ...programs[3],
+    title: "A supportive place after the school day.",
+    points: [
+      "Homework support and quiet work space",
+      "Hands-on projects, games, and creative activities",
+      "Movement, friendships, and age-appropriate enrichment",
+      "A welcoming environment for children ages 6 through 13",
+    ],
+  },
 ];
 
-const preparedSpaces = [
+const enrichment = [
   {
-    name: "Infant Room",
-    age: "Birth–17 months",
-    text: "A calm room with approved cribs, a soft movement area, low books and materials, and dedicated feeding space.",
+    title: "Modeling-Clay Classes",
+    text: "Children shape, roll, join, and sculpt clay while developing hand strength, fine-motor control, patience, and imagination.",
   },
   {
-    name: "Toddler Room",
-    age: "18–35 months",
-    text: "Child-size tables, low shelves, books, practical routines, and rest materials support growing independence.",
+    title: "Art Classes",
+    text: "Open-ended drawing, painting, collage, and mixed-media experiences encourage observation, creativity, and personal expression.",
   },
   {
-    name: "Caterpillar Room",
-    age: "Preschool",
-    text: "A purposeful preschool classroom with child-size work tables, accessible materials, and a welcoming book collection.",
+    title: "Cooking Classes",
+    text: "Age-appropriate food preparation introduces measuring, sequencing, practical-life skills, cooperation, and confidence in the kitchen.",
   },
   {
-    name: "Butterfly Room",
-    age: "Creative work",
-    text: "Art and dramatic-play spaces invite imagination, self-expression, conversation, and collaborative play.",
+    title: "Chess Classes",
+    text: "Guided chess activities introduce planning, pattern recognition, patience, focus, and respectful competition.",
   },
   {
-    name: "Dragonfly Room",
-    age: "School age",
-    text: "Books, games, work tables, and a dedicated homework area support projects, study, and enrichment.",
+    title: "Dance Classes for Girls",
+    text: "Music and guided movement support rhythm, coordination, confidence, expression, and joyful physical activity.",
+  },
+  {
+    title: "Gymnastics Classes for Girls",
+    text: "Developmentally appropriate movement activities encourage balance, flexibility, strength, coordination, and body awareness.",
   },
 ];
 
@@ -50,154 +85,94 @@ export default function ProgramsPage() {
       <SiteHeader current="/programs" />
       <main>
         <InnerHero
-          eyebrow="Programs"
+          eyebrow="Programs · Ages 6 weeks–13 years"
           title="A place for"
           accent="every stage."
-          description="Responsive care, meaningful work, and a calm rhythm meet children where they are—and help them move forward with confidence."
+          description="Responsive care, meaningful work, joyful play, and age-appropriate enrichment meet children where they are and help them grow with confidence."
           image="/images/preschool-program.png"
           imageAlt="Children collaborating with Montessori learning materials"
         />
 
         <section className="page-intro content-section">
-          <p className="section-label">Growing together</p>
+          <p className="section-label">Four age groups</p>
           <div>
-            <h2>One community, thoughtfully prepared for different ages.</h2>
+            <h2>Clear programs for every stage of early childhood and beyond.</h2>
             <p>
-              Children need different things at different stages. Our planned
-              programs pair age-appropriate environments and expectations with
-              the same consistent values: respect, independence, curiosity, and
-              belonging.
+              Each program has its own developmental focus while sharing the
+              same foundation: respect, independence, hands-on exploration,
+              creativity, and a welcoming sense of community.
             </p>
           </div>
         </section>
 
-        <section className="program-detail content-section">
-          <div className="program-detail-image">
-            <img
-              src="/images/toddler-program.png"
-              alt="Toddlers concentrating on practical life activities"
-            />
-          </div>
-          <article>
-            <p className="section-label">Infant &amp; Toddler</p>
-            <h2>Security first. Discovery follows.</h2>
-            <p>
-              Gentle, responsive care supports each child&apos;s need for trust
-              and connection. The environment invites safe movement, language,
-              sensory discovery, practical routines, and the first steps toward
-              independence. Infant care serves birth through 17 months, with
-              toddler care from 18 through 35 months.
-            </p>
-            <ul className="check-list">
-              <li>Individualized care and family communication</li>
-              <li>Individualized feeding, rest, and diapering routines</li>
-              <li>Documented safe-sleep practices for infants</li>
-              <li>Safe movement and sensory exploration</li>
-              <li>Language-rich interactions and music</li>
-            </ul>
-            <a className="button button-primary" href="/enrollment">
-              Ask about availability <span aria-hidden="true">→</span>
-            </a>
-          </article>
-        </section>
-
-        <section className="program-detail program-detail-reverse content-section">
-          <article>
-            <p className="section-label">Preschool &amp; School Age</p>
-            <h2>Confidence grows through real capability.</h2>
-            <p>
-              Children work with increasingly complex materials, build early
-              academic foundations, collaborate, create, and care for their
-              community. School-age care adds homework support, projects, and
-              enrichment within a welcoming mixed-age setting. Preschool serves
-              children age 3 through kindergarten entry; school-age care serves
-              kindergarten through ninth grade.
-            </p>
-            <ul className="check-list">
-              <li>Early literacy, mathematics, and cultural studies</li>
-              <li>Art, music, movement, and creative projects</li>
-              <li>Social-emotional learning and community responsibility</li>
-              <li>Homework support and school-age enrichment</li>
-            </ul>
-            <a className="button button-primary" href="/enrollment">
-              Explore enrollment <span aria-hidden="true">→</span>
-            </a>
-          </article>
-          <div className="program-detail-image">
-            <img
-              src="/images/preschool-program.png"
-              alt="Preschool and school-age children working together"
-            />
-          </div>
-        </section>
-
-        <section className="capacity-strip">
-          <div>
-            <span>15</span>
-            <p>Planned Infant &amp; Toddler capacity</p>
-          </div>
-          <div>
-            <span>30</span>
-            <p>Planned Preschool &amp; School-Age capacity</p>
-          </div>
-          <p className="capacity-note">
-            Planned capacity is subject to final licensing approval and may
-            change before opening.
-          </p>
-        </section>
-
-        <section className="prepared-spaces content-section">
-          <div className="section-heading">
-            <div>
-              <p className="section-label">Inside the facility</p>
-              <h2>Spaces prepared for each stage.</h2>
-            </div>
-            <p>
-              The facility equipment plan gives each age group appropriately
-              scaled furniture, accessible materials, books, active play, and
-              a place to settle into focused work.
-            </p>
-          </div>
-          <div className="space-grid">
-            {preparedSpaces.map((space, index) => (
-              <article key={space.name}>
+        <section className="program-age-grid content-section" aria-label="Program age groups">
+          {programDetails.map((program, index) => (
+            <article id={program.slug} key={program.slug}>
+              <div className="program-age-heading">
                 <span>{String(index + 1).padStart(2, "0")}</span>
-                <p>{space.age}</p>
-                <h3>{space.name}</h3>
-                <div>{space.text}</div>
-              </article>
-            ))}
-          </div>
+                <p>{program.age}</p>
+              </div>
+              <h2>{program.name}</h2>
+              <h3>{program.title}</h3>
+              <p>{program.summary}</p>
+              <ul className="check-list">
+                {program.points.map((point) => <li key={point}>{point}</li>)}
+              </ul>
+              <a className="button button-primary" href="/enrollment#inquiry">
+                Ask about this program <span aria-hidden="true">→</span>
+              </a>
+            </article>
+          ))}
         </section>
 
-        <section className="learning-section content-section">
-          <div className="section-heading">
+        <section className="curriculum-section" id="curriculum">
+          <div className="content-section curriculum-layout">
             <div>
-              <p className="section-label">The prepared curriculum</p>
+              <p className="section-label">The curriculum</p>
               <h2>Learning with head, heart, and hands.</h2>
+              <p>
+                Select a curriculum area to see the activities, developmental
+                benefits, and skills children practice.
+              </p>
+            </div>
+            <CurriculumAccordion />
+          </div>
+        </section>
+
+        <section className="enrichment-section content-section" id="enrichment">
+          <div className="section-heading">
+            <div>
+              <p className="section-label">Enrichment classes</p>
+              <h2>More ways to discover and create.</h2>
             </div>
             <p>
-              Development is interconnected. Each learning area strengthens the
-              others and gives children another way to understand themselves
-              and the world.
+              Tap any class to learn more. Offerings may vary by season,
+              enrollment, age group, and instructor availability.
             </p>
           </div>
-          <div className="learning-grid">
-            {learningAreas.map(([title, text], index) => (
-              <article key={title}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
+          <div className="enrichment-grid">
+            {enrichment.map((item, index) => (
+              <details key={item.title}>
+                <summary>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <h3>{item.title}</h3>
+                  <strong aria-hidden="true">+</strong>
+                </summary>
+                <p>{item.text}</p>
+              </details>
             ))}
           </div>
+          <p className="section-note">
+            Class schedules and any related costs will be confirmed directly
+            with families; no schedule or price is implied by this overview.
+          </p>
         </section>
 
         <section className="simple-cta">
           <p className="section-label">Find the right fit</p>
-          <h2>Tell us about your child and your schedule.</h2>
-          <a className="button button-light" href="/enrollment">
-            Begin an inquiry <span aria-hidden="true">→</span>
+          <h2>Tell us your child&apos;s age and the schedule you need.</h2>
+          <a className="button button-light" href="/contact#tour">
+            Schedule a Tour <span aria-hidden="true">→</span>
           </a>
         </section>
       </main>

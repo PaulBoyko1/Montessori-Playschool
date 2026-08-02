@@ -1,25 +1,26 @@
+import Link from "next/link";
+import CurriculumAccordion from "./components/CurriculumAccordion";
+import { programs, school } from "./site-data";
 import { SiteFooter, SiteHeader } from "./site-chrome";
 
-const features = [
+const parentEssentials = [
   {
-    number: "01",
-    title: "Prepared environments",
-    text: "Calm, beautiful classrooms place purposeful materials within reach so children can choose, practice, and master meaningful work.",
+    href: "/meals",
+    label: "Meals",
+    title: "See the weekly menu",
+    text: "Review breakfast, snacks, lunch, dietary notes, and the Saturday sample menu.",
   },
   {
-    number: "02",
-    title: "Whole-child learning",
-    text: "Practical life, language, early mathematics, culture, movement, art, and social-emotional growth are woven into each day.",
+    href: "/tuition",
+    label: "Tuition & assistance",
+    title: "Plan the cost of care",
+    text: "See tuition references and learn about CalWORKs and Child Action assistance.",
   },
   {
-    number: "03",
-    title: "Warm guidance",
-    text: "Attentive educators observe closely, demonstrate with care, and give each child room to develop confidence and independence.",
-  },
-  {
-    number: "04",
-    title: "Family partnership",
-    text: "Open communication helps families and teachers create a consistent, encouraging circle of support around every child.",
+    href: "/location",
+    label: "Location",
+    title: "Find us in Carmichael",
+    text: `${school.address}. Open the map and get directions in one tap.`,
   },
 ];
 
@@ -39,7 +40,7 @@ export default function Home() {
           <div className="hero-content">
             <p className="eyebrow">
               <span aria-hidden="true" />
-              A Montessori-inspired community
+              Montessori-inspired childcare in Carmichael
             </p>
             <h1 id="hero-title">
               A thoughtful place
@@ -47,180 +48,130 @@ export default function Home() {
               <em>to grow.</em>
             </h1>
             <p className="hero-lede">
-              A warm, carefully prepared learning environment where children
-              build independence, curiosity, and a genuine love of learning.
+              Warm, age-appropriate care for infants, toddlers, preschoolers,
+              and school-age children from 6 weeks through 13 years.
             </p>
             <div className="hero-actions">
-              <a className="button button-primary" href="/enrollment">
-                Explore enrollment
-                <span aria-hidden="true">→</span>
-              </a>
-              <a className="text-link" href="/programs">
-                Discover our programs
-              </a>
+              <Link className="button button-primary" href="/contact#tour">
+                Schedule a Tour <span aria-hidden="true">→</span>
+              </Link>
+              <Link className="text-link" href="/programs">
+                Explore programs
+              </Link>
             </div>
           </div>
-          <div className="hero-note">
-            <span className="hero-note-icon" aria-hidden="true">✦</span>
+          <Link className="hero-note" href="/enrollment">
+            <span className="hero-note-icon" aria-hidden="true">6w+</span>
             <p>
-              <strong>Learning through meaningful work</strong>
-              <span>Hands-on discovery, at each child&apos;s pace.</span>
+              <strong>Enrollment is now open</strong>
+              <span>Tell us your child&apos;s age and schedule needs.</span>
             </p>
-          </div>
+          </Link>
         </section>
 
         <section className="quick-facts" aria-label="School highlights">
           <div>
-            <span className="fact-label">Programs</span>
-            <strong>Birth–Grade 9</strong>
+            <span className="fact-label">Ages</span>
+            <strong>6 weeks–13 years</strong>
           </div>
           <div>
             <span className="fact-label">Schedule</span>
-            <strong>Monday–Saturday</strong>
+            <strong>{school.days}</strong>
           </div>
           <div>
             <span className="fact-label">Hours</span>
-            <strong>7 AM–10 PM</strong>
+            <strong>{school.hours}</strong>
           </div>
           <div>
-            <span className="fact-label">Community</span>
+            <span className="fact-label">Location</span>
             <strong>Carmichael, CA</strong>
           </div>
         </section>
 
-        <section className="welcome content-section">
-          <div className="section-kicker">
-            <span>Welcome</span>
-            <i aria-hidden="true" />
-          </div>
-          <div className="welcome-grid">
-            <h2>
-              Childhood is not a race.
-              <br />
-              It&apos;s a <em>beautiful beginning.</em>
-            </h2>
-            <div className="welcome-copy">
-              <p>
-                Montessori Playschool is being shaped as a caring community
-                where children are known, trusted, and invited to participate
-                fully in the life of the classroom.
-              </p>
-              <p>
-                Our approach pairs Montessori principles with joyful play,
-                nourishing routines, creative expression, and respectful
-                relationships.
-              </p>
-              <a className="inline-arrow" href="/about">
-                Read about our approach <span aria-hidden="true">→</span>
-              </a>
+        <section className="home-programs content-section" aria-labelledby="program-heading">
+          <div className="section-heading">
+            <div>
+              <p className="section-label">Programs</p>
+              <h2 id="program-heading">Care that grows with your child.</h2>
             </div>
-          </div>
-          <div className="learning-pills" aria-label="Learning areas">
-            <span>Practical life</span>
-            <span>Language</span>
-            <span>Early math</span>
-            <span>Art &amp; movement</span>
-            <span>Nature &amp; culture</span>
-          </div>
-        </section>
-
-        <section className="approach-section" id="approach">
-          <div className="content-section">
-            <div className="section-heading">
-              <div>
-                <p className="section-label">Why families choose us</p>
-                <h2>Care with intention.</h2>
-              </div>
-              <p>
-                Every part of the day is designed to help children feel secure,
-                capable, and excited to discover what comes next.
-              </p>
-            </div>
-            <div className="feature-grid">
-              {features.map((feature) => (
-                <article key={feature.number} className="feature-card">
-                  <span className="feature-number">{feature.number}</span>
-                  <div className="feature-symbol" aria-hidden="true">
-                    {feature.number === "01" && "⌂"}
-                    {feature.number === "02" && "◎"}
-                    {feature.number === "03" && "◡"}
-                    {feature.number === "04" && "∞"}
-                  </div>
-                  <h3>{feature.title}</h3>
-                  <p>{feature.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="programs content-section" id="programs">
-          <div className="section-kicker">
-            <span>Our Programs</span>
-            <i aria-hidden="true" />
-          </div>
-          <div className="programs-intro">
-            <h2>Room to become.</h2>
             <p>
-              Consistent care and thoughtfully prepared experiences support
-              every stage—from first discoveries to growing independence.
+              Four clear age groups make it easy to find the program that fits
+              your family right now.
             </p>
           </div>
-          <div className="program-grid">
-            <article className="program-card program-card-image">
-              <img
-                src="/images/toddler-program.png"
-                alt="Toddlers practicing pouring and sorting with wooden materials"
-              />
-              <div className="program-overlay">
-                <p>Infant &amp; Toddler</p>
-                <h3>Gentle care. Big discoveries.</h3>
-                <a href="/enrollment" aria-label="Ask about infant and toddler care">
-                  Ask about this program <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </article>
-            <article className="program-card program-card-text">
-              <span className="program-age">Age 3–Grade 9</span>
-              <div>
-                <p className="section-label">Preschool &amp; School Age</p>
-                <h3>Curiosity becomes capability.</h3>
-                <p>
-                  Rich classroom work, creative projects, movement, practical
-                  skills, and age-appropriate academic support help children
-                  grow with confidence.
-                </p>
-                <a className="inline-arrow" href="/enrollment">
-                  Ask about this program <span aria-hidden="true">→</span>
-                </a>
-              </div>
-              <span className="program-shape" aria-hidden="true" />
-            </article>
+          <div className="home-program-grid">
+            {programs.map((program, index) => (
+              <Link
+                className={`home-program-card program-color-${index + 1}`}
+                href={`/programs#${program.slug}`}
+                key={program.slug}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <p>{program.age}</p>
+                <h3>{program.name}</h3>
+                <strong>View program <span aria-hidden="true">→</span></strong>
+              </Link>
+            ))}
           </div>
         </section>
 
-        <section className="rhythm-section" id="meals">
-          <div className="rhythm-image" id="gallery">
-            <img
-              src="/images/hero-classroom.png"
-              alt="A calm Montessori classroom prepared for hands-on learning"
-            />
+        <section className="home-curriculum">
+          <div className="content-section curriculum-layout">
+            <div>
+              <p className="section-label">Montessori curriculum</p>
+              <h2>Tap a learning area to explore.</h2>
+              <p>
+                Purposeful, hands-on experiences help children build practical
+                skills, communication, early academics, creativity, and care
+                for their world.
+              </p>
+              <Link className="inline-arrow" href="/programs#curriculum">
+                See the full program approach <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+            <CurriculumAccordion compact />
           </div>
-          <div className="rhythm-copy">
-            <p className="section-label">A full, nourishing day</p>
-            <h2>Care lives in the rhythm.</h2>
+        </section>
+
+        <section className="parent-priorities content-section" aria-labelledby="essentials-heading">
+          <div className="section-kicker">
+            <span>Parent essentials</span>
+            <i aria-hidden="true" />
+          </div>
+          <h2 id="essentials-heading">The information families need most.</h2>
+          <div className="parent-priority-grid">
+            {parentEssentials.map((item) => (
+              <Link href={item.href} key={item.href}>
+                <span>{item.label}</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+                <strong>Learn more <span aria-hidden="true">→</span></strong>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="assistance-teaser">
+          <div>
+            <p className="section-label">Help with childcare costs</p>
+            <h2>CalWORKs and Child Action are welcome.</h2>
             <p>
-              Children thrive when their day feels predictable yet spacious.
-              Focused work, active play, shared meals, rest, and creative
-              experiences each have a meaningful place.
+              Eligible families may use approved childcare assistance. We can
+              help you understand what information the school needs from your
+              program.
             </p>
-            <ul>
-              <li><span>01</span> Hands-on morning work</li>
-              <li><span>02</span> Outdoor movement and play</li>
-              <li><span>03</span> Shared meals and snacks</li>
-              <li><span>04</span> Rest, stories, and creative projects</li>
-            </ul>
           </div>
+          <Link className="button button-light" href="/tuition#assistance">
+            View assistance options <span aria-hidden="true">→</span>
+          </Link>
+        </section>
+
+        <section className="quote-band home-quote">
+          <span aria-hidden="true">“</span>
+          <blockquote>
+            <p>The child is both a hope and a promise for mankind.</p>
+            <cite>Maria Montessori · <em>Education and Peace</em></cite>
+          </blockquote>
         </section>
 
         <section className="contact-cta" id="contact">
@@ -232,15 +183,17 @@ export default function Home() {
               could <em>feel at home.</em>
             </h2>
             <p>
-              Tell us about your family, the program you&apos;re exploring, and
-              the schedule you need. We&apos;ll help you plan the next step.
+              Tell us your child&apos;s age, the schedule you need, and any
+              questions you have. We&apos;ll help you plan the next step.
             </p>
-            <a className="button button-light" href="/enrollment">
-              Start an enrollment inquiry <span aria-hidden="true">→</span>
-            </a>
-          </div>
-          <div className="contact-orbit" aria-hidden="true">
-            <span>PLAY • DISCOVER • GROW • BELONG •</span>
+            <div className="cta-actions">
+              <Link className="button button-light" href="/contact#tour">
+                Schedule a Tour <span aria-hidden="true">→</span>
+              </Link>
+              <Link className="button button-outline-light" href="/enrollment">
+                Enroll Now
+              </Link>
+            </div>
           </div>
         </section>
       </main>

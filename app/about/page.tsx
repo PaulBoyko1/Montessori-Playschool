@@ -23,15 +23,15 @@ export default function AboutPage() {
           eyebrow="About Montessori Playschool"
           title="Rooted in respect."
           accent="Made for childhood."
-          description="We are preparing a warm Carmichael learning community where children can move with purpose, think with curiosity, and belong wholeheartedly."
+          description="A warm Carmichael learning community where children can move with purpose, think with curiosity, and belong wholeheartedly."
           image="/images/hero-classroom.png"
           imageAlt="An educator supporting children in a Montessori classroom"
         />
 
         <section className="story-section content-section">
           <div>
-            <p className="section-label">Our beginning</p>
-            <h2>A school designed around how children truly grow.</h2>
+            <p className="section-label">Our approach</p>
+            <h2>Care and learning designed around how children grow.</h2>
           </div>
           <div className="story-copy">
             <p className="lead">
@@ -40,16 +40,15 @@ export default function AboutPage() {
               involved in their own growth.
             </p>
             <p>
-              Our planned program brings Montessori-inspired environments
+              Our program brings Montessori-inspired environments
               together with joyful play, nourishing routines, creative
               expression, outdoor movement, and strong family partnership. The
               result is not a hurried childhood—it is a rich one.
             </p>
             <p>
-              Our home at 2925 Root Ave is being prepared around the same
-              values: low accessible materials, age-specific spaces, predictable
-              routines, and room for outdoor movement. Licensing details will
-              be posted after approval.
+              Our home at 2925 Root Ave reflects the same values: accessible
+              materials, age-appropriate spaces, predictable routines, and room
+              for movement, creativity, and practical work.
             </p>
           </div>
         </section>
@@ -57,8 +56,8 @@ export default function AboutPage() {
         <section className="quote-band">
           <span aria-hidden="true">“</span>
           <blockquote>
-            The goal is not simply to prepare children for the next classroom,
-            but to help them become confident, considerate, capable people.
+            <p>The child is both a hope and a promise for mankind.</p>
+            <cite>Maria Montessori · <em>Education and Peace</em></cite>
           </blockquote>
         </section>
 
@@ -109,8 +108,8 @@ export default function AboutPage() {
         <section className="simple-cta">
           <p className="section-label">Come meet us</p>
           <h2>The best way to understand a classroom is to experience it.</h2>
-          <a className="button button-light" href="/enrollment">
-            Plan a future visit <span aria-hidden="true">→</span>
+          <a className="button button-light" href="/contact#tour">
+            Schedule a Tour <span aria-hidden="true">→</span>
           </a>
         </section>
       </main>

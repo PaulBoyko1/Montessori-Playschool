@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { school } from "../site-data";
 import { SiteFooter, SiteHeader } from "../site-chrome";
 import EnrollmentForm from "./EnrollmentForm";
 
@@ -10,8 +11,8 @@ export const metadata: Metadata = {
 
 const steps = [
   ["Share your needs", "Tell us your child’s age, program interest, and preferred schedule."],
-  ["Connect with us", "We’ll discuss availability, opening plans, and whether the program may fit."],
-  ["Plan a visit", "When tours begin, see the environment and bring your questions."],
+  ["Connect with us", "We’ll discuss availability, schedule options, tuition, and assistance programs."],
+  ["Plan a visit", "Tour the environment, meet the team, and bring your questions."],
   ["Complete enrollment", "Receive the required forms, policies, and confirmed start information."],
 ];
 
@@ -29,15 +30,15 @@ const familyEssentials = [
     text: "Preschool rest or quiet time is offered daily, with outdoor or gross-motor activity built into each age group’s routine.",
   },
   {
-    title: "Transportation",
-    text: "The center does not provide transportation. Families arrange all drop-off, pickup, and school transportation.",
+    title: "Financial assistance",
+    text: "Eligible families may use approved CalWORKs or Child Action childcare assistance.",
   },
 ];
 
 export default function EnrollmentPage() {
   return (
     <>
-      <SiteHeader />
+      <SiteHeader current="/enrollment" />
       <main className="enrollment-page">
         <section className="enrollment-heading">
           <div>
@@ -48,9 +49,9 @@ export default function EnrollmentPage() {
               <em>your family.</em>
             </h1>
             <p>
-              Enrollment inquiries are welcome while Montessori Playschool
-              prepares for opening. Share what you need and we&apos;ll help you
-              understand the next step.
+              Montessori Playschool is welcoming enrollment inquiries for
+              children ages 6 weeks through 13 years. Share what you need and
+              we&apos;ll help you understand the next step.
             </p>
           </div>
           <div className="enrollment-facts">
@@ -64,16 +65,16 @@ export default function EnrollmentPage() {
             </div>
             <div>
               <span>Hours</span>
-              <p>7:00 AM–10:00 PM</p>
+              <p>{school.hours}</p>
             </div>
             <div>
               <span>Location</span>
-              <p>2925 Root Ave, Carmichael, CA</p>
+              <p>{school.address}</p>
             </div>
           </div>
         </section>
 
-        <section className="enrollment-body content-section">
+        <section className="enrollment-body content-section" id="inquiry">
           <div className="form-wrap">
             <p className="section-label">Tell us about your needs</p>
             <EnrollmentForm />
@@ -122,19 +123,6 @@ export default function EnrollmentPage() {
               </article>
             ))}
           </div>
-          <div className="closure-note">
-            <div>
-              <p className="section-label">Scheduled holiday closures</p>
-              <h3>
-                New Year&apos;s Day, Memorial Day, Independence Day, Labor Day,
-                Thanksgiving and the following Friday, and Christmas Day
-              </h3>
-            </div>
-            <p>
-              Teacher-preparation closures are communicated in advance. Families
-              receive an annual event calendar and updates as needed.
-            </p>
-          </div>
         </section>
 
         <section className="tuition-teaser">
@@ -143,7 +131,7 @@ export default function EnrollmentPage() {
             <h2>See the full day and evening rate schedule.</h2>
           </div>
           <a className="button button-light" href="/tuition">
-            View tuition &amp; fees <span aria-hidden="true">→</span>
+            View tuition &amp; assistance <span aria-hidden="true">→</span>
           </a>
         </section>
       </main>

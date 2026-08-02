@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { InnerHero, SiteFooter, SiteHeader } from "../site-chrome";
 
 export const metadata: Metadata = {
-  title: "Tuition & Fees",
+  title: "Tuition & Assistance",
   description:
-    "Review Montessori Playschool's standard full-time day and evening tuition rates, registration fees, and payment policies.",
+    "Review Montessori Playschool tuition, fees, CalWORKs childcare assistance, Child Action support, and payment policies.",
 };
 
 const rates = [
-  ["0–5 months", "$2,500", "$2,700"],
+  ["6 weeks–5 months", "$2,500", "$2,700"],
   ["6–11 months", "$2,200", "$2,400"],
   ["12–17 months", "$1,950", "$2,100"],
   ["18–23 months", "$1,750", "$1,900"],
@@ -41,10 +41,10 @@ export default function TuitionPage() {
       <SiteHeader current="/tuition" />
       <main>
         <InnerHero
-          eyebrow="Tuition & fees"
+          eyebrow="Tuition & financial assistance"
           title="Clear costs."
-          accent="No guessing."
-          description="The current Admission Agreement includes standard full-time monthly reference rates for day and evening programs. Your final schedule and rate are documented before care begins."
+          accent="More ways to pay."
+          description="Review standard tuition reference rates and learn how eligible families may use CalWORKs or Child Action assistance."
           image="/images/preschool-program.png"
           imageAlt="Children concentrating on Montessori learning materials"
         />
@@ -97,6 +97,64 @@ export default function TuitionPage() {
           </p>
         </section>
 
+        <section className="assistance-section" id="assistance">
+          <div className="content-section">
+            <div className="section-heading">
+              <div>
+                <p className="section-label">Childcare assistance</p>
+                <h2>Eligible families can use CalWORKs or Child Action.</h2>
+              </div>
+              <p>
+                Montessori Playschool accepts eligible families using approved
+                childcare assistance. Eligibility and authorization are
+                determined by the administering program, not by the school.
+              </p>
+            </div>
+            <div className="assistance-grid">
+              <a
+                href="https://www.cdss.ca.gov/inforesources/calworks-child-care/program-eligibility"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>California program</span>
+                <h3>CalWORKs Child Care</h3>
+                <p>
+                  Families receiving or transitioning from CalWORKs cash aid
+                  may qualify when they also have an approved need for care.
+                </p>
+                <strong>Review eligibility information <span aria-hidden="true">↗</span></strong>
+              </a>
+              <a
+                href="https://childaction.org/apply-for-subsidized-care/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>Sacramento County resource</span>
+                <h3>Child Action</h3>
+                <p>
+                  Child Action offers financial assistance and an eligibility
+                  list for qualifying Sacramento County families.
+                </p>
+                <strong>Explore subsidized care <span aria-hidden="true">↗</span></strong>
+              </a>
+            </div>
+            <div className="assistance-help">
+              <div>
+                <p className="section-label">Need help?</p>
+                <h3>Contact us before enrollment.</h3>
+              </div>
+              <p>
+                Tell us which assistance program you are using. We can explain
+                what authorization or provider information Montessori
+                Playschool needs to complete your enrollment.
+              </p>
+              <a className="button button-primary" href="/contact">
+                Ask about assistance <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
         <section className="fee-section">
           <div className="content-section">
             <div className="section-heading">
@@ -133,8 +191,7 @@ export default function TuitionPage() {
             <li>Returned payments are subject to a $50 fee.</li>
             <li>Family and sibling discounts are not currently offered.</li>
             <li>
-              Scheduled closures and child absences are included in the annual
-              tuition calculation and do not receive make-up days or credits.
+              Child absences do not receive make-up days or tuition credits.
             </li>
           </ul>
         </section>
@@ -142,8 +199,8 @@ export default function TuitionPage() {
         <section className="simple-cta">
           <p className="section-label">Build your schedule</p>
           <h2>Tell us your child&apos;s age and the hours you need.</h2>
-          <a className="button button-light" href="/enrollment">
-            Start an enrollment inquiry <span aria-hidden="true">→</span>
+          <a className="button button-light" href="/contact#tour">
+            Schedule a Tour <span aria-hidden="true">→</span>
           </a>
         </section>
       </main>

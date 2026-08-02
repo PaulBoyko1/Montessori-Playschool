@@ -4,7 +4,7 @@ import { SiteFooter, SiteHeader } from "../site-chrome";
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "See the visual direction and prepared-environment inspiration for Montessori Playschool.",
+    "See the warm, child-centered classroom environment of Montessori Playschool.",
 };
 
 const gallery = [
@@ -59,10 +59,9 @@ export default function GalleryPage() {
             <em>joy, and belonging.</em>
           </h1>
           <p>
-            These original concept images express the warm, natural, and
-            child-centered environment being developed for Montessori
-            Playschool. Real classroom photography will replace and expand this
-            gallery as the school prepares to open.
+            These images introduce the warm, natural, and child-centered
+            environment families can expect from Montessori Playschool. We
+            will add real classroom moments as photography becomes available.
           </p>
         </section>
 

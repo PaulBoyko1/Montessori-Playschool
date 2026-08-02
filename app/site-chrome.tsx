@@ -1,65 +1,98 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import SocialLinks from "./components/SocialLinks";
+import { school } from "./site-data";
 
 const navigation = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About Us" },
   { href: "/programs", label: "Programs" },
-  { href: "/about", label: "Our Approach" },
   { href: "/meals", label: "Meals" },
-  { href: "/tuition", label: "Tuition" },
-  { href: "/gallery", label: "Gallery" },
+  { href: "/tuition", label: "Tuition & Assistance" },
+  { href: "/location", label: "Location" },
+  { href: "/enrollment", label: "Enrollment" },
   { href: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader({ current }: { current?: string }) {
+  const pathname = usePathname();
+  const activePath = current ?? pathname;
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
-      <div className="announcement">
-        <p>Enrollment inquiries now open</p>
-        <span aria-hidden="true">•</span>
-        <p>Monday–Saturday</p>
-        <span aria-hidden="true">•</span>
-        <p>7:00 AM–10:00 PM</p>
-      </div>
+      <aside className="announcement" aria-label="Enrollment announcement">
+        <div>
+          <strong>Now Enrolling — Children Starting at 6 Weeks</strong>
+          <span>
+            Montessori Playschool is welcoming new families for infant, toddler,
+            preschool, and school-age programs.
+          </span>
+        </div>
+        <Link href="/contact#tour">Schedule a Tour</Link>
+      </aside>
       <header className="site-header">
         <Link className="brand" href="/" aria-label="Montessori Playschool home">
-          <span className="brand-mark" aria-hidden="true">
-            <span>M</span>
-          </span>
-          <span className="brand-copy">
-            <strong>Montessori Playschool</strong>
-            <small>Carmichael, California</small>
-          </span>
+          <img
+            className="brand-logo"
+            src="/images/montessori-playschool-logo.png"
+            alt="Montessori Playschool"
+          />
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navigation.map((item) => (
             <Link
               href={item.href}
               key={item.href}
-              aria-current={current === item.href ? "page" : undefined}
+              aria-current={activePath === item.href ? "page" : undefined}
+              onClick={() => setMenuOpen(false)}
             >
               {item.label}
             </Link>
           ))}
         </nav>
-        <Link className="header-cta" href="/enrollment">
-          Plan a visit
-          <span aria-hidden="true">↗</span>
+        <Link className="header-cta" href="/contact#tour">
+          Schedule a Tour
+          <span aria-hidden="true">→</span>
         </Link>
-        <details className="mobile-menu">
-          <summary aria-label="Open navigation">Menu</summary>
-          <nav aria-label="Mobile navigation">
+        <div className="mobile-menu">
+          <button
+            className="mobile-menu-button"
+            type="button"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setMenuOpen((value) => !value)}
+          >
+            <span>Menu</span>
+            <span aria-hidden="true">{menuOpen ? "Close" : "Open"}</span>
+          </button>
+          <nav
+            id="mobile-navigation"
+            className={menuOpen ? "is-open" : ""}
+            aria-label="Mobile navigation"
+          >
             {navigation.map((item) => (
               <Link
                 href={item.href}
                 key={item.href}
-                aria-current={current === item.href ? "page" : undefined}
+                aria-current={activePath === item.href ? "page" : undefined}
+                onClick={() => setMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <Link href="/enrollment">Enrollment</Link>
+            <Link
+              className="mobile-tour-link"
+              href="/contact#tour"
+              onClick={() => setMenuOpen(false)}
+            >
+              Schedule a Tour
+            </Link>
           </nav>
-        </details>
+        </div>
       </header>
     </>
   );
@@ -69,28 +102,24 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-brand">
-        <span className="brand-mark brand-mark-light" aria-hidden="true">
-          <span>M</span>
-        </span>
-        <div>
-          <strong>Montessori Playschool</strong>
-          <p>A thoughtful place to grow.</p>
-        </div>
+        <Link href="/" aria-label="Montessori Playschool home">
+          <img
+            src="/images/montessori-playschool-logo.png"
+            alt="Montessori Playschool"
+          />
+        </Link>
+        <p>A thoughtful place to learn, play, and grow.</p>
       </div>
       <div className="footer-column">
         <span>Visit</span>
-        <a
-          href="https://www.google.com/maps/search/?api=1&query=2925+Root+Ave%2C+Carmichael%2C+CA"
-          target="_blank"
-          rel="noreferrer"
-        >
-          2925 Root Ave
+        <a href={school.directionsUrl} target="_blank" rel="noreferrer">
+          {school.streetAddress}
           <br />
-          Carmichael, CA
+          {school.locality}
         </a>
         <a
           className="footer-directions"
-          href="https://www.google.com/maps/search/?api=1&query=2925+Root+Ave%2C+Carmichael%2C+CA"
+          href={school.directionsUrl}
           target="_blank"
           rel="noreferrer"
         >
@@ -99,22 +128,25 @@ export function SiteFooter() {
       </div>
       <div className="footer-column">
         <span>Hours</span>
-        <p>Monday–Saturday</p>
-        <p>7:00 AM–10:00 PM</p>
+        <p>{school.days}</p>
+        <p>{school.hours}</p>
       </div>
       <div className="footer-column">
         <span>Contact</span>
-        <a href="tel:+19164706898">(916) 470-6898</a>
-        <a href="mailto:natalia@mn-corp.com">natalia@mn-corp.com</a>
+        <a href={school.phoneHref}>{school.phone}</a>
+        <a href={school.emailHref}>{school.email}</a>
       </div>
       <div className="footer-column">
         <span>Explore</span>
-        <Link href="/">Home</Link>
         <Link href="/programs">Programs</Link>
-        <Link href="/about">Our approach</Link>
-        <Link href="/tuition">Tuition &amp; fees</Link>
+        <Link href="/meals">Meals</Link>
+        <Link href="/tuition">Tuition &amp; assistance</Link>
         <Link href="/enrollment">Enrollment</Link>
         <Link href="/privacy">Privacy</Link>
+      </div>
+      <div className="footer-column footer-social">
+        <span>Follow Us</span>
+        <SocialLinks />
       </div>
       <div className="footer-bottom">
         <p>© 2026 Montessori Playschool. All rights reserved.</p>
