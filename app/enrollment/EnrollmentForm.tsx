@@ -5,11 +5,13 @@ import type { FormEvent } from "react";
 
 export default function EnrollmentForm({ compact = false }: { compact?: boolean }) {
   const [emailDraft, setEmailDraft] = useState("");
+  const [customSchedule, setCustomSchedule] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const schedule = data.getAll("schedule").join(", ") || "Not specified";
+    const customDays = data.get("customDays") || "Not specified";
     const subject = `Enrollment inquiry for ${data.get("child")}`;
     const body = [
       `Parent or guardian: ${data.get("guardian")}`,
@@ -19,6 +21,7 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
       `Child's age: ${data.get("age")}`,
       `Program: ${data.get("program")}`,
       `Schedule needs: ${schedule}`,
+      `Custom days or hours: ${customDays}`,
       "",
       `Additional notes: ${data.get("message") || "None provided"}`,
     ].join("\n");
@@ -103,16 +106,52 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
           <fieldset>
             <legend>Schedule needs</legend>
             <div className="checkbox-grid">
-              {["Weekdays", "Saturday", "Morning", "Afternoon", "Evening"].map(
-                (option) => (
+              {[
+                "Weekdays",
+                "Saturday",
+                "Morning",
+                "Afternoon",
+                "Evening",
+                "Full day",
+                "After school",
+                "Early drop-off",
+                "Late pick-up",
+                "Flexible schedule",
+                "Custom days",
+              ].map((option) => (
                   <label key={option}>
-                    <input type="checkbox" name="schedule" value={option} />
+                    <input
+                      type="checkbox"
+                      name="schedule"
+                      value={option}
+                      checked={option === "Custom days" ? customSchedule : undefined}
+                      onChange={
+                        option === "Custom days"
+                          ? (event) => setCustomSchedule(event.target.checked)
+                          : undefined
+                      }
+                    />
                     <span>{option}</span>
                   </label>
-                ),
-              )}
+                ))}
             </div>
           </fieldset>
+          {customSchedule && (
+            <div className="form-field custom-schedule-field">
+              <label htmlFor="custom-days">Requested days and hours</label>
+              <input
+                id="custom-days"
+                name="customDays"
+                placeholder="Example: Tuesday and Thursday, 8 AM–3 PM"
+                required
+              />
+            </div>
+          )}
+          <p className="schedule-disclaimer">
+            Schedule requests are subject to availability and school approval.
+            Selecting an option does not guarantee placement or specific days
+            and hours.
+          </p>
           <div className="form-field">
             <label htmlFor="message">What would you like us to know?</label>
             <textarea id="message" name="message" rows={5} />

@@ -1,21 +1,12 @@
 import type { Metadata } from "next";
 import { InnerHero, SiteFooter } from "../site-chrome";
+import RateTable from "./RateTable";
 
 export const metadata: Metadata = {
   title: "Tuition & Assistance",
   description:
     "Review Montessori Playschool tuition, fees, CalWORKs childcare assistance, Child Action support, and payment policies.",
 };
-
-const rates = [
-  ["6 weeks–5 months", "$2,500", "$2,700"],
-  ["6–11 months", "$2,200", "$2,400"],
-  ["12–17 months", "$1,950", "$2,100"],
-  ["18–23 months", "$1,750", "$1,900"],
-  ["24–35 months", "$1,450", "$1,600"],
-  ["3–5 years", "$1,350", "$1,500"],
-  ["6–13 years", "$1,250", "$1,400"],
-];
 
 const fees = [
   {
@@ -50,7 +41,7 @@ export default function TuitionPage() {
 
         <section className="tuition-intro content-section">
           <div>
-            <p className="section-label">Monthly rate reference</p>
+            <p className="section-label">Monthly and weekly rate reference</p>
             <h2>Full-time care by age and schedule.</h2>
           </div>
           <p>
@@ -61,38 +52,14 @@ export default function TuitionPage() {
         </section>
 
         <section className="rate-section content-section">
-          <div className="rate-table-wrap">
-            <table className="rate-table">
-              <caption>Standard full-time monthly tuition</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Age group</th>
-                  <th scope="col">
-                    Day program
-                    <span>7 AM–5 PM</span>
-                  </th>
-                  <th scope="col">
-                    Evening program
-                    <span>5 PM–10 PM</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {rates.map(([age, day, evening]) => (
-                  <tr key={age}>
-                    <th scope="row">{age}</th>
-                    <td>{day}<span>/ month</span></td>
-                    <td>{evening}<span>/ month</span></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <RateTable />
           <p className="rate-note">
             These are the standard reference rates in the current Admission
-            Agreement. Montessori Playschool provides at least 30 calendar
-            days&apos; written notice before a change to the basic tuition rate.
-            Final rates and services are confirmed in a signed agreement.
+            Agreement. Weekly reference rates are one-quarter of the listed
+            monthly rate. Weekly schedules are subject to availability and
+            school approval. Montessori Playschool provides at least 30
+            calendar days&apos; written notice before a change to the basic tuition
+            rate. Final rates and services are confirmed in a signed agreement.
           </p>
         </section>
 

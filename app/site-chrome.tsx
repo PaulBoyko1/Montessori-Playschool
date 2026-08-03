@@ -10,6 +10,7 @@ const navigation = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
   { href: "/programs", label: "Programs" },
+  { href: "/gallery", label: "Gallery" },
   { href: "/meals", label: "Meals" },
   { href: "/tuition", label: "Tuition & Assistance" },
   { href: "/location", label: "Location" },
@@ -164,6 +165,7 @@ export function SiteFooter() {
       <div className="footer-column">
         <span>Explore</span>
         <Link href="/programs">Programs</Link>
+        <Link href="/gallery">Gallery</Link>
         <Link href="/meals">Meals</Link>
         <Link href="/tuition">Tuition &amp; assistance</Link>
         <Link href="/enrollment">Enrollment</Link>

@@ -2199,6 +2199,19 @@ img {
   outline-offset: 3px;
 }
 
+.custom-schedule-field {
+  background: #f3f6f1;
+  border: 1px solid var(--line);
+  padding: 1rem;
+}
+
+.schedule-disclaimer {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  margin: -0.2rem 0 0;
+}
+
 .form-submit {
   border: 0;
   cursor: pointer;
@@ -2418,6 +2431,54 @@ img {
 
 .rate-section {
   padding-top: 0;
+}
+
+.rate-period-switch {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.rate-period-switch > span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.rate-period-switch > div {
+  background: #eef2ec;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  display: inline-flex;
+  padding: 0.3rem;
+}
+
+.rate-period-switch button {
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 750;
+  min-height: 44px;
+  padding: 0.7rem 1.15rem;
+  transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.rate-period-switch button:hover,
+.rate-period-switch button:focus-visible {
+  color: var(--forest-deep);
+}
+
+.rate-period-switch button.is-active {
+  background: var(--forest);
+  box-shadow: 0 5px 14px rgba(21, 57, 47, 0.16);
+  color: white;
 }
 
 .rate-table-wrap {
@@ -3958,6 +4019,11 @@ body {
   .brand { min-height: 82px; }
   .brand-logo { height: 80px; }
   .mobile-menu-button { font-size: 1rem; min-height: 52px; min-width: 116px; }
+
+  .rate-period-switch {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 
   .hero { min-height: 780px; }
   .hero-note { bottom: 1rem; left: 1rem; right: 1rem; width: auto; }
