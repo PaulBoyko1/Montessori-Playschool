@@ -55,18 +55,8 @@ export default function Home() {
               <Link className="button button-primary" href="/contact#tour">
                 Schedule a Tour <span aria-hidden="true">→</span>
               </Link>
-              <Link className="text-link" href="/programs">
-                Explore programs
-              </Link>
             </div>
           </div>
-          <Link className="hero-note" href="/enrollment">
-            <span className="hero-note-icon" aria-hidden="true">6w+</span>
-            <p>
-              <strong>Enrollment is now open</strong>
-              <span>Tell us your child&apos;s age and schedule needs.</span>
-            </p>
-          </Link>
         </section>
 
         <section className="quick-facts" aria-label="School highlights">
