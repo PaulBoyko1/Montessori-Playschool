@@ -6,6 +6,7 @@
   --forest-deep: #15392f;
   --sage: #dce5d4;
   --sage-pale: #ffffff;
+  --soft-green: #f4f8f1;
   --cream: #ffffff;
   --paper: #ffffff;
   --apricot: #e2a16f;
@@ -1650,7 +1651,7 @@ img {
 
 .quote-band {
   align-items: center;
-  background: var(--sage-pale);
+  background: var(--soft-green);
   display: flex;
   justify-content: center;
   padding: 7rem 12vw;
@@ -1937,7 +1938,7 @@ img {
 
 .allergy-section {
   align-items: start;
-  background: var(--sage-pale);
+  background: var(--soft-green);
   display: grid;
   gap: 7vw;
   grid-template-columns: 1fr 0.8fr;
@@ -2553,7 +2554,7 @@ img {
 }
 
 .fee-section {
-  background: var(--sage-pale);
+  background: var(--soft-green);
 }
 
 .fee-grid {
@@ -3302,7 +3303,7 @@ body {
 
 .home-curriculum,
 .curriculum-section {
-  background: var(--sage-pale);
+  background: var(--soft-green);
 }
 
 .curriculum-layout {
@@ -3499,6 +3500,11 @@ body {
   margin-top: 1.25rem;
 }
 
+.home-quote blockquote,
+.home-quote blockquote cite {
+  color: #111111;
+}
+
 .cta-actions {
   display: flex;
   flex-wrap: wrap;
@@ -3622,7 +3628,7 @@ body {
 }
 
 .assistance-section {
-  background: var(--sage-pale);
+  background: var(--soft-green);
   scroll-margin-top: 140px;
 }
 
@@ -3771,7 +3777,7 @@ body {
 
 .map-help {
   align-items: center;
-  background: var(--sage-pale);
+  background: var(--soft-green);
   display: flex;
   gap: 3rem;
   justify-content: space-between;
@@ -3828,7 +3834,7 @@ body {
 }
 
 .contact-map-section {
-  background: var(--sage-pale);
+  background: var(--soft-green);
   display: grid;
   gap: 4vw;
   grid-template-columns: 1.25fr 0.75fr;
