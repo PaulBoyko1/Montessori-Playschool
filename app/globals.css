@@ -3085,7 +3085,7 @@ body {
 }
 
 .desktop-nav {
-  gap: clamp(0.3rem, 0.6vw, 0.75rem);
+  gap: clamp(0.85rem, 0.8vw, 1rem);
   justify-content: center;
 }
 
@@ -3098,7 +3098,26 @@ body {
 }
 
 .desktop-nav a::after {
+  background: rgba(101, 110, 106, 0.3);
+  bottom: auto;
+  content: "";
+  display: block;
+  height: 22px;
+  left: auto;
+  position: absolute;
+  right: clamp(-0.52rem, -0.4vw, -0.42rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+}
+
+.desktop-nav a:last-child::after {
   display: none;
+}
+
+.desktop-nav a:hover::after,
+.desktop-nav a:focus-visible::after {
+  transform: translateY(-50%);
 }
 
 .desktop-nav a:hover,
