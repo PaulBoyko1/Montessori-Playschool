@@ -44,7 +44,7 @@ export default function PrivacyPage() {
         <section>
           <h2>Contact and future updates</h2>
           <p>
-            Privacy questions may be sent to natalia@mn-corp.com. This notice
+            Privacy questions may be sent to enroll@montessori-playschool.com. This notice
             will be updated before any server-side form provider, analytics
             service, or other data-collection tool is added.
           </p>

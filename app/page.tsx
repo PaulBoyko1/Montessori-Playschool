@@ -38,10 +38,6 @@ export default function Home() {
           />
           <div className="hero-wash" />
           <div className="hero-content">
-            <p className="eyebrow">
-              <span aria-hidden="true" />
-              Montessori-inspired childcare in Carmichael
-            </p>
             <h1 id="hero-title">
               A thoughtful place
               <br />
@@ -179,9 +175,6 @@ export default function Home() {
             <div className="cta-actions">
               <Link className="button button-light" href="/contact#tour">
                 Schedule a Tour <span aria-hidden="true">→</span>
-              </Link>
-              <Link className="button button-outline-light" href="/enrollment">
-                Enroll Now
               </Link>
             </div>
           </div>

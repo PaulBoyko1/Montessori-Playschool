@@ -3,10 +3,10 @@ export const school = {
   address: "2925 Root Ave, Carmichael, CA 95608",
   streetAddress: "2925 Root Ave",
   locality: "Carmichael, CA 95608",
-  phone: "(916) 470-6898",
-  phoneHref: "tel:+19164706898",
-  email: "natalia@mn-corp.com",
-  emailHref: "mailto:natalia@mn-corp.com",
+  phone: "(916) 844-4242",
+  phoneHref: "tel:+19168444242",
+  email: "enroll@montessori-playschool.com",
+  emailHref: "mailto:enroll@montessori-playschool.com",
   days: "Monday–Saturday",
   hours: "7:00 AM–10:00 PM",
   directionsUrl:
@@ -78,4 +78,3 @@ export const curriculum = [
       "Hands-on experiences with plants, animals, seasons, geography, science, and cultural traditions encourage observation, curiosity, respect for living things, and connection with the wider world.",
   },
 ];
-

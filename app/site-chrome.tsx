@@ -17,48 +17,68 @@ const navigation = [
   { href: "/contact", label: "Contact" },
 ];
 
+function rememberNavigationDirection(currentPath: string, targetPath: string) {
+  const currentIndex = navigation.findIndex((item) => item.href === currentPath);
+  const targetIndex = navigation.findIndex((item) => item.href === targetPath);
+
+  if (currentIndex < 0 || targetIndex < 0 || currentIndex === targetIndex) {
+    window.sessionStorage.removeItem("montessori-nav-direction");
+    return;
+  }
+
+  window.sessionStorage.setItem(
+    "montessori-nav-direction",
+    JSON.stringify({
+      direction: targetIndex > currentIndex ? "right" : "left",
+      target: targetPath,
+      createdAt: Date.now(),
+    }),
+  );
+}
+
 export function SiteHeader({ current }: { current?: string }) {
   const pathname = usePathname();
   const activePath = current ?? pathname;
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <>
-      <aside className="announcement" aria-label="Enrollment announcement">
-        <div>
-          <strong>Now Enrolling — Children Starting at 6 Weeks</strong>
-          <span>
-            Montessori Playschool is welcoming new families for infant, toddler,
-            preschool, and school-age programs.
-          </span>
-        </div>
-        <Link href="/contact#tour">Schedule a Tour</Link>
-      </aside>
-      <header className="site-header">
-        <Link className="brand" href="/" aria-label="Montessori Playschool home">
-          <img
-            className="brand-logo"
-            src="/images/montessori-playschool-logo.png"
-            alt="Montessori Playschool"
-          />
-        </Link>
-        <nav className="desktop-nav" aria-label="Primary navigation">
+    <header className="site-header">
+      <Link
+        className="brand"
+        href="/"
+        aria-label="Montessori Playschool home"
+        onClick={() => rememberNavigationDirection(pathname, "/")}
+      >
+        <img
+          className="brand-logo"
+          src="/images/montessori-playschool-logo.png"
+          alt="Montessori Playschool"
+        />
+      </Link>
+      <nav className="desktop-nav" aria-label="Primary navigation">
           {navigation.map((item) => (
             <Link
               href={item.href}
               key={item.href}
               aria-current={activePath === item.href ? "page" : undefined}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                rememberNavigationDirection(pathname, item.href);
+                setMenuOpen(false);
+              }}
             >
               {item.label}
             </Link>
           ))}
-        </nav>
-        <Link className="header-cta" href="/contact#tour">
+      </nav>
+        <Link
+          className="header-cta"
+          href="/contact#tour"
+          onClick={() => rememberNavigationDirection(pathname, "/contact")}
+        >
           Schedule a Tour
           <span aria-hidden="true">→</span>
         </Link>
-        <div className="mobile-menu">
+      <div className="mobile-menu">
           <button
             className="mobile-menu-button"
             type="button"
@@ -79,7 +99,10 @@ export function SiteHeader({ current }: { current?: string }) {
                 href={item.href}
                 key={item.href}
                 aria-current={activePath === item.href ? "page" : undefined}
-                onClick={() => setMenuOpen(false)}
+                onClick={() => {
+                  rememberNavigationDirection(pathname, item.href);
+                  setMenuOpen(false);
+                }}
               >
                 {item.label}
               </Link>
@@ -87,14 +110,16 @@ export function SiteHeader({ current }: { current?: string }) {
             <Link
               className="mobile-tour-link"
               href="/contact#tour"
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                rememberNavigationDirection(pathname, "/contact");
+                setMenuOpen(false);
+              }}
             >
               Schedule a Tour
             </Link>
           </nav>
-        </div>
-      </header>
-    </>
+      </div>
+    </header>
   );
 }
 

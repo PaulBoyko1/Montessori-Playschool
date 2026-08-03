@@ -146,20 +146,20 @@ export default function ProgramsPage() {
               <h2>More ways to discover and create.</h2>
             </div>
             <p>
-              Tap any class to learn more. Offerings may vary by season,
-              enrollment, age group, and instructor availability.
+              Offerings may vary by season, enrollment, age group, and
+              instructor availability.
             </p>
           </div>
           <div className="enrichment-grid">
             {enrichment.map((item, index) => (
-              <details key={item.title}>
-                <summary>
+              <article key={item.title}>
+                <header>
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   <h3>{item.title}</h3>
-                  <strong aria-hidden="true">+</strong>
-                </summary>
+                </header>
+                <div className="enrichment-image-placeholder" aria-hidden="true" />
                 <p>{item.text}</p>
-              </details>
+              </article>
             ))}
           </div>
           <p className="section-note">

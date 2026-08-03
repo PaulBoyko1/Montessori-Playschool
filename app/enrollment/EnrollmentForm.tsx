@@ -24,7 +24,7 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
     ].join("\n");
 
     setEmailDraft(
-      `mailto:natalia@mn-corp.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
+      `mailto:enroll@montessori-playschool.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
     );
   }
 
