@@ -3091,7 +3091,7 @@ body {
 .desktop-nav ul {
   align-items: center;
   display: flex;
-  gap: clamp(1.1rem, 1vw, 1.3rem);
+  gap: clamp(1.25rem, 1.15vw, 1.5rem);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -3118,7 +3118,7 @@ body {
   content: "";
   height: 22px;
   position: absolute;
-  right: -0.65rem;
+  right: -0.75rem;
   top: 50%;
   transform: translateY(-50%);
   width: 1px;
