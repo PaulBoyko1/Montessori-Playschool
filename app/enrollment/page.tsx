@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { school } from "../site-data";
-import { SiteFooter, SiteHeader } from "../site-chrome";
+import { SiteFooter } from "../site-chrome";
 import EnrollmentForm from "./EnrollmentForm";
 
 export const metadata: Metadata = {
@@ -38,7 +38,6 @@ const familyEssentials = [
 export default function EnrollmentPage() {
   return (
     <>
-      <SiteHeader current="/enrollment" />
       <main className="enrollment-page">
         <section className="enrollment-heading">
           <div>

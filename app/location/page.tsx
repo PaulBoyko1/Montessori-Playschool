@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { school } from "../site-data";
-import { SiteFooter, SiteHeader } from "../site-chrome";
+import { SiteFooter } from "../site-chrome";
 
 export const metadata: Metadata = {
   title: "Location",
@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 export default function LocationPage() {
   return (
     <>
-      <SiteHeader current="/location" />
       <main>
         <section className="location-hero">
           <div>

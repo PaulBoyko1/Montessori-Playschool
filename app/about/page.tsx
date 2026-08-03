@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { InnerHero, SiteFooter, SiteHeader } from "../site-chrome";
+import { InnerHero, SiteFooter } from "../site-chrome";
 
 export const metadata: Metadata = {
   title: "About",
@@ -17,7 +17,6 @@ const principles = [
 export default function AboutPage() {
   return (
     <>
-      <SiteHeader current="/about" />
       <main>
         <InnerHero
           eyebrow="About Montessori Playschool"

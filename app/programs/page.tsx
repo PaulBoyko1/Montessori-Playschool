@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import CurriculumAccordion from "../components/CurriculumAccordion";
 import { programs } from "../site-data";
-import { InnerHero, SiteFooter, SiteHeader } from "../site-chrome";
+import { InnerHero, SiteFooter } from "../site-chrome";
 
 export const metadata: Metadata = {
   title: "Programs",
@@ -82,7 +82,6 @@ const enrichment = [
 export default function ProgramsPage() {
   return (
     <>
-      <SiteHeader current="/programs" />
       <main>
         <InnerHero
           eyebrow="Programs · Ages 6 weeks–13 years"

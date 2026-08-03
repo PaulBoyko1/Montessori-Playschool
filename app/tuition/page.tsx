@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { InnerHero, SiteFooter, SiteHeader } from "../site-chrome";
+import { InnerHero, SiteFooter } from "../site-chrome";
 
 export const metadata: Metadata = {
   title: "Tuition & Assistance",
@@ -38,7 +38,6 @@ const fees = [
 export default function TuitionPage() {
   return (
     <>
-      <SiteHeader current="/tuition" />
       <main>
         <InnerHero
           eyebrow="Tuition & financial assistance"

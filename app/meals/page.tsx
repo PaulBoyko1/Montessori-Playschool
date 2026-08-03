@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { InnerHero, SiteFooter, SiteHeader } from "../site-chrome";
+import { InnerHero, SiteFooter } from "../site-chrome";
 
 export const metadata: Metadata = {
   title: "Weekly Meals",
@@ -55,7 +55,6 @@ const weeklyMenu = [
 export default function MealsPage() {
   return (
     <>
-      <SiteHeader current="/meals" />
       <main>
         <InnerHero
           eyebrow="Weekly meals"

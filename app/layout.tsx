@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PageTransition from "./components/PageTransition";
+import { SiteHeader } from "./site-chrome";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -48,6 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <SiteHeader />
         <PageTransition>{children}</PageTransition>
       </body>
     </html>

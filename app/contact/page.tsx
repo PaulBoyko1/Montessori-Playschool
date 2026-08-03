@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SocialLinks from "../components/SocialLinks";
 import EnrollmentForm from "../enrollment/EnrollmentForm";
 import { school } from "../site-data";
-import { SiteFooter, SiteHeader } from "../site-chrome";
+import { SiteFooter } from "../site-chrome";
 
 export const metadata: Metadata = {
   title: "Contact & Schedule a Tour",
@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <SiteHeader current="/contact" />
       <main>
         <section className="contact-heading" id="tour">
           <div>

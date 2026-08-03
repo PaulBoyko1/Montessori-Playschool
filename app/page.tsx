@@ -1,7 +1,7 @@
 import Link from "next/link";
 import CurriculumAccordion from "./components/CurriculumAccordion";
 import { programs, school } from "./site-data";
-import { SiteFooter, SiteHeader } from "./site-chrome";
+import { SiteFooter } from "./site-chrome";
 
 const parentEssentials = [
   {
@@ -27,7 +27,6 @@ const parentEssentials = [
 export default function Home() {
   return (
     <>
-      <SiteHeader current="/" />
 
       <main id="top">
         <section className="hero" aria-labelledby="hero-title">

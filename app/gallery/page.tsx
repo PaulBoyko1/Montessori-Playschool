@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SiteFooter, SiteHeader } from "../site-chrome";
+import { SiteFooter } from "../site-chrome";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -49,7 +49,6 @@ const gallery = [
 export default function GalleryPage() {
   return (
     <>
-      <SiteHeader current="/gallery" />
       <main>
         <section className="gallery-heading content-section">
           <p className="section-label">Gallery</p>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SiteFooter, SiteHeader } from "../site-chrome";
+import { SiteFooter } from "../site-chrome";
 
 export const metadata: Metadata = {
   title: "Privacy",
@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <SiteHeader />
       <main className="legal-page content-section">
         <p className="section-label">Privacy</p>
         <h1>Website privacy notice</h1>

@@ -35,6 +35,10 @@ export default function PageTransition({ children }: { children: React.ReactNode
   const pageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!window.location.hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    }
+
     const page = pageRef.current;
     const direction = getDirection(pathname);
     if (!page || direction === "none") return;
