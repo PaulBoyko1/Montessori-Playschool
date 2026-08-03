@@ -3091,7 +3091,7 @@ body {
 .desktop-nav ul {
   align-items: center;
   display: flex;
-  gap: clamp(0.85rem, 0.8vw, 1rem);
+  gap: clamp(1.1rem, 1vw, 1.3rem);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -3118,7 +3118,7 @@ body {
   content: "";
   height: 22px;
   position: absolute;
-  right: clamp(-0.52rem, -0.4vw, -0.42rem);
+  right: -0.65rem;
   top: 50%;
   transform: translateY(-50%);
   width: 1px;
@@ -3250,49 +3250,54 @@ body {
 .program-color-3 { background: #fff2eb; }
 .program-color-4 { background: #f4f0f8; }
 
-.home-section-divider {
+.section-divider {
   align-items: center;
+  background: var(--paper);
   display: flex;
-  margin: 0 auto;
-  max-width: 1440px;
-  padding: 0 7vw;
+  height: 40px;
+  position: relative;
+  width: 100%;
 }
 
-.home-section-divider::after {
-  background: rgba(101, 110, 106, 0.42);
+.section-divider::before {
+  background: rgba(101, 110, 106, 0.46);
   content: "";
-  flex: 1;
   height: 1px;
+  inset: 50% 0 auto;
+  position: absolute;
 }
 
 .divider-leaf {
-  flex: 0 0 50px;
-  height: 22px;
+  background: var(--paper);
+  flex: 0 0 72px;
+  height: 30px;
+  margin-left: clamp(0.8rem, 2.5vw, 2.5rem);
   position: relative;
+  z-index: 1;
 }
 
 .divider-leaf::before {
-  background: #858c88;
+  background: #6f9e3f;
   content: "";
-  height: 1.5px;
-  left: 0;
+  height: 2px;
+  left: 7px;
   position: absolute;
-  top: 10px;
+  top: 14px;
   transform: rotate(-4deg);
   transform-origin: right center;
-  width: 18px;
+  width: 25px;
 }
 
 .divider-leaf::after {
-  background: #858c88;
+  background: #6f9e3f;
   border-radius: 100% 0 100% 0;
   content: "";
-  height: 14px;
-  left: 15px;
+  height: 18px;
+  left: 28px;
   position: absolute;
-  top: 3px;
+  top: 5px;
   transform: rotate(28deg);
-  width: 27px;
+  width: 35px;
 }
 
 .home-curriculum,

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import CurriculumAccordion from "./components/CurriculumAccordion";
 import { programs, school } from "./site-data";
-import { SiteFooter } from "./site-chrome";
+import { SectionDivider, SiteFooter } from "./site-chrome";
 
 const parentEssentials = [
   {
@@ -96,9 +96,7 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="home-section-divider" aria-hidden="true">
-          <span className="divider-leaf" />
-        </div>
+        <SectionDivider />
 
         <section className="home-curriculum">
           <div className="content-section curriculum-layout">

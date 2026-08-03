@@ -202,23 +202,37 @@ export function InnerHero({
   imageAlt: string;
 }) {
   return (
-    <section className="inner-hero">
-      <div className="inner-hero-copy">
-        <p className="section-label">{eyebrow}</p>
-        <h1>
-          {title}
-          {accent && (
-            <>
-              <br />
-              <em>{accent}</em>
-            </>
-          )}
-        </h1>
-        <p>{description}</p>
-      </div>
-      <div className="inner-hero-image">
-        <img src={image} alt={imageAlt} />
-      </div>
-    </section>
+    <>
+      <section className="inner-hero">
+        <div className="inner-hero-copy">
+          <p className="section-label">{eyebrow}</p>
+          <h1>
+            {title}
+            {accent && (
+              <>
+                <br />
+                <em>{accent}</em>
+              </>
+            )}
+          </h1>
+          <p>{description}</p>
+        </div>
+        <div className="inner-hero-image">
+          <img src={image} alt={imageAlt} />
+        </div>
+      </section>
+      <SectionDivider className="hero-section-divider" />
+    </>
+  );
+}
+
+export function SectionDivider({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`section-divider ${className}`.trim()}
+      aria-hidden="true"
+    >
+      <span className="divider-leaf" />
+    </div>
   );
 }
