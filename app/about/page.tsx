@@ -53,10 +53,9 @@ export default function AboutPage() {
         </section>
 
         <section className="quote-band">
-          <span aria-hidden="true">“</span>
           <blockquote>
-            <p>The child is both a hope and a promise for mankind.</p>
-            <cite>Maria Montessori · <em>Education and Peace</em></cite>
+            <p>“The child is both a hope and a promise for mankind.”</p>
+            <cite>— Maria Montessori, <em>Education and Peace</em></cite>
           </blockquote>
         </section>
 
