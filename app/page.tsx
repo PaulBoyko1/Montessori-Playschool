@@ -150,7 +150,7 @@ export default function Home() {
         <section className="quote-band home-quote">
           <blockquote>
             <p>“The child is both a hope and a promise for mankind.”</p>
-            <cite>— Maria Montessori, <em>Education and Peace</em></cite>
+            <cite>— Maria Montessori, Education and Peace</cite>
           </blockquote>
         </section>
 

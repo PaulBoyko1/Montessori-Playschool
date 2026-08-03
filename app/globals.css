@@ -3085,8 +3085,20 @@ body {
 }
 
 .desktop-nav {
-  gap: clamp(0.85rem, 0.8vw, 1rem);
   justify-content: center;
+}
+
+.desktop-nav ul {
+  align-items: center;
+  display: flex;
+  gap: clamp(0.85rem, 0.8vw, 1rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.desktop-nav li {
+  position: relative;
 }
 
 .desktop-nav a {
@@ -3098,26 +3110,18 @@ body {
 }
 
 .desktop-nav a::after {
+  content: none;
+}
+
+.desktop-nav li:not(:last-child)::after {
   background: rgba(101, 110, 106, 0.3);
-  bottom: auto;
   content: "";
-  display: block;
   height: 22px;
-  left: auto;
   position: absolute;
   right: clamp(-0.52rem, -0.4vw, -0.42rem);
   top: 50%;
   transform: translateY(-50%);
   width: 1px;
-}
-
-.desktop-nav a:last-child::after {
-  display: none;
-}
-
-.desktop-nav a:hover::after,
-.desktop-nav a:focus-visible::after {
-  transform: translateY(-50%);
 }
 
 .desktop-nav a:hover,
@@ -3439,7 +3443,7 @@ body {
   color: #737976;
   display: block;
   font-family: var(--sans);
-  font-size: 0.75rem;
+  font-size: clamp(0.95rem, 1.15vw, 1.08rem);
   font-style: normal;
   letter-spacing: 0.04em;
   margin-top: 1.25rem;

@@ -57,19 +57,22 @@ export function SiteHeader({ current }: { current?: string }) {
         />
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
+        <ul>
           {navigation.map((item) => (
-            <Link
-              href={item.href}
-              key={item.href}
-              aria-current={activePath === item.href ? "page" : undefined}
-              onClick={() => {
-                rememberNavigationDirection(pathname, item.href);
-                setMenuOpen(false);
-              }}
-            >
-              {item.label}
-            </Link>
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                aria-current={activePath === item.href ? "page" : undefined}
+                onClick={() => {
+                  rememberNavigationDirection(pathname, item.href);
+                  setMenuOpen(false);
+                }}
+              >
+                {item.label}
+              </Link>
+            </li>
           ))}
+        </ul>
       </nav>
         <Link
           className="header-cta"
