@@ -41,7 +41,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
 
     const className = `page-enter-from-${direction}`;
     page.classList.add(className);
-    const timer = window.setTimeout(() => page.classList.remove(className), 520);
+    const timer = window.setTimeout(() => page.classList.remove(className), 840);
 
     return () => {
       window.clearTimeout(timer);
