@@ -37,11 +37,7 @@ export default function Home() {
           />
           <div className="hero-wash" />
           <div className="hero-content">
-            <h1 id="hero-title">
-              A thoughtful place
-              <br />
-              <em>to grow.</em>
-            </h1>
+            <h1 id="hero-title">Montessori Playschool</h1>
             <p className="hero-lede">
               Warm, age-appropriate care for infants, toddlers, preschoolers,
               and school-age children from 6 weeks through 13 years.
