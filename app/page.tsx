@@ -96,6 +96,10 @@ export default function Home() {
           </div>
         </section>
 
+        <div className="home-section-divider" aria-hidden="true">
+          <span className="divider-leaf" />
+        </div>
+
         <section className="home-curriculum">
           <div className="content-section curriculum-layout">
             <div>

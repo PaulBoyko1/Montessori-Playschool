@@ -3250,6 +3250,51 @@ body {
 .program-color-3 { background: #fff2eb; }
 .program-color-4 { background: #f4f0f8; }
 
+.home-section-divider {
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 0 7vw;
+}
+
+.home-section-divider::after {
+  background: rgba(101, 110, 106, 0.42);
+  content: "";
+  flex: 1;
+  height: 1px;
+}
+
+.divider-leaf {
+  flex: 0 0 50px;
+  height: 22px;
+  position: relative;
+}
+
+.divider-leaf::before {
+  background: #858c88;
+  content: "";
+  height: 1.5px;
+  left: 0;
+  position: absolute;
+  top: 10px;
+  transform: rotate(-4deg);
+  transform-origin: right center;
+  width: 18px;
+}
+
+.divider-leaf::after {
+  background: #858c88;
+  border-radius: 100% 0 100% 0;
+  content: "";
+  height: 14px;
+  left: 15px;
+  position: absolute;
+  top: 3px;
+  transform: rotate(28deg);
+  width: 27px;
+}
+
 .home-curriculum,
 .curriculum-section {
   background: var(--sage-pale);
