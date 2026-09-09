@@ -19,7 +19,7 @@ const galleryGroups = [
         src: "/images/photos/selected/home-hero.webp",
         alt: "An educator engaging with two young children at their level in a bright classroom",
         caption: "Meeting children where they are",
-        className: "photo-card photo-card-wide",
+        className: "photo-card",
       },
       {
         src: "/images/photos/selected/about-hero.webp",
@@ -52,7 +52,7 @@ const galleryGroups = [
         src: "/images/photos/selected/programs-hero.webp",
         alt: "A group of children proudly holding model airplanes during a classroom activity",
         caption: "Imagination in motion",
-        className: "photo-card photo-card-wide",
+        className: "photo-card",
       },
       {
         src: "/images/photos/selected/tuition-hero.webp",
