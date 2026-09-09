@@ -94,10 +94,9 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
           <option value="" disabled>
             Choose a program
           </option>
-          <option>Infant Program · 6 weeks–1.5 years</option>
-          <option>Toddler Program · 1.5–3 years</option>
-          <option>Preschool Program · 3–6 years</option>
-          <option>School-Age Program · 6–13 years</option>
+          <option>Infant Program · Birth–24 months</option>
+          <option>Preschool Program · Age 2–entry into kindergarten</option>
+          <option>School-Age Program · Kindergarten–9th grade</option>
           <option>Not sure yet</option>
         </select>
       </div>
@@ -119,21 +118,21 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
                 "Flexible schedule",
                 "Custom days",
               ].map((option) => (
-                  <label key={option}>
-                    <input
-                      type="checkbox"
-                      name="schedule"
-                      value={option}
-                      checked={option === "Custom days" ? customSchedule : undefined}
-                      onChange={
-                        option === "Custom days"
-                          ? (event) => setCustomSchedule(event.target.checked)
-                          : undefined
-                      }
-                    />
-                    <span>{option}</span>
-                  </label>
-                ))}
+                <label key={option}>
+                  <input
+                    type="checkbox"
+                    name="schedule"
+                    value={option}
+                    checked={option === "Custom days" ? customSchedule : undefined}
+                    onChange={
+                      option === "Custom days"
+                        ? (event) => setCustomSchedule(event.target.checked)
+                        : undefined
+                    }
+                  />
+                  <span>{option}</span>
+                </label>
+              ))}
             </div>
           </fieldset>
           {customSchedule && (
