@@ -38,9 +38,9 @@ const featuredMoments = [
     className: "home-moment-small",
   },
   {
-    src: "/images/photos/music-and-singing.webp",
-    alt: "Children singing together with a teacher during a music activity",
-    label: "Music & movement",
+    src: "/images/photos/children-movement-activity.webp",
+    alt: "Children smiling and moving together during a group activity",
+    label: "Movement & play",
     className: "home-moment-small",
   },
 ];
