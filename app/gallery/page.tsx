@@ -4,45 +4,96 @@ import { SiteFooter } from "../site-chrome";
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "See the warm, child-centered classroom environment of Montessori Playschool.",
+    "See real classroom moments, activities, educators, and children at Montessori Playschool.",
 };
 
-const gallery = [
+const galleryGroups = [
   {
-    src: "/images/hero-classroom.png",
-    alt: "A warm Montessori classroom with children working together",
-    caption: "A calm, prepared environment",
-    className: "gallery-wide",
+    id: "teachers-and-children",
+    eyebrow: "Teachers & children",
+    title: "Caring relationships in the classroom.",
+    description:
+      "Attentive educators join children at their level—guiding, encouraging, and sharing in the work of the day.",
+    images: [
+      {
+        src: "/images/photos/teacher-child-hug.webp",
+        alt: "A teacher sharing a warm hug with a child",
+        caption: "Connection and trust",
+        className: "photo-card photo-card-wide",
+      },
+      {
+        src: "/images/photos/classroom-teacher-group.webp",
+        alt: "A teacher leading a hands-on activity with a group of children",
+        caption: "Learning together",
+        className: "photo-card",
+      },
+      {
+        src: "/images/photos/teacher-guided-art.webp",
+        alt: "A teacher helping a child during an art activity",
+        caption: "Guidance when it matters",
+        className: "photo-card",
+      },
+    ],
   },
   {
-    src: "/images/toddler-program.png",
-    alt: "Toddlers practicing pouring with wooden materials",
-    caption: "Practical life in action",
-    className: "gallery-tall",
+    id: "learning-and-creativity",
+    eyebrow: "Learning & creativity",
+    title: "Children absorbed in meaningful activity.",
+    description:
+      "Art, sensory work, fine-motor practice, and collaborative projects give children room to concentrate and create.",
+    images: [
+      {
+        src: "/images/photos/child-painting.webp",
+        alt: "A child concentrating on a watercolor painting",
+        caption: "Focused creative work",
+        className: "photo-card photo-card-wide",
+      },
+      {
+        src: "/images/photos/happy-child-classroom.webp",
+        alt: "A smiling child enjoying a classroom activity",
+        caption: "Joy in the everyday",
+        className: "photo-card photo-card-tall",
+      },
+      {
+        src: "/images/photos/teacher-child-art.webp",
+        alt: "A teacher and child smiling together during an art activity",
+        caption: "Creating side by side",
+        className: "photo-card photo-card-tall",
+      },
+    ],
   },
   {
-    src: "/images/preschool-program.png",
-    alt: "Children collaborating on hands-on academic work",
-    caption: "Learning in community",
-    className: "gallery-square",
-  },
-  {
-    src: "/images/hero-classroom.png",
-    alt: "Children choosing hands-on work",
-    caption: "Independence with guidance",
-    className: "gallery-crop-left",
-  },
-  {
-    src: "/images/preschool-program.png",
-    alt: "An educator observing children at work",
-    caption: "Attentive educators",
-    className: "gallery-crop-right",
-  },
-  {
-    src: "/images/toddler-program.png",
-    alt: "A thoughtful classroom with child-sized materials",
-    caption: "Everything within reach",
-    className: "gallery-wide",
+    id: "music-movement-play",
+    eyebrow: "Music, movement & play",
+    title: "Learning that gets children moving.",
+    description:
+      "Group activities invite children to sing, move, imagine, take turns, and enjoy being part of a community.",
+    images: [
+      {
+        src: "/images/photos/airplane-group-activity.webp",
+        alt: "Children holding model airplanes during a group activity",
+        caption: "Imagination in motion",
+        className: "photo-card photo-card-wide",
+      },
+      {
+        src: "/images/photos/music-and-singing.webp",
+        alt: "Children singing with a teacher during music time",
+        caption: "Music together",
+        className: "photo-card",
+      },
+      {
+        src: "/images/photos/rhythm-sticks-activity.webp",
+        alt: "Two children participating in a rhythm-stick activity",
+        caption: "Rhythm and coordination",
+        className: "photo-card",
+      },
+      {
+        src: "/images/photos/children-movement-activity.webp",
+        alt: "Children smiling and moving together during a group activity",
+        caption: "Movement and friendship",
+        className: "photo-card photo-card-wide",
+      },
+    ],
   },
 ];
 
@@ -58,23 +109,38 @@ export default function GalleryPage() {
             <em>joy, and belonging.</em>
           </h1>
           <p>
-            These images introduce the warm, natural, and child-centered
-            environment families can expect from Montessori Playschool. We
-            will add real classroom moments as photography becomes available.
+            Real classroom moments from our daycare community—children learning,
+            creating, moving, and building relationships with the educators who
+            care for them each day.
           </p>
+          <nav className="gallery-jump-links" aria-label="Gallery categories">
+            {galleryGroups.map((group) => (
+              <a href={`#${group.id}`} key={group.id}>{group.eyebrow}</a>
+            ))}
+          </nav>
         </section>
 
-        <section className="gallery-grid" aria-label="Montessori Playschool gallery">
-          {gallery.map((image, index) => (
-            <figure className={image.className} key={`${image.caption}-${index}`}>
-              <img src={image.src} alt={image.alt} />
-              <figcaption>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                {image.caption}
-              </figcaption>
-            </figure>
+        <div className="photo-gallery-groups">
+          {galleryGroups.map((group) => (
+            <section className="photo-gallery-group" id={group.id} key={group.id}>
+              <div className="photo-gallery-heading content-section">
+                <div>
+                  <p className="section-label">{group.eyebrow}</p>
+                  <h2>{group.title}</h2>
+                </div>
+                <p>{group.description}</p>
+              </div>
+              <div className="photo-gallery-grid">
+                {group.images.map((image) => (
+                  <figure className={image.className} key={image.src}>
+                    <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+                    <figcaption>{image.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
           ))}
-        </section>
+        </div>
 
         <section className="simple-cta">
           <p className="section-label">Picture your child here</p>
