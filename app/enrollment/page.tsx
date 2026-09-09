@@ -48,19 +48,19 @@ export default function EnrollmentPage() {
               <em>your family.</em>
             </h1>
             <p>
-              Montessori Playschool is welcoming enrollment inquiries for
-              children ages 6 weeks through 13 years. Share what you need and
-              we&apos;ll help you understand the next step.
+              Montessori Playschool is welcoming enrollment inquiries from
+              birth through 9th grade. Share what you need and we&apos;ll help you
+              understand the next step.
             </p>
           </div>
           <div className="enrollment-facts">
             <div>
               <span>Programs</span>
-              <p>Infant, Toddler, Preschool &amp; School Age</p>
+              <p>Infant, Preschool &amp; School Age</p>
             </div>
             <div>
               <span>Days</span>
-              <p>Monday–Saturday</p>
+              <p>{school.days}</p>
             </div>
             <div>
               <span>Hours</span>
@@ -110,7 +110,7 @@ export default function EnrollmentPage() {
             </div>
             <p>
               These practical policies come directly from the facility&apos;s
-              infant, toddler, preschool, and school-age family handbooks.
+              infant and preschool/school-age family handbooks.
             </p>
           </div>
           <div className="family-essential-grid">
