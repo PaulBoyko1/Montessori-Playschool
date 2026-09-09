@@ -24,28 +24,21 @@ export const programs = [
   {
     slug: "infant",
     name: "Infant Program",
-    age: "6 weeks–1.5 years",
+    age: "Birth–24 months",
     summary:
       "Responsive care, peaceful routines, safe movement, language, and sensory discovery help our youngest children feel secure and ready to explore.",
   },
   {
-    slug: "toddler",
-    name: "Toddler Program",
-    age: "1.5–3 years",
-    summary:
-      "Hands-on activities, practical routines, language, movement, and guided play nurture independence, curiosity, and growing social skills.",
-  },
-  {
     slug: "preschool",
     name: "Preschool Program",
-    age: "3–6 years",
+    age: "Age 2–entry into kindergarten",
     summary:
-      "Montessori-inspired work and joyful play build early literacy, math, creativity, problem-solving, cooperation, and school readiness.",
+      "Montessori-inspired practical life, language, movement, early academics, creativity, and guided play build independence, confidence, and school readiness.",
   },
   {
     slug: "school-age",
     name: "School-Age Program",
-    age: "6–13 years",
+    age: "Kindergarten–9th grade",
     summary:
       "A supportive setting for homework, hands-on projects, friendships, movement, creative work, and age-appropriate enrichment.",
   },
