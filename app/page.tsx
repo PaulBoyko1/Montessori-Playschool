@@ -24,16 +24,37 @@ const parentEssentials = [
   },
 ];
 
+const featuredMoments = [
+  {
+    src: "/images/photos/child-painting.webp",
+    alt: "A child concentrating on a watercolor painting activity",
+    label: "Creative work",
+    className: "home-moment-large",
+  },
+  {
+    src: "/images/photos/teacher-child-hug.webp",
+    alt: "A teacher sharing a warm hug with a child in the classroom",
+    label: "Caring relationships",
+    className: "home-moment-small",
+  },
+  {
+    src: "/images/photos/children-movement-activity.webp",
+    alt: "Children smiling and moving together during a group activity",
+    label: "Movement & play",
+    className: "home-moment-small",
+  },
+];
+
 export default function Home() {
   return (
     <>
-
       <main id="top">
         <section className="hero" aria-labelledby="hero-title">
           <img
             className="hero-image"
-            src="/images/hero-classroom.png"
-            alt="Children working with Montessori materials in a warm classroom"
+            src="/images/photos/classroom-teacher-group.webp"
+            alt="A smiling teacher leading a hands-on classroom activity with children"
+            fetchPriority="high"
           />
           <div className="hero-wash" />
           <div className="hero-content">
@@ -113,6 +134,32 @@ export default function Home() {
               </Link>
             </div>
             <CurriculumAccordion compact />
+          </div>
+        </section>
+
+        <section className="home-moments content-section" aria-labelledby="moments-heading">
+          <div className="section-heading home-moments-heading">
+            <div>
+              <p className="section-label">Inside our classrooms</p>
+              <h2 id="moments-heading">Real moments from the school day.</h2>
+            </div>
+            <div>
+              <p>
+                Learning here is active, social, creative, and grounded in
+                caring relationships between children and educators.
+              </p>
+              <Link className="inline-arrow" href="/gallery">
+                Visit the full gallery <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
+          <div className="home-moment-grid">
+            {featuredMoments.map((moment) => (
+              <figure className={moment.className} key={moment.src}>
+                <img src={moment.src} alt={moment.alt} loading="lazy" decoding="async" />
+                <figcaption>{moment.label}</figcaption>
+              </figure>
+            ))}
           </div>
         </section>
 

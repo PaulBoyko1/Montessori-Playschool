@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageTransition from "./components/PageTransition";
 import { SiteHeader } from "./site-chrome";
 import "./globals.css";
+import "./photo-enhancements.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.montessori-playschool.com"),
@@ -22,10 +23,10 @@ export const metadata: Metadata = {
     siteName: "Montessori Playschool",
     images: [
       {
-        url: "/images/montessori-playschool-logo.png",
-        width: 1536,
-        height: 1024,
-        alt: "Montessori Playschool logo",
+        url: "/images/photos/classroom-teacher-group.webp",
+        width: 760,
+        height: 570,
+        alt: "A teacher leading a classroom activity with children at Montessori Playschool",
       },
     ],
     locale: "en_US",

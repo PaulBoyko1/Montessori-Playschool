@@ -88,8 +88,8 @@ export default function ProgramsPage() {
           title="A place for"
           accent="every stage."
           description="Responsive care, meaningful work, joyful play, and age-appropriate enrichment meet children where they are and help them grow with confidence."
-          image="/images/preschool-program.png"
-          imageAlt="Children collaborating with Montessori learning materials"
+          image="/images/photos/airplane-group-activity.webp"
+          imageAlt="Children proudly holding model airplanes during a classroom activity"
         />
 
         <section className="page-intro content-section">
@@ -165,6 +165,23 @@ export default function ProgramsPage() {
             Class schedules and any related costs will be confirmed directly
             with families; no schedule or price is implied by this overview.
           </p>
+        </section>
+
+        <section className="program-photo-band" aria-label="Classroom activity">
+          <img
+            src="/images/photos/music-and-singing.webp"
+            alt="Children singing together with a teacher during a classroom music activity"
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <p className="section-label">Learning through participation</p>
+            <h2>Hands-on experiences make the day memorable.</h2>
+            <p>
+              Children have regular opportunities to move, create, practice new
+              skills, collaborate, and build confidence through purposeful play.
+            </p>
+          </div>
         </section>
 
         <section className="simple-cta">

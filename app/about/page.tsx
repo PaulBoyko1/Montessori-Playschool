@@ -23,8 +23,8 @@ export default function AboutPage() {
           title="Rooted in respect."
           accent="Made for childhood."
           description="A warm Carmichael learning community where children can move with purpose, think with curiosity, and belong wholeheartedly."
-          image="/images/hero-classroom.png"
-          imageAlt="An educator supporting children in a Montessori classroom"
+          image="/images/photos/teacher-child-hug.webp"
+          imageAlt="A teacher sharing a warm hug with a child in the classroom"
         />
 
         <section className="story-section content-section">
@@ -85,8 +85,10 @@ export default function AboutPage() {
 
         <section className="image-statement">
           <img
-            src="/images/preschool-program.png"
-            alt="Children deeply engaged in hands-on learning"
+            src="/images/photos/teacher-guided-art.webp"
+            alt="A teacher guiding a child through a hands-on art activity"
+            loading="lazy"
+            decoding="async"
           />
           <div>
             <p className="section-label">The role of the educator</p>
