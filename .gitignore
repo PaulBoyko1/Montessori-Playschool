@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# generated high-quality website photos (rebuilt from verified photo-source parts)
+/public/images/photos/selected/*.webp
+
 # misc
 .DS_Store
 *.pem
