@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SocialLinks from "./components/SocialLinks";
 import { school } from "./site-data";
 
@@ -42,6 +42,19 @@ export function SiteHeader({ current }: { current?: string }) {
   const activePath = current ?? pathname;
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
+
   return (
     <header className="site-header">
       <Link
@@ -74,54 +87,58 @@ export function SiteHeader({ current }: { current?: string }) {
           ))}
         </ul>
       </nav>
-        <Link
-          className="header-cta"
-          href="/contact#tour"
-          onClick={() => rememberNavigationDirection(pathname, "/contact")}
-        >
-          Schedule a Tour
-          <span aria-hidden="true">→</span>
-        </Link>
+      <Link
+        className="header-cta"
+        href="/contact#tour"
+        onClick={() => rememberNavigationDirection(pathname, "/contact")}
+      >
+        Schedule a Tour
+        <span aria-hidden="true">→</span>
+      </Link>
       <div className="mobile-menu">
-          <button
-            className="mobile-menu-button"
-            type="button"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-navigation"
-            onClick={() => setMenuOpen((value) => !value)}
-          >
-            <span>Menu</span>
-            <span aria-hidden="true">{menuOpen ? "Close" : "Open"}</span>
-          </button>
-          <nav
-            id="mobile-navigation"
-            className={menuOpen ? "is-open" : ""}
-            aria-label="Mobile navigation"
-          >
-            {navigation.map((item) => (
-              <Link
-                href={item.href}
-                key={item.href}
-                aria-current={activePath === item.href ? "page" : undefined}
-                onClick={() => {
-                  rememberNavigationDirection(pathname, item.href);
-                  setMenuOpen(false);
-                }}
-              >
-                {item.label}
-              </Link>
-            ))}
+        <button
+          className="mobile-menu-button"
+          type="button"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          onClick={() => setMenuOpen((value) => !value)}
+        >
+          <span className="mobile-menu-icon" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
+        </button>
+        <nav
+          id="mobile-navigation"
+          className={menuOpen ? "is-open" : ""}
+          aria-label="Mobile navigation"
+        >
+          {navigation.map((item) => (
             <Link
-              className="mobile-tour-link"
-              href="/contact#tour"
+              href={item.href}
+              key={item.href}
+              aria-current={activePath === item.href ? "page" : undefined}
               onClick={() => {
-                rememberNavigationDirection(pathname, "/contact");
+                rememberNavigationDirection(pathname, item.href);
                 setMenuOpen(false);
               }}
             >
-              Schedule a Tour
+              {item.label}
             </Link>
-          </nav>
+          ))}
+          <Link
+            className="mobile-tour-link"
+            href="/contact#tour"
+            onClick={() => {
+              rememberNavigationDirection(pathname, "/contact");
+              setMenuOpen(false);
+            }}
+          >
+            Schedule a Tour
+          </Link>
+        </nav>
       </div>
     </header>
   );
