@@ -4,51 +4,51 @@ import { InnerHero, SiteFooter } from "../site-chrome";
 export const metadata: Metadata = {
   title: "Weekly Meals",
   description:
-    "Review Montessori Playschool's Monday-through-Saturday sample menu, meal approach, parent-provided alternatives, and dietary guidance.",
+    "Review Montessori Playschool's Monday-through-Saturday sample menu, meal times, parent-provided alternatives, and dietary guidance.",
 };
 
 const weeklyMenu = [
   {
     day: "Monday",
     breakfast: "Oatmeal, strawberries, and milk",
-    morningSnack: "Banana slices and whole-grain crackers with water",
     lunch: "Turkey, whole-grain bread, vegetable soup, oranges, and milk",
-    afternoonSnack: "Graham crackers and applesauce with water",
+    snack: "Graham crackers and applesauce with water",
+    dinner: "Baked chicken, brown rice, green beans, apple slices, and milk",
   },
   {
     day: "Tuesday",
     breakfast: "Whole-grain toast, Monterey Jack cheese, apple slices, and milk",
-    morningSnack: "Cucumber rounds and whole-grain crackers with water",
     lunch: "Monterey Jack cheese, whole-grain bread, vegetable soup, apples, and milk",
-    afternoonSnack: "String cheese and whole-grain crackers with water",
+    snack: "String cheese and whole-grain crackers with water",
+    dinner: "Turkey meatballs, whole-grain pasta, peas, pear slices, and milk",
   },
   {
     day: "Wednesday",
     breakfast: "Hard-boiled egg, whole-grain toast, banana slices, and milk",
-    morningSnack: "Applesauce and graham crackers with water",
     lunch: "Fish fillet, spaghetti, cucumbers, watermelon, and milk",
-    afternoonSnack: "Yogurt and whole-grain cereal with water",
+    snack: "Yogurt and whole-grain cereal with water",
+    dinner: "Cheese quesadilla, black beans, corn, orange slices, and milk",
   },
   {
     day: "Thursday",
     breakfast: "Whole-grain cereal, banana slices, and milk",
-    morningSnack: "Orange slices and whole-grain pretzels with water",
     lunch: "Chicken, whole-grain orzo, baby carrots, oranges, and milk",
-    afternoonSnack: "Whole-grain pretzels and banana slices with water",
+    snack: "Whole-grain pretzels and banana slices with water",
+    dinner: "Turkey and rice, broccoli, apple slices, and milk",
   },
   {
     day: "Friday",
     breakfast: "Yogurt, whole-grain cereal, oranges, and milk",
-    morningSnack: "Apple slices and cheese with water",
     lunch: "Chicken nuggets, whole-grain crackers, tomato-cucumber salad, mashed potatoes, and milk",
-    afternoonSnack: "Yogurt and whole-grain cereal with water",
+    snack: "Apple slices and cheese with water",
+    dinner: "Baked fish, mashed potatoes, green beans, orange slices, and milk",
   },
   {
     day: "Saturday",
     breakfast: "Whole-grain mini pancakes, banana slices, and milk",
-    morningSnack: "Apple slices and whole-grain crackers with water",
     lunch: "Turkey meatballs, whole-grain penne, green beans, pear slices, and milk",
-    afternoonSnack: "Cheese cubes and graham crackers with water",
+    snack: "Cheese cubes and graham crackers with water",
+    dinner: "Chicken, brown rice, mixed vegetables, pear slices, and milk",
   },
 ];
 
@@ -61,8 +61,8 @@ export default function MealsPage() {
           title="Nourishment is"
           accent="part of care."
           description="Familiar foods, balanced components, and a calm shared table give children energy for learning, movement, and play."
-          image="/images/toddler-program.png"
-          imageAlt="Young children practicing a practical life activity together"
+          image="/images/photos/happy-child-classroom.webp"
+          imageAlt="A smiling child engaged in a classroom activity"
         />
 
         <section className="nutrition-intro content-section">
@@ -74,10 +74,10 @@ export default function MealsPage() {
             <p className="section-label">Our approach</p>
             <h2>Wholesome, familiar, and thoughtfully served.</h2>
             <p>
-              The sample menu follows the structure and food style used by
-              Sunrise Montessori, organized here into breakfast, morning snack,
-              lunch, and afternoon snack. Whole grains, fruits, vegetables,
-              proteins, milk, and water are offered throughout the week.
+              The sample menu reflects Montessori Playschool&apos;s current meal
+              schedule: breakfast at 8:00 AM, lunch at 1:00 PM, snack at 3:00 PM,
+              and dinner at 5:00 PM. Whole grains, fruits, vegetables, proteins,
+              milk, and water are offered throughout the week.
             </p>
           </div>
         </section>
@@ -85,8 +85,8 @@ export default function MealsPage() {
         <section className="meal-values">
           {[
             ["Six-day variety", "Monday-through-Saturday menus balance familiar foods with changing fruits, vegetables, grains, and proteins."],
-            ["CACFP-style components", "Meals are planned around age-appropriate food groups and portions; menus may change as program details are finalized."],
-            ["Family alternatives", "Parents may coordinate an alternative meal when their child will not eat the meal being provided."],
+            ["Age-appropriate portions", "Meals are planned around age-appropriate food groups and portions; menus may change as program details are finalized."],
+            ["Family alternatives", "Parents may coordinate or provide an alternative meal when needed, following the center's labeling, storage, and allergy-safety procedures."],
             ["Allergy communication", "Allergies, medical nutrition plans, substitutions, and safe-food procedures are reviewed with each family."],
           ].map(([title, text], index) => (
             <article key={title}>
@@ -101,7 +101,7 @@ export default function MealsPage() {
           <div className="sample-menu-heading">
             <div>
               <p className="section-label">Sample weekly menu</p>
-              <h2>Breakfast, snacks, and lunch at a glance.</h2>
+              <h2>Breakfast, lunch, snack, and dinner at a glance.</h2>
             </div>
             <p>
               Menus are representative and may change because of availability,
@@ -114,10 +114,10 @@ export default function MealsPage() {
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <h3>{day.day}</h3>
                 <dl>
-                  <div><dt>Breakfast</dt><dd>{day.breakfast}</dd></div>
-                  <div><dt>Morning snack</dt><dd>{day.morningSnack}</dd></div>
-                  <div><dt>Lunch</dt><dd>{day.lunch}</dd></div>
-                  <div><dt>Afternoon snack</dt><dd>{day.afternoonSnack}</dd></div>
+                  <div><dt>Breakfast · 8:00 AM</dt><dd>{day.breakfast}</dd></div>
+                  <div><dt>Lunch · 1:00 PM</dt><dd>{day.lunch}</dd></div>
+                  <div><dt>Snack · 3:00 PM</dt><dd>{day.snack}</dd></div>
+                  <div><dt>Dinner · 5:00 PM</dt><dd>{day.dinner}</dd></div>
                 </dl>
               </article>
             ))}
