@@ -4,6 +4,7 @@ import { SiteHeader } from "./site-chrome";
 import "./globals.css";
 import "./photo-enhancements.css";
 import "./site-polish.css";
+import "./high-quality-photos.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.montessori-playschool.com"),
