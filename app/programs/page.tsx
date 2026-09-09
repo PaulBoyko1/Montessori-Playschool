@@ -6,7 +6,7 @@ import { InnerHero, SiteFooter } from "../site-chrome";
 export const metadata: Metadata = {
   title: "Programs",
   description:
-    "Explore infant, toddler, preschool, school-age, Montessori curriculum, and enrichment programs for children ages 6 weeks to 13 years.",
+    "Explore infant, preschool, school-age, Montessori curriculum, and enrichment programs from birth through 9th grade.",
 };
 
 const programDetails = [
@@ -22,32 +22,22 @@ const programDetails = [
   },
   {
     ...programs[1],
-    title: "Independence begins with everyday practice.",
+    title: "Independence grows into confident learning.",
     points: [
       "Practical-life activities and child-sized routines",
       "Language, movement, music, and hands-on exploration",
-      "Early recognition of colors, shapes, quantity, and sequence",
-      "Guided play that supports confidence and social development",
+      "Early literacy, math, science, culture, art, and creativity",
+      "Guided play, problem-solving, cooperation, and school readiness",
     ],
   },
   {
     ...programs[2],
-    title: "Curiosity becomes capability.",
-    points: [
-      "Montessori-inspired, play-based learning",
-      "Early literacy, math, science, culture, art, and movement",
-      "Problem-solving, teamwork, creativity, and concentration",
-      "Preparation for the next stage of school",
-    ],
-  },
-  {
-    ...programs[3],
-    title: "A supportive place after the school day.",
+    title: "A supportive place for school-age growth.",
     points: [
       "Homework support and quiet work space",
       "Hands-on projects, games, and creative activities",
       "Movement, friendships, and age-appropriate enrichment",
-      "A welcoming environment for children ages 6 through 13",
+      "A welcoming environment from kindergarten through 9th grade",
     ],
   },
 ];
@@ -84,7 +74,7 @@ export default function ProgramsPage() {
     <>
       <main>
         <InnerHero
-          eyebrow="Programs · Ages 6 weeks–13 years"
+          eyebrow="Programs · Birth through 9th grade"
           title="A place for"
           accent="every stage."
           description="Responsive care, meaningful work, joyful play, and age-appropriate enrichment meet children where they are and help them grow with confidence."
@@ -93,7 +83,7 @@ export default function ProgramsPage() {
         />
 
         <section className="page-intro content-section">
-          <p className="section-label">Four age groups</p>
+          <p className="section-label">Three program groups</p>
           <div>
             <h2>Clear programs for every stage of early childhood and beyond.</h2>
             <p>
