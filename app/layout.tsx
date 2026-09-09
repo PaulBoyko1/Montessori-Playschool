@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/photos/classroom-teacher-group.webp",
-        width: 1800,
-        height: 1350,
+        width: 760,
+        height: 570,
         alt: "A teacher leading a classroom activity with children at Montessori Playschool",
       },
     ],
