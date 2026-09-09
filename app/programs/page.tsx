@@ -72,14 +72,14 @@ const enrichment = [
 export default function ProgramsPage() {
   return (
     <>
-      <main>
+      <main className="programs-page">
         <InnerHero
           eyebrow="Programs · Birth through 9th grade"
           title="A place for"
           accent="every stage."
           description="Responsive care, meaningful work, joyful play, and age-appropriate enrichment meet children where they are and help them grow with confidence."
-          image="/images/photos/airplane-group-activity.webp"
-          imageAlt="Children proudly holding model airplanes during a classroom activity"
+          image="/images/photos/selected/programs-hero.webp"
+          imageAlt="A group of children proudly holding model airplanes during a classroom activity"
         />
 
         <section className="page-intro content-section">
@@ -159,8 +159,8 @@ export default function ProgramsPage() {
 
         <section className="program-photo-band" aria-label="Classroom activity">
           <img
-            src="/images/photos/music-and-singing.webp"
-            alt="Children singing together with a teacher during a classroom music activity"
+            src="/images/photos/selected/classroom-group.webp"
+            alt="An educator sharing a hands-on activity with a group of children"
             loading="lazy"
             decoding="async"
           />
