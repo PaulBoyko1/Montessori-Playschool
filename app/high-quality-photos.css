@@ -1,0 +1,127 @@
+/* Page-specific framing for the high-quality selected photography. Loaded last
+   so each composition can keep faces and activities visible at every breakpoint. */
+
+.home-page .hero-image {
+  object-position: center 58%;
+}
+
+/* The Programs hero is naturally wide. Give the photograph more horizontal room
+   instead of cropping children from the edges to fit the default split hero. */
+.programs-page .inner-hero {
+  grid-template-columns: minmax(350px, 0.72fr) minmax(0, 1.28fr);
+}
+
+.about-page .inner-hero-image img {
+  object-position: 50% 38%;
+}
+
+.programs-page .inner-hero-image img {
+  object-position: 50% 45%;
+}
+
+.meals-page .inner-hero-image img {
+  object-position: 42% 40%;
+}
+
+.tuition-page .inner-hero-image img {
+  object-position: 50% 42%;
+}
+
+/* Homepage story grid: keep the child's face, teacher-child pair, and classroom
+   group centered rather than inheriting focal points from the previous photos. */
+.home-page .home-moment-large img {
+  object-position: 42% 40%;
+}
+
+.home-page .home-moment-small:nth-child(2) img {
+  object-position: 50% 37%;
+}
+
+.home-page .home-moment-small:nth-child(3) img {
+  object-position: 50% 39%;
+}
+
+.programs-page .program-photo-band > img {
+  object-position: 50% 38%;
+}
+
+/* Six strong photographs make two balanced gallery rows. */
+.gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(1) img {
+  object-position: 64% 55%;
+}
+
+.gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(2) img {
+  object-position: 50% 36%;
+}
+
+.gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(3) img {
+  object-position: 50% 39%;
+}
+
+.gallery-page .photo-gallery-group:nth-child(2) .photo-card:nth-child(1) img {
+  object-position: 42% 40%;
+}
+
+.gallery-page .photo-gallery-group:nth-child(2) .photo-card:nth-child(2) img {
+  object-position: 50% 44%;
+}
+
+.gallery-page .photo-gallery-group:nth-child(2) .photo-card:nth-child(3) img {
+  object-position: 50% 42%;
+}
+
+@media (max-width: 900px) {
+  .programs-page .inner-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .programs-page .inner-hero-image {
+    min-height: 460px;
+  }
+
+  .programs-page .inner-hero-image img {
+    object-position: 50% 44%;
+  }
+}
+
+@media (max-width: 760px) {
+  /* The homepage source has valuable empty wall on the left, but on narrow
+     screens the people need to stay in frame after the heavy side crop. */
+  .home-page .hero-image {
+    object-position: 66% 58%;
+  }
+
+  .about-page .inner-hero-image img {
+    object-position: 50% 34%;
+  }
+
+  .programs-page .inner-hero-image {
+    min-height: 350px;
+  }
+
+  .programs-page .inner-hero-image img {
+    object-position: 50% 45%;
+  }
+
+  .meals-page .inner-hero-image img {
+    object-position: 43% 38%;
+  }
+
+  .tuition-page .inner-hero-image img {
+    object-position: 50% 40%;
+  }
+
+  .gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(1) img {
+    object-position: 63% 55%;
+  }
+
+  .gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(2) img {
+    object-position: 50% 33%;
+  }
+
+  .gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(3) img,
+  .gallery-page .photo-gallery-group:nth-child(2) .photo-card:nth-child(1) img,
+  .gallery-page .photo-gallery-group:nth-child(2) .photo-card:nth-child(3) img {
+    object-position: 50% 40%;
+  }
+}
