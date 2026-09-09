@@ -55,14 +55,14 @@ const weeklyMenu = [
 export default function MealsPage() {
   return (
     <>
-      <main>
+      <main className="meals-page">
         <InnerHero
           eyebrow="Weekly meals"
           title="Nourishment is"
           accent="part of care."
           description="Familiar foods, balanced components, and a calm shared table give children energy for learning, movement, and play."
-          image="/images/photos/happy-child-classroom.webp"
-          imageAlt="A smiling child engaged in a classroom activity"
+          image="/images/photos/selected/meals-hero.webp"
+          imageAlt="A smiling young child working with play dough at a classroom table"
         />
 
         <section className="nutrition-intro content-section">
