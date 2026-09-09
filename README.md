@@ -1,7 +1,6 @@
 # Montessori Playschool Website
 
-A warm, responsive multi-page website starter for Montessori Playschool in
-Carmichael, California.
+Responsive multi-page website for Montessori Playschool in Carmichael, California.
 
 ## Included pages
 
@@ -10,50 +9,46 @@ Carmichael, California.
 - About / Our Approach
 - Meals
 - Gallery
+- Tuition & Assistance
+- Location
 - Enrollment
 - Contact
 - Privacy
 
-## Current program information
+## Current public program information
 
-- Infant and toddler care: planned capacity of 15
-- Preschool and school-age care: planned capacity of 30
-- Planned hours: Monday–Saturday, 7:00 AM–11:00 PM
-- Location: Carmichael, California
+- Infant Program: birth through 24 months
+- Preschool Program: age 2 through entry into kindergarten
+- School-Age Program: kindergarten through 9th grade
+- Hours: Monday–Saturday, 7:00 AM–10:00 PM
+- Location: 2925 Root Ave, Carmichael, CA 95608
 
-Capacity and public-facing facility information are marked as pending until the
-licensing and opening details are final.
+Program capacity, admission dates, final rates, and licensing details should be
+confirmed before enrollment is finalized.
 
-## Before public launch
+## Photography
 
-Update the following throughout `app/`:
-
-1. Street address, phone number, and public email
-2. License numbers and final capacity
-3. Opening date, tuition, accepted subsidy programs, and enrollment availability
-4. Final meal policies, menus, and allergy procedures
-5. Real facility and classroom photography
-6. Form delivery integration and privacy disclosures
-7. Social links, map, analytics, and search-verification metadata
-
-The generated classroom images are original concept images for this starter and
-are labeled as such on the Gallery page.
+The public-facing Home, About, Programs, Meals, and Gallery experiences use
+selected real classroom photography stored under `public/images/photos/`.
+Image placement includes responsive focal-point rules so faces and activities
+remain visible across desktop, tablet, and mobile layouts.
 
 ## Development
 
 Requires Node.js 22.13 or newer.
 
 ```bash
-npm ci
+npm run install:ci
 npm run dev
 ```
 
-Other useful checks:
+Validation commands:
 
 ```bash
 npm run lint
-npm run build
+npm test
 ```
 
+Pull requests and pushes to `main` also run the repository's validation workflow.
 The site uses Next-compatible routing through Vinext and is configured for
 Cloudflare-compatible deployment.
