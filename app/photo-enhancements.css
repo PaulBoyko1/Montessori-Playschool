@@ -2,7 +2,9 @@
    system so the photo treatment can evolve as new photography is added. */
 
 .hero-image {
-  object-position: 58% center;
+  /* Wide desktop heroes crop a 4:3 source vertically. Keep the teacher's face,
+     expressions, and activity visible instead of centering on the tabletop. */
+  object-position: 58% 30%;
 }
 
 .home-moments {
@@ -45,11 +47,16 @@
 }
 
 .home-moment-large img {
-  object-position: center;
+  /* The painting child sits to the right of the original frame. */
+  object-position: 62% center;
 }
 
 .home-moment-small:nth-child(2) img {
   object-position: 58% center;
+}
+
+.home-moment-small:nth-child(3) img {
+  object-position: 50% center;
 }
 
 .home-moment-grid figure:hover img {
@@ -77,7 +84,7 @@
 .program-photo-band > img {
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: 55% center;
   transition: transform 650ms cubic-bezier(0.2, 0.7, 0, 1);
   width: 100%;
 }
@@ -205,12 +212,37 @@
   position: absolute;
 }
 
+/* Per-photo focal points: preserve faces/hands when cards change aspect ratio. */
 .photo-gallery-group:nth-child(1) .photo-card:nth-child(1) img {
   object-position: 60% center;
 }
 
+.photo-gallery-group:nth-child(1) .photo-card:nth-child(2) img {
+  object-position: 58% 34%;
+}
+
+.photo-gallery-group:nth-child(1) .photo-card:nth-child(3) img {
+  object-position: 48% center;
+}
+
+.photo-gallery-group:nth-child(2) .photo-card:nth-child(1) img {
+  object-position: 62% center;
+}
+
 .photo-gallery-group:nth-child(2) .photo-card:nth-child(2) img {
-  object-position: center 30%;
+  object-position: center 28%;
+}
+
+.photo-gallery-group:nth-child(3) .photo-card:nth-child(1) img {
+  object-position: center 38%;
+}
+
+.photo-gallery-group:nth-child(3) .photo-card:nth-child(2) img {
+  object-position: 58% center;
+}
+
+.photo-gallery-group:nth-child(3) .photo-card:nth-child(3) img {
+  object-position: center;
 }
 
 @media (max-width: 900px) {
@@ -250,6 +282,7 @@
 
 @media (max-width: 760px) {
   .hero-image {
+    /* Mobile uses a much taller image area, so center the people naturally. */
     object-position: 58% center;
   }
 
