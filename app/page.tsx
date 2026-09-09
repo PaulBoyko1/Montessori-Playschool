@@ -8,7 +8,7 @@ const parentEssentials = [
     href: "/meals",
     label: "Meals",
     title: "See the weekly menu",
-    text: "Review breakfast, snacks, lunch, dietary notes, and the Saturday sample menu.",
+    text: "Review breakfast, lunch, afternoon snack, dinner, dietary notes, and the Saturday menu.",
   },
   {
     href: "/tuition",
@@ -60,8 +60,8 @@ export default function Home() {
           <div className="hero-content">
             <h1 id="hero-title">Montessori Playschool</h1>
             <p className="hero-lede">
-              Warm, age-appropriate care for infants, toddlers, preschoolers,
-              and school-age children from 6 weeks through 13 years.
+              Warm, age-appropriate care for infants, preschoolers, and
+              school-age children from birth through 9th grade.
             </p>
             <div className="hero-actions">
               <Link className="button button-primary" href="/contact#tour">
@@ -74,7 +74,7 @@ export default function Home() {
         <section className="quick-facts" aria-label="School highlights">
           <div>
             <span className="fact-label">Ages</span>
-            <strong>6 weeks–13 years</strong>
+            <strong>Birth–9th grade</strong>
           </div>
           <div>
             <span className="fact-label">Schedule</span>
@@ -97,8 +97,8 @@ export default function Home() {
               <h2 id="program-heading">Care that grows with your child.</h2>
             </div>
             <p>
-              Four clear age groups make it easy to find the program that fits
-              your family right now.
+              Three clear program groups make it easy to find the setting that
+              fits your child&apos;s current stage.
             </p>
           </div>
           <div className="home-program-grid">
