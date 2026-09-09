@@ -114,6 +114,7 @@ export function SiteHeader({ current }: { current?: string }) {
           id="mobile-navigation"
           className={menuOpen ? "is-open" : ""}
           aria-label="Mobile navigation"
+          hidden={!menuOpen}
         >
           {navigation.map((item) => (
             <Link
