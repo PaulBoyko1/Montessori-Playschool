@@ -35,8 +35,8 @@ export default function TuitionPage() {
           title="Clear costs."
           accent="More ways to pay."
           description="Review standard tuition reference rates and learn how eligible families may use CalWORKs or Child Action assistance."
-          image="/images/preschool-program.png"
-          imageAlt="Children concentrating on Montessori learning materials"
+          image="/images/photos/teacher-guided-art.webp"
+          imageAlt="A teacher guiding a child through a hands-on classroom activity"
         />
 
         <section className="tuition-intro content-section">

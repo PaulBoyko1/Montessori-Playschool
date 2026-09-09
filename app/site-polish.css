@@ -1,0 +1,162 @@
+/* Final responsive polish and small-screen safeguards. This file intentionally
+   loads after the legacy design CSS so fixes stay isolated and easy to audit. */
+
+/* Long contact values should never force horizontal scrolling. */
+.footer-column a,
+.contact-card-link h2,
+.contact-cards article h2,
+.location-address,
+.legal-page p,
+.legal-page a {
+  overflow-wrap: anywhere;
+}
+
+/* Three current program groups should fill the row without an orphaned column. */
+.home-program-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.program-age-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.program-age-grid > article {
+  min-width: 0;
+}
+
+@media (max-width: 1320px) {
+  /* Icon-only hamburger: compact, familiar, and still fully accessible through
+     the button's aria-label. */
+  .mobile-menu-button {
+    align-items: center;
+    display: inline-flex;
+    height: 52px;
+    justify-content: center;
+    min-height: 52px;
+    min-width: 52px;
+    padding: 0;
+    width: 52px;
+  }
+
+  .mobile-menu-button .mobile-menu-icon {
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    font-size: inherit;
+    gap: 5px;
+    text-transform: none;
+    width: 23px;
+  }
+
+  .mobile-menu-icon i {
+    background: currentColor;
+    border-radius: 999px;
+    display: block;
+    height: 2px;
+    transform-origin: center;
+    transition: opacity 180ms ease, transform 220ms ease;
+    width: 100%;
+  }
+
+  .mobile-menu-button[aria-expanded="true"] .mobile-menu-icon i:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-menu-button[aria-expanded="true"] .mobile-menu-icon i:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-button[aria-expanded="true"] .mobile-menu-icon i:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* The navigation has enough links to exceed shorter phone/tablet viewports.
+     Keep it inside the viewport and let the panel, not the page, scroll. */
+  .mobile-menu nav {
+    border-radius: 14px;
+    max-height: calc(100dvh - 118px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0.45rem;
+    scrollbar-width: thin;
+    width: min(360px, calc(100vw - 1.5rem));
+  }
+
+  .mobile-menu nav a {
+    border-bottom: 0;
+  }
+
+  .mobile-menu nav a + a {
+    margin-top: 0.12rem;
+  }
+
+  .program-age-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  /* With three cards, a two-column tablet grid leaves one card stranded.
+     A single clean column reads better and preserves comfortable tap targets. */
+  .home-program-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-program-card {
+    min-height: 230px;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    min-height: 84px;
+    padding: 0.2rem 0.75rem;
+  }
+
+  .brand {
+    max-width: calc(100vw - 76px);
+    min-height: 72px;
+  }
+
+  .brand-logo {
+    height: 70px;
+    max-width: min(72vw, 250px);
+  }
+
+  .mobile-menu-button {
+    height: 48px;
+    min-height: 48px;
+    min-width: 48px;
+    width: 48px;
+  }
+
+  .mobile-menu nav {
+    max-height: calc(100dvh - 96px);
+    right: -0.1rem;
+    top: calc(100% + 0.35rem);
+    width: min(350px, calc(100vw - 1rem));
+  }
+
+  /* The desktop-style full-screen slide is visually heavy on phones and can
+     feel like horizontal page movement. Keep mobile navigation immediate. */
+  .page-enter-from-right,
+  .page-enter-from-left {
+    animation: none;
+  }
+
+  .button,
+  .header-cta {
+    max-width: 100%;
+  }
+
+  .button {
+    text-align: center;
+  }
+
+  .footer-column,
+  .contact-cards,
+  .contact-form-wrap,
+  .form-wrap {
+    min-width: 0;
+  }
+}

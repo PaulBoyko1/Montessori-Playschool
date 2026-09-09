@@ -4,13 +4,21 @@ import test from "node:test";
 const developmentPreviewMeta =
   /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
 
-test("renders development preview metadata", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
+let workerPromise;
 
+function getWorker() {
+  if (!workerPromise) {
+    const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+    workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
+    workerPromise = import(workerUrl.href).then((module) => module.default);
+  }
+  return workerPromise;
+}
+
+async function render(pathname) {
+  const worker = await getWorker();
   const response = await worker.fetch(
-    new Request("http://localhost/", {
+    new Request(`http://localhost${pathname}`, {
       headers: { accept: "text/html" },
     }),
     {
@@ -24,10 +32,66 @@ test("renders development preview metadata", async () => {
     },
   );
 
+  const html = await response.text();
+  return { response, html };
+}
+
+test("renders development preview metadata", async () => {
+  const { response, html } = await render("/");
+
   assert.equal(response.status, 200);
   assert.match(
     response.headers.get("content-type") ?? "",
     /^text\/html\b/i,
   );
-  assert.match(await response.text(), developmentPreviewMeta);
+  assert.match(html, developmentPreviewMeta);
+});
+
+test("renders every public page", async () => {
+  const routes = [
+    "/",
+    "/about",
+    "/programs",
+    "/gallery",
+    "/meals",
+    "/tuition",
+    "/location",
+    "/enrollment",
+    "/contact",
+    "/privacy",
+  ];
+
+  for (const route of routes) {
+    const { response } = await render(route);
+    assert.equal(response.status, 200, `${route} should render successfully`);
+  }
+});
+
+test("renders the icon-only mobile navigation trigger", async () => {
+  const { html } = await render("/");
+
+  assert.match(html, /aria-label=["']Open navigation menu["']/i);
+  assert.match(html, /class=["']mobile-menu-icon["']/i);
+  assert.doesNotMatch(html, />\s*Menu\s*</i);
+  assert.doesNotMatch(html, />\s*Open\s*</i);
+});
+
+test("keeps current public program structure and meal schedule", async () => {
+  const home = await render("/");
+  const programs = await render("/programs");
+  const enrollment = await render("/enrollment");
+  const meals = await render("/meals");
+
+  assert.match(home.html, /Birth(?:–|&ndash;|&#x2013;)9th grade/i);
+  assert.match(programs.html, /Kindergarten(?:–|&ndash;|&#x2013;)9th grade/i);
+  assert.match(enrollment.html, /Infant, Preschool (?:&amp;|&) School Age/i);
+
+  for (const page of [home.html, programs.html, enrollment.html]) {
+    assert.doesNotMatch(page, /Toddler Program/i);
+  }
+
+  assert.match(meals.html, /Breakfast[^<]*8:00 AM/i);
+  assert.match(meals.html, /Lunch[^<]*1:00 PM/i);
+  assert.match(meals.html, /Snack[^<]*3:00 PM/i);
+  assert.match(meals.html, /Dinner[^<]*5:00 PM/i);
 });

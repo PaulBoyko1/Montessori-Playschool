@@ -3,6 +3,7 @@ import PageTransition from "./components/PageTransition";
 import { SiteHeader } from "./site-chrome";
 import "./globals.css";
 import "./photo-enhancements.css";
+import "./site-polish.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.montessori-playschool.com"),
@@ -11,15 +12,11 @@ export const metadata: Metadata = {
     template: "%s | Montessori Playschool",
   },
   description:
-    "Montessori-inspired infant, toddler, preschool, and school-age care for children ages 6 weeks to 13 years in Carmichael, California.",
-  alternates: {
-    canonical: "/",
-  },
+    "Montessori-inspired infant, preschool, and school-age care from birth through 9th grade in Carmichael, California.",
   openGraph: {
     title: "Montessori Playschool | Carmichael, California",
     description:
-      "A welcoming Montessori-inspired community for children ages 6 weeks to 13 years.",
-    url: "/",
+      "A welcoming Montessori-inspired community for infants, preschoolers, and school-age children through 9th grade.",
     siteName: "Montessori Playschool",
     images: [
       {
