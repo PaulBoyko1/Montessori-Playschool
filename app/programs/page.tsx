@@ -169,8 +169,8 @@ export default function ProgramsPage() {
 
         <section className="program-photo-band" aria-label="Classroom activity">
           <img
-            src="/images/photos/rhythm-sticks-activity.webp"
-            alt="Two children participating in a rhythm and movement activity"
+            src="/images/photos/music-and-singing.webp"
+            alt="Children singing together with a teacher during a classroom music activity"
             loading="lazy"
             decoding="async"
           />
