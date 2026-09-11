@@ -3,6 +3,7 @@ import PageTransition from "./components/PageTransition";
 import { SiteHeader } from "./site-chrome";
 import "./globals.css";
 import "./photo-enhancements.css";
+import "./high-quality-photos.css";
 import "./site-polish.css";
 
 export const metadata: Metadata = {
@@ -20,10 +21,10 @@ export const metadata: Metadata = {
     siteName: "Montessori Playschool",
     images: [
       {
-        url: "/images/photos/classroom-teacher-group.webp",
-        width: 760,
-        height: 570,
-        alt: "A teacher leading a classroom activity with children at Montessori Playschool",
+        url: "/images/photos/selected/home-hero.webp",
+        width: 1400,
+        height: 1156,
+        alt: "An educator engaging with two young children in a bright Montessori Playschool classroom",
       },
     ],
     locale: "en_US",
