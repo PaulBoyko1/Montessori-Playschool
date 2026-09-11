@@ -29,14 +29,14 @@ const fees = [
 export default function TuitionPage() {
   return (
     <>
-      <main>
+      <main className="tuition-page">
         <InnerHero
           eyebrow="Tuition & financial assistance"
           title="Clear costs."
           accent="More ways to pay."
           description="Review standard tuition reference rates and learn how eligible families may use CalWORKs or Child Action assistance."
-          image="/images/photos/teacher-guided-art.webp"
-          imageAlt="A teacher guiding a child through a hands-on classroom activity"
+          image="/images/photos/selected/tuition-hero.webp"
+          imageAlt="Two children and a caring adult smiling together in the classroom"
         />
 
         <section className="tuition-intro content-section">
