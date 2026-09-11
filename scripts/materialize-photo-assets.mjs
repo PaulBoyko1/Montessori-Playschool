@@ -7,11 +7,11 @@ const sourceRoot = path.join(root, "photo-source-final");
 const outputRoot = path.join(root, "public", "images", "photos", "selected");
 
 const photos = [
-  { name: "home-hero.webp", bytes: 107464, sha256: "d24c960d48682f410334ced9fff6b44ce9ef3e2401ca3c631cd870be1054daf9" },
-  { name: "about-hero.webp", bytes: 73484, sha256: "4b6989d82ee84864f336549a5d5f31d7c1d5072908518baa9739314111ceadbe" },
-  { name: "programs-hero.webp", bytes: 152632, sha256: "0631ec3b1dbdd9040416f29211e25d3b06693f02e25d7e6f00347ac9b76e29c2" },
-  { name: "meals-hero.webp", bytes: 31850, sha256: "c32a93d2cc6d3409921675cb2365080214af29261d62aefb44b0ce827e368bfd" },
-  { name: "tuition-hero.webp", bytes: 74634, sha256: "8a13d5aeac4de8211b35e80ab59830e7c38dd7a46398f74c242fa93db1523b2f" },
+  { name: "home-hero.webp", bytes: 107464, sha256: "8fe0df22627cde2e12c9fbe96efd51c030792aafd07134cc38716fa5885f2188" },
+  { name: "about-hero.webp", bytes: 73484, sha256: "b8e8f98d5460feb83c8514e46a52c50ded5add6cb4b9712fbb1042f4d0e467c9" },
+  { name: "programs-hero.webp", bytes: 152632, sha256: "e15d5e1adbcc3503fd3bb03dcd983536e6d28650acf2052837f771badead9de0" },
+  { name: "meals-hero.webp", bytes: 31850, sha256: "00deabfceede93724798f30e6f798ff875e8615a85b191318e4ac2e5a9164f95" },
+  { name: "tuition-hero.webp", bytes: 74634, sha256: "75ac5e7393afd8ac50592296d4f7d4b4e86b4fadba4e6561bc665b89349c9666" },
 ];
 
 await mkdir(outputRoot, { recursive: true });
