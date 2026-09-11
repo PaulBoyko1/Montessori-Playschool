@@ -16,79 +16,52 @@ const galleryGroups = [
       "Attentive educators join children at their level—guiding, encouraging, and sharing in the work of the day.",
     images: [
       {
-        src: "/images/photos/teacher-child-hug.webp",
-        alt: "A teacher sharing a warm hug with a child",
-        caption: "Connection and trust",
-        className: "photo-card",
-      },
-      {
-        src: "/images/photos/classroom-teacher-group.webp",
-        alt: "A teacher leading a hands-on activity with a group of children",
-        caption: "Learning together",
-        className: "photo-card",
-      },
-      {
-        src: "/images/photos/teacher-guided-art.webp",
-        alt: "A teacher helping a child during an art activity",
-        caption: "Guidance when it matters",
-        className: "photo-card",
-      },
-    ],
-  },
-  {
-    id: "learning-and-creativity",
-    eyebrow: "Learning & creativity",
-    title: "Children absorbed in meaningful activity.",
-    description:
-      "Art, sensory work, fine-motor practice, and collaborative projects give children room to concentrate and create.",
-    images: [
-      {
-        src: "/images/photos/child-painting.webp",
-        alt: "A child concentrating on a watercolor painting",
-        caption: "Focused creative work",
+        src: "/images/photos/selected/home-hero.webp",
+        alt: "An educator engaging with two young children at their level in a bright classroom",
+        caption: "Meeting children where they are",
         className: "photo-card photo-card-wide",
       },
       {
-        src: "/images/photos/happy-child-classroom.webp",
-        alt: "A smiling child enjoying a classroom activity",
-        caption: "Joy in the everyday",
+        src: "/images/photos/selected/about-hero.webp",
+        alt: "An educator and child smiling together during a classroom activity",
+        caption: "Caring guidance",
+        className: "photo-card",
+      },
+      {
+        src: "/images/photos/selected/programs-hero.webp",
+        alt: "An educator reading with a group of attentive children",
+        caption: "Learning together",
         className: "photo-card",
       },
     ],
   },
   {
-    id: "music-movement-play",
-    eyebrow: "Music, movement & play",
-    title: "Learning that gets children moving.",
+    id: "learning-and-community",
+    eyebrow: "Learning & community",
+    title: "Real moments of focus, joy, and belonging.",
     description:
-      "Group activities invite children to sing, move, imagine, take turns, and enjoy being part of a community.",
+      "Children explore, create, participate, and build relationships across a school day designed around care and curiosity.",
     images: [
       {
-        src: "/images/photos/airplane-group-activity.webp",
-        alt: "Children holding model airplanes during a group activity",
-        caption: "Imagination in motion",
+        src: "/images/photos/selected/meals-hero.webp",
+        alt: "A smiling young child enjoying a hands-on table activity",
+        caption: "Hands-on discovery",
         className: "photo-card",
       },
       {
-        src: "/images/photos/music-and-singing.webp",
-        alt: "Children singing with a teacher during music time",
-        caption: "Music together",
-        className: "photo-card",
-      },
-      {
-        src: "/images/photos/children-movement-activity.webp",
-        alt: "Children smiling and moving together during a group activity",
-        caption: "Movement and friendship",
-        className: "photo-card",
+        src: "/images/photos/selected/tuition-hero.webp",
+        alt: "Two children and a caring adult smiling together in the classroom",
+        caption: "A welcoming community",
+        className: "photo-card photo-card-wide",
       },
     ],
   },
-];
+]
 
 export default function GalleryPage() {
   return (
     <>
-      <main>
+      <main className="gallery-page">
         <section className="gallery-heading content-section">
           <p className="section-label">Gallery</p>
           <h1>
