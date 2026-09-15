@@ -4,28 +4,36 @@
 
 .home-page .hero {
   background: var(--cream);
+  height: min(860px, calc(100vh - 40px));
+  min-height: 720px;
 }
 
 .home-page .hero-image {
   height: 100%;
   left: auto;
-  object-fit: cover;
-  object-position: 50% 44%;
+  max-width: none;
+  object-fit: contain;
+  object-position: right center;
   right: 0;
-  width: 66%;
+  width: auto;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.42) 7%,
+    #000 16%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.42) 7%,
+    #000 16%,
+    #000 100%
+  );
 }
 
 .home-page .hero-wash {
-  background:
-    linear-gradient(
-      90deg,
-      var(--cream) 0%,
-      var(--cream) 31%,
-      rgba(248, 243, 233, 0.96) 35%,
-      rgba(248, 243, 233, 0.62) 41%,
-      rgba(248, 243, 233, 0.16) 48%,
-      rgba(248, 243, 233, 0) 55%
-    );
+  background: none;
 }
 
 .home-page .hero-content {
@@ -123,10 +131,22 @@
 }
 
 @media (max-width: 760px) {
+  .home-page .hero {
+    height: auto;
+    min-height: 780px;
+  }
+
   .home-page .hero-image {
+    bottom: 0;
+    height: 48%;
     left: 0;
-    object-position: 50% 42%;
+    object-fit: contain;
+    object-position: center bottom;
+    right: 0;
+    top: auto;
     width: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .home-page .hero-content {
