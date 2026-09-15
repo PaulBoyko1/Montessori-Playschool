@@ -212,11 +212,12 @@
 }
 
 .desktop-nav-indicator::before {
-  background: rgba(226, 161, 111, 0.12);
-  bottom: 8px;
+  background: var(--sage);
+  bottom: 4px;
   content: "";
-  height: 34px;
+  height: 36px;
   left: 0;
+  opacity: 0.58;
   position: absolute;
   right: 0;
 }
