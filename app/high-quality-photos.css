@@ -3,7 +3,7 @@
    faces and interactions at desktop, tablet, and phone aspect ratios. */
 
 .home-page .hero-image {
-  object-position: 50% 40%;
+  object-position: 68% 48%;
 }
 
 .home-page .hero-wash {
@@ -33,12 +33,8 @@
   object-position: 50% 42%;
 }
 
-.about-page .inner-hero {
-  grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
-}
-
 .about-page .inner-hero-image img {
-  object-position: 43% 42%;
+  object-position: 50% 34%;
 }
 
 .about-page .image-statement > img {
@@ -62,7 +58,7 @@
 }
 
 .tuition-page .inner-hero-image img {
-  object-position: 68% 48%;
+  object-position: 50% 40%;
 }
 
 /* Gallery focal points follow the actual ten selected photos rather than
@@ -99,7 +95,6 @@
 }
 
 @media (max-width: 900px) {
-  .about-page .inner-hero,
   .programs-page .inner-hero {
     grid-template-columns: 1fr;
   }
@@ -118,7 +113,7 @@
 
 @media (max-width: 760px) {
   .home-page .hero-image {
-    object-position: 50% 38%;
+    object-position: 60% center;
   }
 
   .home-page .hero-content {
@@ -126,7 +121,7 @@
   }
 
   .about-page .inner-hero-image img {
-    object-position: 47% 38%;
+    object-position: 50% 30%;
   }
 
   .programs-page .inner-hero-image img {
@@ -138,6 +133,6 @@
   }
 
   .tuition-page .inner-hero-image img {
-    object-position: 60% center;
+    object-position: 50% 38%;
   }
 }
