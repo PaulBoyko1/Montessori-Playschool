@@ -105,7 +105,7 @@ test("uses the selected high-quality photography across key pages", async () => 
   const tuition = await render("/tuition");
   const gallery = await render("/gallery");
 
-  assert.match(home.html, /\/images\/photos\/selected\/home-hero\.webp/);
+  assert.match(home.html, /\/images\/photos\/selected\/group-circle\.webp/);
   assert.match(about.html, /\/images\/photos\/selected\/teacher-art\.webp/);
   assert.match(programs.html, /\/images\/photos\/selected\/teacher-group\.webp/);
   assert.match(meals.html, /\/images\/photos\/selected\/child-playdough\.webp/);

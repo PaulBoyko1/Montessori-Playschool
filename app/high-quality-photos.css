@@ -2,23 +2,34 @@
    Loaded after the shared photo system so each page can preserve important
    faces and interactions at desktop, tablet, and phone aspect ratios. */
 
+.home-page .hero {
+  background: var(--cream);
+}
+
 .home-page .hero-image {
-  object-position: 68% 48%;
+  height: 100%;
+  left: auto;
+  object-fit: cover;
+  object-position: 50% 44%;
+  right: 0;
+  width: 54%;
 }
 
 .home-page .hero-wash {
   background:
     linear-gradient(
       90deg,
-      rgba(248, 243, 233, 0.98) 0%,
-      rgba(248, 243, 233, 0.90) 29%,
-      rgba(248, 243, 233, 0.36) 57%,
-      rgba(248, 243, 233, 0.04) 79%
+      var(--cream) 0%,
+      var(--cream) 45%,
+      rgba(248, 243, 233, 0.96) 50%,
+      rgba(248, 243, 233, 0.66) 56%,
+      rgba(248, 243, 233, 0.18) 63%,
+      rgba(248, 243, 233, 0) 70%
     );
 }
 
 .home-page .hero-content {
-  max-width: 650px;
+  max-width: 620px;
 }
 
 .home-page .home-moment-large img {
@@ -113,7 +124,9 @@
 
 @media (max-width: 760px) {
   .home-page .hero-image {
-    object-position: 60% center;
+    left: 0;
+    object-position: 50% 42%;
+    width: 100%;
   }
 
   .home-page .hero-content {
