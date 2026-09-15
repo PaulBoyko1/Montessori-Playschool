@@ -82,7 +82,7 @@ test("keeps current public program structure and meal schedule", async () => {
   const enrollment = await render("/enrollment");
   const meals = await render("/meals");
 
-  assert.match(home.html, /Birth(?:–|&ndash;|&#x2013;)9th grade/i);
+  assert.match(home.html, /birth through 9th grade/i);
   assert.match(programs.html, /Kindergarten(?:–|&ndash;|&#x2013;)9th grade/i);
   assert.match(enrollment.html, /Infant, Preschool (?:&amp;|&) School Age/i);
 
