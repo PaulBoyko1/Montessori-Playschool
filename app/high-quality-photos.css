@@ -1,0 +1,138 @@
+/* Final high-quality photography treatment.
+   Loaded after the shared photo system so each page can preserve important
+   faces and interactions at desktop, tablet, and phone aspect ratios. */
+
+.home-page .hero-image {
+  object-position: 68% 48%;
+}
+
+.home-page .hero-wash {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(248, 243, 233, 0.98) 0%,
+      rgba(248, 243, 233, 0.90) 29%,
+      rgba(248, 243, 233, 0.36) 57%,
+      rgba(248, 243, 233, 0.04) 79%
+    );
+}
+
+.home-page .hero-content {
+  max-width: 650px;
+}
+
+.home-page .home-moment-large img {
+  object-position: 50% 48%;
+}
+
+.home-page .home-moment-small:nth-child(2) img {
+  object-position: 50% 36%;
+}
+
+.home-page .home-moment-small:nth-child(3) img {
+  object-position: 50% 42%;
+}
+
+.about-page .inner-hero-image img {
+  object-position: 50% 34%;
+}
+
+.about-page .image-statement > img {
+  object-position: 50% 42%;
+}
+
+.programs-page .inner-hero {
+  grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+}
+
+.programs-page .inner-hero-image img {
+  object-position: 52% 43%;
+}
+
+.programs-page .program-photo-band > img {
+  object-position: 50% 44%;
+}
+
+.meals-page .inner-hero-image img {
+  object-position: 42% 43%;
+}
+
+.tuition-page .inner-hero-image img {
+  object-position: 50% 40%;
+}
+
+/* Gallery focal points follow the actual ten selected photos rather than
+   generic center crops. */
+.gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(1) img {
+  object-position: 66% 48%;
+}
+.gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(2) img {
+  object-position: 50% 30%;
+}
+.gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(3) img {
+  object-position: 50% 43%;
+}
+.gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(4) img {
+  object-position: 50% 38%;
+}
+.gallery-page .photo-gallery-group:nth-child(2) .photo-card:nth-child(1) img {
+  object-position: 42% 43%;
+}
+.gallery-page .photo-gallery-group:nth-child(2) .photo-card:nth-child(2) img {
+  object-position: center 48%;
+}
+.gallery-page .photo-gallery-group:nth-child(2) .photo-card:nth-child(3) img {
+  object-position: 50% 44%;
+}
+.gallery-page .photo-gallery-group:nth-child(2) .photo-card:nth-child(4) img {
+  object-position: 50% 42%;
+}
+.gallery-page .photo-gallery-group:nth-child(3) .photo-card:nth-child(1) img {
+  object-position: 50% 40%;
+}
+.gallery-page .photo-gallery-group:nth-child(3) .photo-card:nth-child(2) img {
+  object-position: center 42%;
+}
+
+@media (max-width: 900px) {
+  .programs-page .inner-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .home-page .hero-wash {
+    background:
+      linear-gradient(
+        180deg,
+        var(--cream) 0%,
+        var(--cream) 40%,
+        rgba(248, 243, 233, 0.93) 54%,
+        rgba(248, 243, 233, 0.12) 76%
+      );
+  }
+}
+
+@media (max-width: 760px) {
+  .home-page .hero-image {
+    object-position: 60% center;
+  }
+
+  .home-page .hero-content {
+    max-width: calc(100% - 2.5rem);
+  }
+
+  .about-page .inner-hero-image img {
+    object-position: 50% 30%;
+  }
+
+  .programs-page .inner-hero-image img {
+    object-position: 52% 43%;
+  }
+
+  .meals-page .inner-hero-image img {
+    object-position: 42% 40%;
+  }
+
+  .tuition-page .inner-hero-image img {
+    object-position: 50% 38%;
+  }
+}
