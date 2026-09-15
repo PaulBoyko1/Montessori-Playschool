@@ -95,3 +95,42 @@ test("keeps current public program structure and meal schedule", async () => {
   assert.match(meals.html, /Snack[^<]*3:00 PM/i);
   assert.match(meals.html, /Dinner[^<]*5:00 PM/i);
 });
+
+
+test("uses the selected high-quality photography across key pages", async () => {
+  const home = await render("/");
+  const about = await render("/about");
+  const programs = await render("/programs");
+  const meals = await render("/meals");
+  const tuition = await render("/tuition");
+  const gallery = await render("/gallery");
+
+  assert.match(home.html, /\/images\/photos\/selected\/home-hero\.webp/);
+  assert.match(about.html, /\/images\/photos\/selected\/teacher-art\.webp/);
+  assert.match(programs.html, /\/images\/photos\/selected\/teacher-group\.webp/);
+  assert.match(meals.html, /\/images\/photos\/selected\/child-playdough\.webp/);
+  assert.match(tuition.html, /\/images\/photos\/selected\/community\.webp/);
+
+  const galleryPhotos = [
+    "home-hero.webp",
+    "teacher-art.webp",
+    "teacher-group.webp",
+    "teacher-sensory.webp",
+    "child-playdough.webp",
+    "airplanes.webp",
+    "group-circle.webp",
+    "child-classroom.webp",
+    "community.webp",
+    "school-age.webp",
+  ];
+
+  for (const photo of galleryPhotos) {
+    assert.match(
+      gallery.html,
+      new RegExp(`/images/photos/selected/${photo.replace(".", "\\.")}`),
+      `gallery should include ${photo}`,
+    );
+  }
+
+  assert.doesNotMatch(home.html, /classroom-teacher-group\.webp/);
+});
