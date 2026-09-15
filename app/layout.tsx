@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     siteName: "Montessori Playschool",
     images: [
       {
-        url: "/images/photos/selected/community.webp",
-        width: 1500,
-        height: 1060,
-        alt: "Two children and a caring adult smiling together at Montessori Playschool",
+        url: "/images/photos/selected/home-hero.webp",
+        width: 1600,
+        height: 1321,
+        alt: "An educator engaging with two young children in a bright Montessori Playschool classroom",
       },
     ],
     locale: "en_US",
