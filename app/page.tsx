@@ -52,8 +52,8 @@ export default function Home() {
         <section className="hero" aria-labelledby="hero-title">
           <img
             className="hero-image"
-            src="/images/photos/selected/home-hero.webp"
-            alt="An educator engaging with two young children at their level in a bright classroom"
+            src="/images/photos/selected/group-circle.webp"
+            alt="Children gathered together for a lively group learning activity"
             fetchPriority="high"
           />
           <div className="hero-wash" />
