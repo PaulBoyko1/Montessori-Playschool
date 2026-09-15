@@ -12,7 +12,7 @@
   object-fit: cover;
   object-position: 50% 44%;
   right: 0;
-  width: 54%;
+  width: 66%;
 }
 
 .home-page .hero-wash {
@@ -20,11 +20,11 @@
     linear-gradient(
       90deg,
       var(--cream) 0%,
-      var(--cream) 45%,
-      rgba(248, 243, 233, 0.96) 50%,
-      rgba(248, 243, 233, 0.66) 56%,
-      rgba(248, 243, 233, 0.18) 63%,
-      rgba(248, 243, 233, 0) 70%
+      var(--cream) 31%,
+      rgba(248, 243, 233, 0.96) 35%,
+      rgba(248, 243, 233, 0.62) 41%,
+      rgba(248, 243, 233, 0.16) 48%,
+      rgba(248, 243, 233, 0) 55%
     );
 }
 

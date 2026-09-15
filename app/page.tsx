@@ -71,25 +71,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="quick-facts" aria-label="School highlights">
-          <div>
-            <span className="fact-label">Ages</span>
-            <strong>Birth–9th grade</strong>
-          </div>
-          <div>
-            <span className="fact-label">Schedule</span>
-            <strong>{school.days}</strong>
-          </div>
-          <div>
-            <span className="fact-label">Hours</span>
-            <strong>{school.hours}</strong>
-          </div>
-          <div>
-            <span className="fact-label">Location</span>
-            <strong>Carmichael, CA</strong>
-          </div>
-        </section>
-
         <section className="home-programs content-section" aria-labelledby="program-heading">
           <div className="section-heading">
             <div>
