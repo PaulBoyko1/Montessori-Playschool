@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import SocialLinks from "./components/SocialLinks";
 import { school } from "./site-data";
 
@@ -41,6 +41,40 @@ export function SiteHeader({ current }: { current?: string }) {
   const pathname = usePathname();
   const activePath = current ?? pathname;
   const [menuOpen, setMenuOpen] = useState(false);
+  const desktopNavRef = useRef<HTMLElement>(null);
+  const [activeIndicator, setActiveIndicator] = useState({
+    x: 0,
+    width: 0,
+    visible: false,
+  });
+
+  useLayoutEffect(() => {
+    const nav = desktopNavRef.current;
+    if (!nav) return;
+
+    const updateIndicator = () => {
+      const activeLink = nav.querySelector<HTMLAnchorElement>('a[aria-current="page"]');
+
+      if (!activeLink) {
+        setActiveIndicator((current) => ({ ...current, visible: false }));
+        return;
+      }
+
+      const navRect = nav.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+
+      setActiveIndicator({
+        x: linkRect.left - navRect.left,
+        width: linkRect.width,
+        visible: true,
+      });
+    };
+
+    updateIndicator();
+    window.addEventListener("resize", updateIndicator);
+
+    return () => window.removeEventListener("resize", updateIndicator);
+  }, [activePath]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -69,7 +103,7 @@ export function SiteHeader({ current }: { current?: string }) {
           alt="Montessori Playschool"
         />
       </Link>
-      <nav className="desktop-nav" aria-label="Primary navigation">
+      <nav className="desktop-nav" aria-label="Primary navigation" ref={desktopNavRef}>
         <ul>
           {navigation.map((item) => (
             <li key={item.href}>
@@ -86,6 +120,15 @@ export function SiteHeader({ current }: { current?: string }) {
             </li>
           ))}
         </ul>
+        <span
+          className="desktop-nav-indicator"
+          aria-hidden="true"
+          style={{
+            width: `${activeIndicator.width}px`,
+            transform: `translate3d(${activeIndicator.x}px, 0, 0)`,
+            opacity: activeIndicator.visible ? 1 : 0,
+          }}
+        />
       </nav>
       <Link
         className="header-cta"
