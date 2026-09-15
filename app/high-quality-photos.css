@@ -33,8 +33,12 @@
   object-position: 50% 42%;
 }
 
+.about-page .inner-hero {
+  grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
+}
+
 .about-page .inner-hero-image img {
-  object-position: 50% 34%;
+  object-position: 43% 42%;
 }
 
 .about-page .image-statement > img {
@@ -95,6 +99,7 @@
 }
 
 @media (max-width: 900px) {
+  .about-page .inner-hero,
   .programs-page .inner-hero {
     grid-template-columns: 1fr;
   }
@@ -121,7 +126,7 @@
   }
 
   .about-page .inner-hero-image img {
-    object-position: 50% 30%;
+    object-position: 47% 38%;
   }
 
   .programs-page .inner-hero-image img {
