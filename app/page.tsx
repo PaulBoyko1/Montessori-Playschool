@@ -26,21 +26,21 @@ const parentEssentials = [
 
 const featuredMoments = [
   {
-    src: "/images/photos/child-painting.webp",
-    alt: "A child concentrating on a watercolor painting activity",
-    label: "Creative work",
+    src: "/images/photos/selected/airplanes.webp",
+    alt: "Children proudly holding red model airplanes during a classroom activity",
+    label: "Creative projects",
     className: "home-moment-large",
   },
   {
-    src: "/images/photos/teacher-child-hug.webp",
-    alt: "A teacher sharing a warm hug with a child in the classroom",
-    label: "Caring relationships",
+    src: "/images/photos/selected/teacher-art.webp",
+    alt: "An educator and child smiling together during an art activity",
+    label: "Caring guidance",
     className: "home-moment-small",
   },
   {
-    src: "/images/photos/children-movement-activity.webp",
-    alt: "Children smiling and moving together during a group activity",
-    label: "Movement & play",
+    src: "/images/photos/selected/school-age.webp",
+    alt: "Two school-age children smiling together during a classroom activity",
+    label: "Growing together",
     className: "home-moment-small",
   },
 ];
@@ -48,12 +48,12 @@ const featuredMoments = [
 export default function Home() {
   return (
     <>
-      <main id="top">
+      <main id="top" className="home-page">
         <section className="hero" aria-labelledby="hero-title">
           <img
             className="hero-image"
-            src="/images/photos/classroom-teacher-group.webp"
-            alt="A smiling teacher leading a hands-on classroom activity with children"
+            src="/images/photos/selected/home-hero.webp"
+            alt="An educator engaging with two young children at their level in a bright classroom"
             fetchPriority="high"
           />
           <div className="hero-wash" />

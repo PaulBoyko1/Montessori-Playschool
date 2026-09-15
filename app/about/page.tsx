@@ -17,14 +17,14 @@ const principles = [
 export default function AboutPage() {
   return (
     <>
-      <main>
+      <main className="about-page">
         <InnerHero
           eyebrow="About Montessori Playschool"
           title="Rooted in respect."
           accent="Made for childhood."
           description="A warm Carmichael learning community where children can move with purpose, think with curiosity, and belong wholeheartedly."
-          image="/images/photos/teacher-child-hug.webp"
-          imageAlt="A teacher sharing a warm hug with a child in the classroom"
+          image="/images/photos/selected/teacher-art.webp"
+          imageAlt="An educator and child smiling together during an art activity"
         />
 
         <section className="story-section content-section">
@@ -85,8 +85,8 @@ export default function AboutPage() {
 
         <section className="image-statement">
           <img
-            src="/images/photos/teacher-guided-art.webp"
-            alt="A teacher guiding a child through a hands-on art activity"
+            src="/images/photos/selected/teacher-sensory.webp"
+            alt="An educator guiding children through a colorful hands-on sensory activity"
             loading="lazy"
             decoding="async"
           />
