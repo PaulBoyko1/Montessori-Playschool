@@ -65,7 +65,7 @@ export function SiteHeader({ current }: { current?: string }) {
       >
         <img
           className="brand-logo"
-          src="/images/montessori-playschool-logo.png"
+          src="/images/montessori-playschool-logo-horizontal.png"
           alt="Montessori Playschool"
         />
       </Link>
@@ -151,7 +151,8 @@ export function SiteFooter() {
       <div className="footer-brand">
         <Link href="/" aria-label="Montessori Playschool home">
           <img
-            src="/images/montessori-playschool-logo.png"
+            className="footer-logo"
+            src="/images/montessori-playschool-logo-stacked.png"
             alt="Montessori Playschool"
           />
         </Link>
