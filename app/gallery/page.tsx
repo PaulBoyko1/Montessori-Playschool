@@ -12,8 +12,6 @@ const galleryGroups = [
     id: "teachers-and-children",
     eyebrow: "Teachers & children",
     title: "Caring relationships in the classroom.",
-    description:
-      "Attentive educators join children at their level—guiding, encouraging, and sharing in the work of the day.",
     images: [
       {
         src: "/images/photos/selected/home-hero.webp",
@@ -45,8 +43,6 @@ const galleryGroups = [
     id: "learning-and-activities",
     eyebrow: "Learning & activities",
     title: "Children absorbed in meaningful activity.",
-    description:
-      "Hands-on projects, sensory work, movement, and collaborative play give children room to concentrate, participate, and create.",
     images: [
       {
         src: "/images/photos/selected/child-playdough.webp",
@@ -78,8 +74,6 @@ const galleryGroups = [
     id: "community-and-school-age",
     eyebrow: "Community & school-age",
     title: "A welcoming place to grow together.",
-    description:
-      "Friendships, supportive adults, and age-appropriate experiences help children feel known, included, and confident.",
     images: [
       {
         src: "/images/photos/selected/community.webp",
@@ -108,11 +102,7 @@ export default function GalleryPage() {
             <br />
             <em>joy, and belonging.</em>
           </h1>
-          <p>
-            Real classroom moments from our daycare community—children learning,
-            creating, moving, and building relationships with the educators who
-            care for them each day.
-          </p>
+<p>Real classroom moments from Montessori Playschool.</p>
           <nav className="gallery-jump-links" aria-label="Gallery categories">
             {galleryGroups.map((group) => (
               <a href={`#${group.id}`} key={group.id}>{group.eyebrow}</a>
@@ -128,7 +118,6 @@ export default function GalleryPage() {
                   <p className="section-label">{group.eyebrow}</p>
                   <h2>{group.title}</h2>
                 </div>
-                <p>{group.description}</p>
               </div>
               <div className="photo-gallery-grid">
                 {group.images.map((image) => (
@@ -144,7 +133,7 @@ export default function GalleryPage() {
 
         <section className="simple-cta">
           <p className="section-label">Picture your child here</p>
-          <h2>Let&apos;s start with a conversation.</h2>
+          <h2>Schedule a tour.</h2>
           <a className="button button-light" href="/enrollment">
             Explore enrollment <span aria-hidden="true">→</span>
           </a>
