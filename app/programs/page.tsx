@@ -77,7 +77,6 @@ export default function ProgramsPage() {
           eyebrow="Programs · Birth through 9th grade"
           title="A place for"
           accent="every stage."
-          description="Infant, Preschool, and School-Age programs from birth through 9th grade."
           image="/images/photos/selected/teacher-group.webp"
           imageAlt="An educator leading a group of children in a classroom activity"
         />
