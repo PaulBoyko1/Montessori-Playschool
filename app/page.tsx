@@ -60,6 +60,9 @@ export default function Home() {
           <div className="hero-content">
             <h1 id="hero-title">Montessori Playschool</h1>
             <div className="hero-actions">
+              <a className="button button-call-now" href={school.phoneHref}>
+                Call Now
+              </a>
               <Link className="button button-primary" href="/contact#tour">
                 Schedule a Tour <span aria-hidden="true">→</span>
               </Link>
