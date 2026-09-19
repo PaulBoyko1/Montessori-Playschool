@@ -23,7 +23,6 @@ export default function ContactPage() {
               <em>your family.</em>
             </h1>
           </div>
-<p>Questions about programs, tuition, enrollment, or tours? Call, email, or send an inquiry.</p>
         </section>
 
         <section className="contact-grid content-section">
