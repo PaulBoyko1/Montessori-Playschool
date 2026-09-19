@@ -162,7 +162,6 @@ export function SiteFooter() {
             alt="Montessori Playschool"
           />
         </Link>
-        <p>A thoughtful place to learn, play, and grow.</p>
       </div>
       <div className="footer-column">
         <span>Visit</span>
