@@ -63,17 +63,11 @@ export function SiteHeader({ current }: { current?: string }) {
         aria-label="Montessori Playschool home"
         onClick={() => rememberNavigationDirection(pathname, "/")}
       >
-        <picture className="brand-logo-picture">
-          <source
-            media="(min-width: 761px)"
-            srcSet="/images/montessori-playschool-logo.png"
-          />
-          <img
-            className="brand-logo"
-            src="/images/montessori-playschool-logo-horizontal.png"
-            alt="Montessori Playschool"
-          />
-        </picture>
+        <img
+          className="brand-logo"
+          src="/images/montessori-playschool-logo-horizontal.png"
+          alt="Montessori Playschool"
+        />
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
         <ul>
