@@ -21,8 +21,10 @@ export const metadata: Metadata = {
     siteName: "Montessori Playschool",
     images: [
       {
-        url: "/images/photos/selected/group-circle.webp",
-        alt: "Children gathered together for a group learning activity at Montessori Playschool",
+        url: "/images/photos/selected/community.webp",
+        width: 1500,
+        height: 1060,
+        alt: "Two children and a caring adult smiling together at Montessori Playschool",
       },
     ],
     locale: "en_US",
