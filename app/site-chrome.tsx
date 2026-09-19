@@ -41,6 +41,42 @@ export function SiteHeader({ current }: { current?: string }) {
   const pathname = usePathname();
   const activePath = current ?? pathname;
   const [menuOpen, setMenuOpen] = useState(false);
+  const isHome = pathname === "/";
+
+  useEffect(() => {
+    if (!isHome) {
+      document.documentElement.style.removeProperty("--home-scroll-progress");
+      return;
+    }
+
+    let frame = 0;
+
+    const updateHomeScroll = () => {
+      frame = 0;
+      const progress = Math.min(Math.max(window.scrollY / 120, 0), 1);
+      document.documentElement.style.setProperty(
+        "--home-scroll-progress",
+        progress.toFixed(3),
+      );
+    };
+
+    const handleScroll = () => {
+      if (!frame) {
+        frame = window.requestAnimationFrame(updateHomeScroll);
+      }
+    };
+
+    updateHomeScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      document.documentElement.style.removeProperty("--home-scroll-progress");
+    };
+  }, [isHome]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -56,7 +92,7 @@ export function SiteHeader({ current }: { current?: string }) {
   }, [menuOpen]);
 
   return (
-    <header className="site-header">
+    <header className={`site-header${isHome ? " home-intro-header" : ""}`}>
       <Link
         className="brand"
         href="/"
