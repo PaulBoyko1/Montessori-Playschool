@@ -34,7 +34,6 @@ export default function TuitionPage() {
           eyebrow="Tuition & financial assistance"
           title="Clear costs."
           accent="More ways to pay."
-          description="Day and evening tuition rates plus CalWORKs and Child Action."
           image="/images/photos/selected/community.webp"
           imageAlt="Two children and a caring adult smiling together in the classroom"
         />
