@@ -10,24 +10,24 @@ export const metadata: Metadata = {
 };
 
 const steps = [
-  ["Share your needs", "Tell us your child’s age, program interest, and preferred schedule."],
-  ["Connect with us", "We’ll discuss availability, schedule options, tuition, and assistance programs."],
-  ["Plan a visit", "Tour the environment, meet the team, and bring your questions."],
-  ["Complete enrollment", "Receive the required forms, policies, and confirmed start information."],
+  ["Share your needs", "Child’s age, program, and preferred schedule."],
+  ["Connect with us", "We’ll review availability, tuition, and assistance."],
+  ["Plan a visit", "Tour the school and meet the team."],
+  ["Complete enrollment", "Complete forms and confirm the start date."],
 ];
 
 const familyEssentials = [
   {
     title: "Individual rhythms",
-    text: "Infant feeding, sleeping, diapering, and care routines are individualized from the information families provide.",
+    text: "Infant feeding, sleep, diapering, and care routines are individualized.",
   },
   {
     title: "Positive guidance",
-    text: "Educators use calm modeling, redirection, reassurance, clear expectations, and family communication.",
+    text: "Calm modeling, redirection, reassurance, and clear expectations.",
   },
   {
     title: "Rest and movement",
-    text: "Preschool rest or quiet time is offered daily, with outdoor or gross-motor activity built into each age group’s routine.",
+    text: "Daily rest or quiet time plus outdoor or gross-motor activity.",
   },
   {
     title: "Financial assistance",
@@ -47,11 +47,7 @@ export default function EnrollmentPage() {
               <br />
               <em>your family.</em>
             </h1>
-            <p>
-              Montessori Playschool is welcoming enrollment inquiries from
-              birth through 9th grade. Share what you need and we&apos;ll help you
-              understand the next step.
-            </p>
+<p>Now accepting enrollment inquiries from birth through 9th grade.</p>
           </div>
           <div className="enrollment-facts">
             <div>
@@ -106,12 +102,8 @@ export default function EnrollmentPage() {
           <div className="section-heading">
             <div>
               <p className="section-label">Family handbook highlights</p>
-              <h2>Helpful details before you inquire.</h2>
+              <h2>What families should know.</h2>
             </div>
-            <p>
-              These practical policies come directly from the facility&apos;s
-              infant and preschool/school-age family handbooks.
-            </p>
           </div>
           <div className="family-essential-grid">
             {familyEssentials.map((item, index) => (
@@ -127,7 +119,7 @@ export default function EnrollmentPage() {
         <section className="tuition-teaser">
           <div>
             <p className="section-label">Tuition transparency</p>
-            <h2>See the full day and evening rate schedule.</h2>
+            <h2>Day and evening tuition rates.</h2>
           </div>
           <a className="button button-light" href="/tuition">
             View tuition &amp; assistance <span aria-hidden="true">→</span>
