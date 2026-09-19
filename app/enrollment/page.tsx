@@ -47,7 +47,6 @@ export default function EnrollmentPage() {
               <br />
               <em>your family.</em>
             </h1>
-<p>Now accepting enrollment inquiries from birth through 9th grade.</p>
           </div>
           <div className="enrollment-facts">
             <div>
