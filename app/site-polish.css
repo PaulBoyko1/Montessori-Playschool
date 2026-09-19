@@ -803,3 +803,190 @@
     transform: none;
   }
 }
+
+
+/* -------------------------------------------------------------------------- */
+/* Montessori Playschool brand refresh                                        */
+/* -------------------------------------------------------------------------- */
+.site-header {
+  background: rgba(255, 253, 247, 0.98);
+}
+
+@media (min-width: 1321px) {
+  .site-header {
+    grid-template-columns: minmax(205px, 235px) minmax(0, 1fr) auto;
+    min-height: 96px;
+    padding-block: 0.35rem;
+  }
+
+  .brand {
+    min-height: 82px;
+  }
+
+  .brand-logo {
+    height: 58px;
+    max-width: 230px;
+    width: auto;
+  }
+}
+
+.desktop-nav li:not(:last-child)::after {
+  background: rgba(87, 45, 7, 0.18);
+}
+
+.desktop-nav a[aria-current="page"] {
+  background: var(--sage);
+  color: var(--brand-brown);
+  box-shadow:
+    0 0 0 3px var(--paper),
+    0 0 0 5px rgba(12, 134, 254, 0.36);
+}
+
+.desktop-nav a:hover,
+.desktop-nav a:focus-visible {
+  background: var(--soft-green);
+  color: var(--forest-deep);
+}
+
+.announcement {
+  background: linear-gradient(90deg, var(--brand-blue-deep), var(--brand-blue-action));
+}
+
+.announcement div span {
+  color: #e7f3ff;
+}
+
+.announcement > a {
+  background: var(--brand-yellow);
+  color: var(--brand-brown);
+}
+
+.announcement > a:hover,
+.announcement > a:focus-visible {
+  background: #ffe45a;
+}
+
+.header-cta,
+.button-primary,
+.mobile-menu nav .mobile-tour-link {
+  background: var(--brand-blue-action);
+  color: #ffffff;
+}
+
+.header-cta:hover,
+.button-primary:hover {
+  background: var(--brand-blue-deep);
+}
+
+.eyebrow span,
+.section-kicker i {
+  background: var(--brand-yellow);
+}
+
+.divider-leaf::before {
+  background: var(--brand-blue);
+}
+
+.divider-leaf::after {
+  background: var(--brand-yellow);
+}
+
+.contact-cta,
+.assistance-teaser,
+.capacity-strip,
+.meal-values,
+.simple-cta,
+.program-card-text {
+  background-color: var(--brand-blue-deep);
+}
+
+.site-footer {
+  background: var(--brand-brown);
+}
+
+.footer-brand > a {
+  background: var(--brand-cream);
+  border: 1px solid rgba(252, 209, 7, 0.38);
+  border-radius: 18px;
+  padding: 0.7rem;
+  width: min(230px, 100%);
+}
+
+.footer-logo {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  max-width: 205px;
+  width: 100%;
+}
+
+.footer-brand p,
+.footer-column p,
+.footer-column a {
+  color: #eadfce;
+}
+
+.footer-column > span {
+  color: #fff4c3;
+}
+
+.footer-directions {
+  color: #ffd83b !important;
+}
+
+.footer-bottom {
+  color: #cfbea9;
+}
+
+.footer-social .social-links a {
+  color: #eadfce;
+}
+
+.rate-period-switch button.is-active {
+  background: var(--brand-blue-action);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--brand-blue-action);
+  outline-color: rgba(12, 134, 254, 0.18);
+}
+
+.checkbox-grid input:checked + span {
+  background: var(--brand-blue-action);
+  color: #ffffff;
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    background: rgba(255, 253, 247, 0.99);
+  }
+
+  .brand-logo {
+    height: 48px;
+    max-width: min(67vw, 188px);
+  }
+
+  .brand {
+    min-height: 58px;
+  }
+
+  .mobile-menu nav {
+    background: var(--paper);
+    box-shadow: 0 22px 55px rgba(87, 45, 7, 0.18);
+  }
+
+  .mobile-menu nav a[aria-current="page"] {
+    background: #fff6c9;
+    color: var(--brand-brown);
+  }
+
+  .footer-brand > a {
+    width: min(205px, 100%);
+  }
+
+  .footer-logo {
+    max-width: 180px;
+  }
+}

@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     "codex-preview": "development",
   },
   icons: {
-    icon: "/images/montessori-playschool-logo.png",
-    shortcut: "/images/montessori-playschool-logo.png",
-    apple: "/images/montessori-playschool-logo.png",
+    icon: "/images/montessori-playschool-icon.png",
+    shortcut: "/images/montessori-playschool-icon.png",
+    apple: "/images/montessori-playschool-icon.png",
   },
 };
 
