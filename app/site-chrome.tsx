@@ -215,7 +215,7 @@ export function InnerHero({
   eyebrow: string;
   title: string;
   accent?: string;
-  description: string;
+  description?: string;
   image: string;
   imageAlt: string;
 }) {
@@ -233,7 +233,7 @@ export function InnerHero({
               </>
             )}
           </h1>
-          <p>{description}</p>
+          {description && <p>{description}</p>}
         </div>
         <div className="inner-hero-image">
           <img src={image} alt={imageAlt} />
