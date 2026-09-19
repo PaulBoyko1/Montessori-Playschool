@@ -60,7 +60,7 @@ export default function MealsPage() {
           eyebrow="Weekly meals"
           title="Nourishment is"
           accent="part of care."
-          description="Familiar foods, balanced components, and a calm shared table give children energy for learning, movement, and play."
+          description="Breakfast, lunch, snack, and dinner Monday–Saturday."
           image="/images/photos/selected/child-playdough.webp"
           imageAlt="A smiling young child enjoying a hands-on table activity"
         />
@@ -68,26 +68,21 @@ export default function MealsPage() {
         <section className="nutrition-intro content-section">
           <div className="nutrition-callout">
             <span aria-hidden="true">6</span>
-            <p>Monday through Saturday meal planning for the full school week.</p>
+            <p>Meals planned Monday–Saturday.</p>
           </div>
           <div>
             <p className="section-label">Our approach</p>
-            <h2>Wholesome, familiar, and thoughtfully served.</h2>
-            <p>
-              The sample menu reflects Montessori Playschool&apos;s current meal
-              schedule: breakfast at 8:00 AM, lunch at 1:00 PM, snack at 3:00 PM,
-              and dinner at 5:00 PM. Whole grains, fruits, vegetables, proteins,
-              milk, and water are offered throughout the week.
-            </p>
+            <h2>Wholesome meals, served daily.</h2>
+<p>Breakfast 8:00 AM · Lunch 1:00 PM · Snack 3:00 PM · Dinner 5:00 PM.</p>
           </div>
         </section>
 
         <section className="meal-values">
           {[
-            ["Six-day variety", "Monday-through-Saturday menus balance familiar foods with changing fruits, vegetables, grains, and proteins."],
-            ["Age-appropriate portions", "Meals are planned around age-appropriate food groups and portions; menus may change as program details are finalized."],
-            ["Family alternatives", "Parents may coordinate or provide an alternative meal when needed, following the center's labeling, storage, and allergy-safety procedures."],
-            ["Allergy communication", "Allergies, medical nutrition plans, substitutions, and safe-food procedures are reviewed with each family."],
+            ["Six-day menu", "Meals are planned Monday–Saturday."],
+            ["Age-appropriate portions", "Food groups and portions are adjusted by age."],
+            ["Family alternatives", "Parent-provided meals are welcome when coordinated with the center."],
+            ["Allergy communication", "Allergies and medical nutrition plans are reviewed with each family."],
           ].map(([title, text], index) => (
             <article key={title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
@@ -103,10 +98,7 @@ export default function MealsPage() {
               <p className="section-label">Sample weekly menu</p>
               <h2>Breakfast, lunch, snack, and dinner at a glance.</h2>
             </div>
-            <p>
-              Menus are representative and may change because of availability,
-              age-group needs, substitutions, or special dietary arrangements.
-            </p>
+<p>Menus may change for availability, age needs, or dietary accommodations.</p>
           </div>
           <div className="weekly-menu-grid">
             {weeklyMenu.map((day, index) => (
@@ -122,24 +114,16 @@ export default function MealsPage() {
               </article>
             ))}
           </div>
-          <p className="menu-disclaimer">
-            Water is available throughout the day. Milk and meal components are
-            served according to age and individual feeding needs.
-          </p>
+<p className="menu-disclaimer">Water is available throughout the day. Portions are age-appropriate.</p>
         </section>
 
         <section className="allergy-section">
           <div>
             <p className="section-label">Dietary needs</p>
-            <h2>Every food conversation starts with the family.</h2>
+            <h2>Allergies and dietary needs matter.</h2>
           </div>
           <div>
-            <p>
-              Families should share allergies, cultural preferences, medical
-              nutrition plans, feeding abilities, and foods that should not be
-              served before attendance begins. Required documentation and safe
-              preparation procedures are reviewed individually.
-            </p>
+<p>Tell us about allergies, medical nutrition plans, cultural preferences, and foods to avoid before attendance begins.</p>
             <p>
               Families of infants provide formula or breast milk, bottles,
               baby food, and feeding instructions unless another arrangement is
