@@ -75,8 +75,7 @@ export default function GalleryPage() {
     <>
       <main className="gallery-page">
         <section className="gallery-heading content-section">
-          <p className="section-label">Gallery</p>
-          <h1>Life at Montessori Playschool.</h1>
+          <h1>Gallery</h1>
         </section>
 
         <section className="photo-gallery-grid photo-gallery-grid-simple" aria-label="Montessori Playschool photo gallery">
@@ -94,10 +93,9 @@ export default function GalleryPage() {
         </section>
 
         <section className="simple-cta">
-          <p className="section-label">Visit us</p>
           <h2>Schedule a tour.</h2>
-          <a className="button button-light" href="/enrollment">
-            Explore enrollment <span aria-hidden="true">→</span>
+          <a className="button button-light" href="/contact#tour">
+            Schedule a Tour <span aria-hidden="true">→</span>
           </a>
         </section>
       </main>
