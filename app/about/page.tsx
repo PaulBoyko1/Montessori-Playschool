@@ -22,7 +22,6 @@ export default function AboutPage() {
           eyebrow="About Montessori Playschool"
           title="Rooted in respect."
           accent="Made for childhood."
-          description="Montessori-inspired care in Carmichael."
           image="/images/photos/selected/teacher-art.webp"
           imageAlt="An educator and child smiling together during an art activity"
         />
