@@ -3284,7 +3284,7 @@ body {
 }
 
 .divider-leaf::before {
-  background: #6f9e3f;
+  background: var(--brand-blue);
   content: "";
   height: 2px;
   left: 7px;
@@ -3296,7 +3296,7 @@ body {
 }
 
 .divider-leaf::after {
-  background: #6f9e3f;
+  background: var(--brand-yellow);
   border-radius: 100% 0 100% 0;
   content: "";
   height: 18px;
