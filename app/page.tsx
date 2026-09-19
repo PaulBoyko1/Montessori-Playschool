@@ -8,19 +8,19 @@ const parentEssentials = [
     href: "/meals",
     label: "Meals",
     title: "See the weekly menu",
-    text: "Review breakfast, lunch, afternoon snack, dinner, dietary notes, and the Saturday menu.",
+    text: "Breakfast, lunch, snack, dinner, and the Saturday menu.",
   },
   {
     href: "/tuition",
     label: "Tuition & assistance",
     title: "Plan the cost of care",
-    text: "See tuition references and learn about CalWORKs and Child Action assistance.",
+    text: "Tuition rates plus CalWORKs and Child Action.",
   },
   {
     href: "/location",
     label: "Location",
     title: "Find us in Carmichael",
-    text: `${school.address}. Open the map and get directions in one tap.`,
+    text: `${school.address}. Map and directions.`,
   },
 ];
 
@@ -77,10 +77,6 @@ export default function Home() {
               <p className="section-label">Programs</p>
               <h2 id="program-heading">Care that grows with your child.</h2>
             </div>
-            <p>
-              Three clear program groups make it easy to find the setting that
-              fits your child&apos;s current stage.
-            </p>
           </div>
           <div className="home-program-grid">
             {programs.map((program, index) => (
@@ -104,12 +100,7 @@ export default function Home() {
           <div className="content-section curriculum-layout">
             <div>
               <p className="section-label">Montessori curriculum</p>
-              <h2>Tap a learning area to explore.</h2>
-              <p>
-                Purposeful, hands-on experiences help children build practical
-                skills, communication, early academics, creativity, and care
-                for their world.
-              </p>
+              <h2>Hands-on Montessori learning.</h2>
               <Link className="inline-arrow" href="/programs#curriculum">
                 See the full program approach <span aria-hidden="true">→</span>
               </Link>
@@ -125,10 +116,6 @@ export default function Home() {
               <h2 id="moments-heading">Real moments from the school day.</h2>
             </div>
             <div>
-              <p>
-                Learning here is active, social, creative, and grounded in
-                caring relationships between children and educators.
-              </p>
               <Link className="inline-arrow" href="/gallery">
                 Visit the full gallery <span aria-hidden="true">→</span>
               </Link>
@@ -149,7 +136,7 @@ export default function Home() {
             <span>Parent essentials</span>
             <i aria-hidden="true" />
           </div>
-          <h2 id="essentials-heading">The information families need most.</h2>
+          <h2 id="essentials-heading">What families need most.</h2>
           <div className="parent-priority-grid">
             {parentEssentials.map((item) => (
               <Link href={item.href} key={item.href}>
@@ -166,11 +153,7 @@ export default function Home() {
           <div>
             <p className="section-label">Help with childcare costs</p>
             <h2>CalWORKs and Child Action are welcome.</h2>
-            <p>
-              Eligible families may use approved childcare assistance. We can
-              help you understand what information the school needs from your
-              program.
-            </p>
+<p>CalWORKs and Child Action accepted for eligible families.</p>
           </div>
           <Link className="button button-light" href="/tuition#assistance">
             View assistance options <span aria-hidden="true">→</span>
@@ -192,10 +175,7 @@ export default function Home() {
               <br />
               could <em>feel at home.</em>
             </h2>
-            <p>
-              Tell us your child&apos;s age, the schedule you need, and any
-              questions you have. We&apos;ll help you plan the next step.
-            </p>
+<p>Tell us your child&apos;s age and the schedule you need.</p>
             <div className="cta-actions">
               <Link className="button button-light" href="/contact#tour">
                 Schedule a Tour <span aria-hidden="true">→</span>
