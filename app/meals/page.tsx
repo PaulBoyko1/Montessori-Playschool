@@ -72,7 +72,7 @@ export default function MealsPage() {
           <div>
             <p className="section-label">Our approach</p>
             <h2>Wholesome meals, served daily.</h2>
-<p>Breakfast 8:00 AM · Lunch 1:00 PM · Snack 3:00 PM · Dinner 5:00 PM.</p>
+<p>Breakfast 8:00 AM · Lunch 12:00 PM · Snack 3:00 PM · Dinner 5:00 PM.</p>
           </div>
         </section>
 
@@ -106,7 +106,7 @@ export default function MealsPage() {
                 <h3>{day.day}</h3>
                 <dl>
                   <div><dt>Breakfast · 8:00 AM</dt><dd>{day.breakfast}</dd></div>
-                  <div><dt>Lunch · 1:00 PM</dt><dd>{day.lunch}</dd></div>
+                  <div><dt>Lunch · 12:00 PM</dt><dd>{day.lunch}</dd></div>
                   <div><dt>Snack · 3:00 PM</dt><dd>{day.snack}</dd></div>
                   <div><dt>Dinner · 5:00 PM</dt><dd>{day.dinner}</dd></div>
                 </dl>
