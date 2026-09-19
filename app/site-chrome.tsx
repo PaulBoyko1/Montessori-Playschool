@@ -45,7 +45,11 @@ export function SiteHeader({ current }: { current?: string }) {
 
   useEffect(() => {
     if (!isHome) {
-      document.documentElement.style.removeProperty("--home-scroll-progress");
+      const root = document.documentElement;
+      root.style.removeProperty("--home-scroll-progress");
+      root.style.removeProperty("--home-header-height");
+      root.style.removeProperty("--home-logo-width");
+      root.style.removeProperty("--home-parallax-y");
       return;
     }
 
@@ -53,10 +57,21 @@ export function SiteHeader({ current }: { current?: string }) {
 
     const updateHomeScroll = () => {
       frame = 0;
-      const progress = Math.min(Math.max(window.scrollY / 120, 0), 1);
-      document.documentElement.style.setProperty(
-        "--home-scroll-progress",
-        progress.toFixed(3),
+      const progress = Math.min(Math.max(window.scrollY / 140, 0), 1);
+      const root = document.documentElement;
+
+      root.style.setProperty("--home-scroll-progress", progress.toFixed(3));
+      root.style.setProperty(
+        "--home-header-height",
+        `${Math.round(126 - progress * 54)}px`,
+      );
+      root.style.setProperty(
+        "--home-logo-width",
+        `${Math.round(310 - progress * 122)}px`,
+      );
+      root.style.setProperty(
+        "--home-parallax-y",
+        `${Math.round(-18 + progress * 36)}px`,
       );
     };
 
@@ -74,7 +89,11 @@ export function SiteHeader({ current }: { current?: string }) {
       if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
-      document.documentElement.style.removeProperty("--home-scroll-progress");
+      const root = document.documentElement;
+      root.style.removeProperty("--home-scroll-progress");
+      root.style.removeProperty("--home-header-height");
+      root.style.removeProperty("--home-logo-width");
+      root.style.removeProperty("--home-parallax-y");
     };
   }, [isHome]);
 
