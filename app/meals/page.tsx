@@ -60,7 +60,6 @@ export default function MealsPage() {
           eyebrow="Weekly meals"
           title="Nourishment is"
           accent="part of care."
-          description="Breakfast, lunch, snack, and dinner Monday–Saturday."
           image="/images/photos/selected/child-playdough.webp"
           imageAlt="A smiling young child enjoying a hands-on table activity"
         />
