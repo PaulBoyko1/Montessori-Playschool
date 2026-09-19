@@ -160,3 +160,646 @@
     min-width: 0;
   }
 }
+
+
+/* -------------------------------------------------------------------------- */
+/* Mobile layout pass                                                         */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 76px;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  /* Compact sticky header and a true phone-width navigation panel. */
+  .site-header {
+    min-height: 72px;
+    padding: 0.25rem 0.8rem;
+  }
+
+  .brand {
+    max-width: calc(100vw - 70px);
+    min-height: 62px;
+  }
+
+  .brand-logo {
+    height: 58px;
+    max-width: min(68vw, 215px);
+    object-fit: contain;
+  }
+
+  .mobile-menu-button {
+    height: 46px;
+    min-height: 46px;
+    min-width: 46px;
+    width: 46px;
+  }
+
+  .mobile-menu nav {
+    border-radius: 18px;
+    box-shadow: 0 22px 55px rgba(20, 45, 36, 0.2);
+    left: 0.75rem;
+    max-height: calc(100dvh - 84px);
+    padding: 0.5rem;
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+    position: fixed;
+    right: 0.75rem;
+    top: 76px;
+    width: auto;
+    z-index: 50;
+  }
+
+  .mobile-menu nav a {
+    align-items: center;
+    display: flex;
+    font-size: 0.95rem;
+    min-height: 48px;
+    padding: 0.75rem 0.9rem;
+  }
+
+  .mobile-menu nav a[aria-current="page"] {
+    background: var(--soft-green);
+    color: var(--forest-deep);
+  }
+
+  .mobile-menu nav .mobile-tour-link {
+    justify-content: center;
+    min-height: 50px;
+  }
+
+  /* Home hero: keep the whole group readable instead of making the portrait
+     photo behave like a landscape crop. */
+  .home-page .hero {
+    min-height: 760px;
+  }
+
+  .home-page .hero-content {
+    left: 1rem;
+    max-width: calc(100% - 2rem);
+    top: 2.8rem;
+  }
+
+  .home-page .hero h1 {
+    font-size: clamp(3rem, 14.5vw, 4.15rem);
+    line-height: 0.92;
+  }
+
+  .home-page .hero-lede {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin-top: 1.25rem;
+    max-width: 345px;
+  }
+
+  .home-page .hero-actions {
+    margin-top: 1.35rem;
+  }
+
+  .home-page .hero-actions .button {
+    width: min(100%, 285px);
+  }
+
+  .home-page .hero-image {
+    bottom: 0;
+    height: 49%;
+    left: 50%;
+    max-width: 430px;
+    object-fit: contain;
+    object-position: center bottom;
+    right: auto;
+    top: auto;
+    transform: translateX(-50%);
+    width: 100%;
+  }
+
+  .home-page .hero-wash {
+    background: linear-gradient(
+      180deg,
+      var(--cream) 0%,
+      var(--cream) 45%,
+      rgba(255, 255, 255, 0.96) 52%,
+      rgba(255, 255, 255, 0.48) 61%,
+      rgba(255, 255, 255, 0) 72%
+    );
+  }
+
+  /* Tighter, more consistent vertical rhythm throughout the phone layout. */
+  .content-section {
+    padding: 4rem 1rem;
+  }
+
+  .section-heading {
+    gap: 1.15rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .section-heading h2,
+  .programs-intro h2,
+  .curriculum-layout h2,
+  .parent-priorities > h2,
+  .assistance-teaser h2,
+  .assistance-section h2,
+  .map-help h2,
+  .follow-section h2 {
+    font-size: clamp(2.25rem, 10vw, 3rem);
+    line-height: 1.03;
+  }
+
+  .section-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.13em;
+  }
+
+  .section-divider {
+    height: 26px;
+  }
+
+  .divider-leaf {
+    flex-basis: 58px;
+    height: 24px;
+    margin-left: 0.65rem;
+    transform: scale(0.82);
+    transform-origin: left center;
+  }
+
+  /* Inner page heroes become a compact text block followed by a photo whose
+     aspect ratio matches the underlying source instead of one generic crop. */
+  .inner-hero {
+    min-height: 0;
+  }
+
+  .inner-hero-copy {
+    padding: 3.25rem 1rem 2.6rem;
+  }
+
+  .inner-hero-copy h1,
+  .gallery-heading h1,
+  .enrollment-heading h1,
+  .contact-heading h1,
+  .legal-page h1 {
+    font-size: clamp(2.8rem, 13vw, 3.45rem);
+    line-height: 0.98;
+    margin: 0.9rem 0 1.2rem;
+  }
+
+  .inner-hero-copy > p:last-child {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .inner-hero-image {
+    height: auto;
+    min-height: 0;
+  }
+
+  .inner-hero-image::before {
+    display: none;
+  }
+
+  .inner-hero-image img {
+    object-fit: cover;
+    transform: none;
+  }
+
+  .about-page .inner-hero-image,
+  .programs-page .inner-hero-image {
+    aspect-ratio: 4 / 5;
+  }
+
+  .meals-page .inner-hero-image,
+  .tuition-page .inner-hero-image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .about-page .inner-hero-image img {
+    object-position: 50% 28%;
+  }
+
+  .programs-page .inner-hero-image img {
+    object-position: 50% 35%;
+  }
+
+  .meals-page .inner-hero-image img {
+    object-position: 45% 42%;
+  }
+
+  .tuition-page .inner-hero-image img {
+    object-position: 50% 42%;
+  }
+
+  .hero-section-divider {
+    height: 24px;
+  }
+
+  /* Cards should read as compact tap targets, not desktop tiles stacked one
+     after another. */
+  .home-program-grid,
+  .parent-priority-grid,
+  .program-age-grid,
+  .assistance-grid,
+  .fee-grid,
+  .space-grid,
+  .weekly-menu-grid,
+  .family-essential-grid,
+  .enrichment-grid {
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+  }
+
+  .home-program-card,
+  .parent-priority-grid > a,
+  .program-age-grid > article,
+  .assistance-grid > a,
+  .fee-grid article,
+  .space-grid article,
+  .weekly-menu-grid article,
+  .family-essential-grid article {
+    min-height: 0;
+    padding: 1.35rem;
+  }
+
+  .home-program-card > p {
+    margin-top: 1.7rem;
+  }
+
+  .home-program-card strong,
+  .parent-priority-grid strong,
+  .assistance-grid strong {
+    padding-top: 1.4rem;
+  }
+
+  .parent-priority-grid {
+    margin-top: 2rem;
+  }
+
+  .parent-priority-grid h3,
+  .assistance-grid h3 {
+    margin-top: 1.5rem;
+  }
+
+  .fee-grid strong {
+    font-size: 2.7rem;
+    margin-top: 1rem;
+  }
+
+  .curriculum-layout {
+    gap: 2.25rem;
+  }
+
+  .curriculum-accordion button {
+    font-size: 1.25rem;
+    min-height: 66px;
+  }
+
+  .accordion-indicator {
+    flex-basis: 34px;
+    height: 34px;
+    width: 34px;
+  }
+
+  /* Photo-heavy sections use aspect ratios instead of fixed pixel heights,
+     which keeps faces and groups more stable across different phones. */
+  .home-moments {
+    padding-top: 3rem;
+  }
+
+  .home-moment-grid {
+    gap: 0.75rem;
+  }
+
+  .home-moment-grid figure,
+  .home-moment-large {
+    aspect-ratio: 4 / 3;
+    height: auto !important;
+  }
+
+  .home-moment-grid img {
+    object-fit: cover;
+  }
+
+  .program-detail {
+    gap: 2rem;
+  }
+
+  .program-detail-image {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+
+  .program-detail-image img {
+    object-position: center;
+  }
+
+  .image-statement > img,
+  .program-photo-band > img {
+    aspect-ratio: 4 / 3;
+    height: auto;
+    min-height: 0;
+    object-fit: cover;
+  }
+
+  .image-statement > div,
+  .program-photo-band > div {
+    padding: 3.75rem 1rem;
+  }
+
+  .photo-gallery-heading {
+    padding: 3.5rem 1rem 2rem;
+  }
+
+  .gallery-jump-links {
+    flex-wrap: nowrap;
+    margin: 0 -1rem;
+    overflow-x: auto;
+    padding: 0 1rem 0.4rem;
+    scrollbar-width: none;
+  }
+
+  .gallery-jump-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-jump-links a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .photo-gallery-grid {
+    gap: 0.75rem;
+    padding: 0 1rem 4rem;
+  }
+
+  .photo-card,
+  .photo-card-wide,
+  .photo-card-tall {
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+
+  .photo-card-tall {
+    aspect-ratio: 3 / 4;
+  }
+
+  .photo-card figcaption {
+    font-size: 0.86rem;
+    padding: 0.7rem 0.8rem;
+  }
+
+  /* Meals, tuition, maps, and other information-heavy sections. */
+  .meal-values {
+    padding: 0 1rem;
+  }
+
+  .meal-values article {
+    min-height: 0;
+    padding: 2rem 0.25rem;
+  }
+
+  .menu-list > div {
+    gap: 0.35rem 0.8rem;
+    grid-template-columns: 58px 1fr;
+    min-height: 0;
+    padding: 1rem 0;
+  }
+
+  .menu-list > div p {
+    grid-column: 2;
+  }
+
+  .allergy-section,
+  .assistance-teaser,
+  .tuition-teaser,
+  .contact-map-section,
+  .follow-section,
+  .simple-cta,
+  .contact-cta {
+    padding: 4rem 1rem;
+  }
+
+  .assistance-help,
+  .map-help {
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  .rate-period-switch {
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+
+  .rate-period-switch > div {
+    align-self: stretch;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .rate-period-switch button {
+    min-height: 46px;
+  }
+
+  .rate-table-wrap {
+    margin-right: -1rem;
+    overflow-x: auto;
+    padding-right: 1rem;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .rate-table {
+    min-width: 610px;
+  }
+
+  .rate-table th,
+  .rate-table td {
+    padding: 1rem 0.8rem;
+  }
+
+  .map-section {
+    padding: 2.5rem 1rem 4rem;
+  }
+
+  .map-section iframe,
+  .contact-map-section iframe {
+    min-height: 300px;
+  }
+
+  .location-hero {
+    gap: 2.5rem;
+    padding: 3.75rem 1rem;
+  }
+
+  .location-hero h1 {
+    font-size: clamp(2.8rem, 13vw, 3.45rem);
+    line-height: 0.98;
+  }
+
+  .location-address {
+    font-size: 1.35rem;
+  }
+
+  /* Forms: one column, iOS-safe input sizing, and full-width primary action. */
+  .enrollment-heading,
+  .contact-heading {
+    gap: 1.5rem;
+    padding: 3.75rem 1rem;
+  }
+
+  .contact-form-wrap,
+  .form-wrap {
+    border-radius: 16px;
+    padding: 1.15rem;
+  }
+
+  .contact-form-wrap > h2 {
+    font-size: 2.15rem;
+  }
+
+  .enrollment-form {
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .form-split {
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    border-radius: 10px;
+    font-size: 16px;
+    min-height: 52px;
+    padding: 0.85rem 0.9rem;
+  }
+
+  .checkbox-grid {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .checkbox-grid span {
+    align-items: center;
+    border-radius: 9px;
+    display: flex;
+    min-height: 44px;
+    padding: 0.65rem 0.7rem;
+  }
+
+  .form-submit,
+  .form-success .button {
+    min-height: 52px;
+    width: 100%;
+  }
+
+  .form-success {
+    border-radius: 14px;
+    padding: 2.5rem 1rem;
+  }
+
+  /* Use the full phone width for primary CTAs while keeping secondary inline
+     text links compact. */
+  .cta-actions,
+  .hero-actions {
+    width: 100%;
+  }
+
+  .cta-actions .button,
+  .assistance-teaser > .button,
+  .simple-cta .button,
+  .map-help .button,
+  .contact-map-placeholder .button {
+    width: 100%;
+  }
+
+  .button {
+    min-height: 50px;
+  }
+
+  /* Cleaner footer hierarchy on phones without turning every column into a
+     long full-width block. */
+  .site-footer {
+    gap: 2rem 1.25rem;
+    grid-template-columns: 1fr 1fr;
+    padding: 3rem 1rem calc(1.25rem + env(safe-area-inset-bottom));
+  }
+
+  .footer-brand,
+  .footer-bottom {
+    grid-column: 1 / -1;
+  }
+
+  .footer-brand {
+    gap: 0.75rem;
+  }
+
+  .footer-brand img {
+    max-width: 180px;
+  }
+
+  .footer-column {
+    min-width: 0;
+  }
+
+  .footer-social {
+    grid-column: 1 / -1;
+  }
+
+  .footer-bottom {
+    gap: 0.7rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 430px) {
+  .home-page .hero {
+    min-height: 735px;
+  }
+
+  .home-page .hero-image {
+    height: 47%;
+    max-width: 390px;
+  }
+
+  .inner-hero-copy h1,
+  .gallery-heading h1,
+  .enrollment-heading h1,
+  .contact-heading h1,
+  .legal-page h1,
+  .location-hero h1 {
+    font-size: 2.75rem;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-column,
+  .footer-social {
+    grid-column: 1;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .home-program-card:hover,
+  .parent-priority-grid > a:hover,
+  .assistance-grid > a:hover,
+  .fee-grid article:hover,
+  .photo-card:hover img,
+  .program-detail-image:hover img,
+  .inner-hero:hover .inner-hero-image img,
+  .image-statement:hover > img {
+    box-shadow: none;
+    transform: none;
+  }
+}
