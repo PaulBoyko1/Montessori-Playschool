@@ -34,7 +34,7 @@ export default function TuitionPage() {
           eyebrow="Tuition & financial assistance"
           title="Clear costs."
           accent="More ways to pay."
-          description="Review standard tuition reference rates and learn how eligible families may use CalWORKs or Child Action assistance."
+          description="Day and evening tuition rates plus CalWORKs and Child Action."
           image="/images/photos/selected/community.webp"
           imageAlt="Two children and a caring adult smiling together in the classroom"
         />
@@ -44,23 +44,12 @@ export default function TuitionPage() {
             <p className="section-label">Monthly and weekly rate reference</p>
             <h2>Full-time care by age and schedule.</h2>
           </div>
-          <p>
-            Day-program rates cover 7:00 AM–5:00 PM. Evening-program rates
-            cover 5:00 PM–10:00 PM. Optional half-day, after-school, and
-            extended-care arrangements are discussed individually.
-          </p>
+<p>Day: 7:00 AM–5:00 PM. Evening: 5:00 PM–10:00 PM. Half-day, after-school, and extended care are available by arrangement.</p>
         </section>
 
         <section className="rate-section content-section">
           <RateTable />
-          <p className="rate-note">
-            These are the standard reference rates in the current Admission
-            Agreement. Weekly reference rates are one-quarter of the listed
-            monthly rate. Weekly schedules are subject to availability and
-            school approval. Montessori Playschool provides at least 30
-            calendar days&apos; written notice before a change to the basic tuition
-            rate. Final rates and services are confirmed in a signed agreement.
-          </p>
+<p className="rate-note">Rates shown are current Admission Agreement reference rates. Weekly rates are one-quarter of monthly rates and depend on availability. Basic tuition changes require at least 30 days&apos; written notice. Final rates are confirmed in a signed agreement.</p>
         </section>
 
         <section className="assistance-section" id="assistance">
@@ -70,11 +59,7 @@ export default function TuitionPage() {
                 <p className="section-label">Childcare assistance</p>
                 <h2>Eligible families can use CalWORKs or Child Action.</h2>
               </div>
-              <p>
-                Montessori Playschool accepts eligible families using approved
-                childcare assistance. Eligibility and authorization are
-                determined by the administering program, not by the school.
-              </p>
+<p>Eligibility and authorization are handled by the assistance program.</p>
             </div>
             <div className="assistance-grid">
               <a
@@ -84,10 +69,7 @@ export default function TuitionPage() {
               >
                 <span>California program</span>
                 <h3>CalWORKs Child Care</h3>
-                <p>
-                  Families receiving or transitioning from CalWORKs cash aid
-                  may qualify when they also have an approved need for care.
-                </p>
+<p>Eligible CalWORKs families may qualify for subsidized childcare.</p>
                 <strong>Review eligibility information <span aria-hidden="true">↗</span></strong>
               </a>
               <a
@@ -97,10 +79,7 @@ export default function TuitionPage() {
               >
                 <span>Sacramento County resource</span>
                 <h3>Child Action</h3>
-                <p>
-                  Child Action offers financial assistance and an eligibility
-                  list for qualifying Sacramento County families.
-                </p>
+<p>Financial assistance for qualifying Sacramento County families.</p>
                 <strong>Explore subsidized care <span aria-hidden="true">↗</span></strong>
               </a>
             </div>
@@ -109,11 +88,7 @@ export default function TuitionPage() {
                 <p className="section-label">Need help?</p>
                 <h3>Contact us before enrollment.</h3>
               </div>
-              <p>
-                Tell us which assistance program you are using. We can explain
-                what authorization or provider information Montessori
-                Playschool needs to complete your enrollment.
-              </p>
+<p>Tell us which program you use and we&apos;ll provide the school information needed for authorization.</p>
               <a className="button button-primary" href="/contact">
                 Ask about assistance <span aria-hidden="true">→</span>
               </a>
@@ -128,10 +103,6 @@ export default function TuitionPage() {
                 <p className="section-label">Additional fees</p>
                 <h2>What families can plan for.</h2>
               </div>
-              <p>
-                The Admission Agreement lists three standard enrollment-related
-                fees in addition to monthly tuition.
-              </p>
             </div>
             <div className="fee-grid">
               {fees.map((fee, index) => (
@@ -149,7 +120,7 @@ export default function TuitionPage() {
         <section className="payment-details content-section">
           <div>
             <p className="section-label">Payment details</p>
-            <h2>Simple monthly expectations.</h2>
+            <h2>Payment basics.</h2>
           </div>
           <ul>
             <li>Tuition is due on the first day of each month.</li>
@@ -164,7 +135,7 @@ export default function TuitionPage() {
 
         <section className="simple-cta">
           <p className="section-label">Build your schedule</p>
-          <h2>Tell us your child&apos;s age and the hours you need.</h2>
+          <h2>Tell us your child&apos;s age and schedule.</h2>
           <a className="button button-light" href="/contact#tour">
             Schedule a Tour <span aria-hidden="true">→</span>
           </a>
