@@ -58,7 +58,13 @@ export default function Home() {
           />
           <div className="hero-wash" />
           <div className="hero-content">
-            <h1 id="hero-title">Montessori Playschool</h1>
+            <h1 id="hero-title" className="hero-title-sr">Montessori Playschool</h1>
+            <div className="hero-brand-lockup" aria-hidden="true">
+              <img
+                src="/images/montessori-playschool-logo-stacked.png"
+                alt=""
+              />
+            </div>
             <div className="hero-actions">
               <a className="button button-call-now" href={school.phoneHref}>
                 Call Now
