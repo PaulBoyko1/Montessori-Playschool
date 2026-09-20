@@ -365,7 +365,10 @@
     transform: none;
   }
 
-  .about-page .inner-hero-image,
+  .about-page .inner-hero-image {
+    aspect-ratio: 8 / 7;
+  }
+
   .programs-page .inner-hero-image {
     aspect-ratio: 4 / 5;
   }
@@ -376,7 +379,7 @@
   }
 
   .about-page .inner-hero-image img {
-    object-position: 50% 28%;
+    object-position: 50% 40%;
   }
 
   .programs-page .inner-hero-image img {
@@ -1217,6 +1220,22 @@
 
 
 /* -------------------------------------------------------------------------- */
+
+/* About hero crop: roughly 10% from top and 20% from bottom */
+@media (min-width: 761px) {
+  .about-page .inner-hero {
+    min-height: 430px;
+  }
+
+  .about-page .inner-hero-image {
+    min-height: 430px;
+  }
+
+  .about-page .inner-hero-image img {
+    object-position: 50% 40%;
+  }
+}
+
 /* Desktop homepage brand handoff                                              */
 /* -------------------------------------------------------------------------- */
 .hero-title-sr {
