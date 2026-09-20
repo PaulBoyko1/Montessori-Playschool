@@ -61,7 +61,7 @@ export default function Home() {
             <h1 id="hero-title" className="hero-title-sr">Montessori Playschool</h1>
             <div className="hero-brand-lockup" aria-hidden="true">
               <img
-                src="/images/montessori-primary-stacked-hero.webp"
+                src="/images/montessori-playschool-logo.png"
                 alt=""
               />
             </div>
