@@ -1254,8 +1254,8 @@
   }
 
   .home-page .hero-brand-lockup {
-    opacity: calc(1 - var(--home-desktop-progress, 0));
-    transition: opacity 90ms linear;
+    opacity: 1;
+    visibility: visible;
   }
 
   .home-page .hero-actions {
@@ -1276,6 +1276,7 @@
 
   .home-page .hero-brand-lockup {
     opacity: 1;
+    visibility: visible;
   }
 }
 
