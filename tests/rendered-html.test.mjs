@@ -91,7 +91,7 @@ test("keeps current public program structure and meal schedule", async () => {
   }
 
   assert.match(meals.html, /Breakfast[^<]*8:00 AM/i);
-  assert.match(meals.html, /Lunch[^<]*1:00 PM/i);
+  assert.match(meals.html, /Lunch[^<]*12:00 PM/i);
   assert.match(meals.html, /Snack[^<]*3:00 PM/i);
   assert.match(meals.html, /Dinner[^<]*5:00 PM/i);
 });
