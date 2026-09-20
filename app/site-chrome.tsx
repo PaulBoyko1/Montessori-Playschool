@@ -50,6 +50,7 @@ export function SiteHeader({ current }: { current?: string }) {
       root.style.removeProperty("--home-header-height");
       root.style.removeProperty("--home-logo-width");
       root.style.removeProperty("--home-parallax-y");
+      root.style.removeProperty("--home-desktop-progress");
       return;
     }
 
@@ -73,6 +74,19 @@ export function SiteHeader({ current }: { current?: string }) {
         "--home-parallax-y",
         `${Math.round(-18 + progress * 36)}px`,
       );
+
+      const hero = document.querySelector<HTMLElement>(".home-page .hero");
+      const heroHeight = hero?.offsetHeight ?? 700;
+      const desktopStart = heroHeight * 0.25;
+      const desktopEnd = heroHeight * 0.68;
+      const desktopProgress = Math.min(
+        Math.max((window.scrollY - desktopStart) / (desktopEnd - desktopStart), 0),
+        1,
+      );
+      root.style.setProperty(
+        "--home-desktop-progress",
+        desktopProgress.toFixed(3),
+      );
     };
 
     const handleScroll = () => {
@@ -94,6 +108,7 @@ export function SiteHeader({ current }: { current?: string }) {
       root.style.removeProperty("--home-header-height");
       root.style.removeProperty("--home-logo-width");
       root.style.removeProperty("--home-parallax-y");
+      root.style.removeProperty("--home-desktop-progress");
     };
   }, [isHome]);
 
