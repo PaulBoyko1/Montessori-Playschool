@@ -1214,3 +1214,69 @@
     display: inline-flex;
   }
 }
+
+
+/* -------------------------------------------------------------------------- */
+/* Desktop homepage brand handoff                                              */
+/* -------------------------------------------------------------------------- */
+.hero-title-sr {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.hero-brand-lockup {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(87, 45, 7, 0.12);
+  border-radius: 26px;
+  box-shadow: 0 24px 60px rgba(30, 36, 31, 0.14);
+  display: inline-flex;
+  justify-content: center;
+  padding: 1.15rem 1.45rem;
+}
+
+.hero-brand-lockup img {
+  display: block;
+  height: auto;
+  width: min(330px, 27vw);
+}
+
+@media (min-width: 761px) {
+  .site-header.home-intro-header .brand {
+    opacity: var(--home-desktop-progress, 0);
+    transition: opacity 90ms linear;
+  }
+
+  .home-page .hero-brand-lockup {
+    opacity: calc(1 - var(--home-desktop-progress, 0));
+    transition: opacity 90ms linear;
+  }
+
+  .home-page .hero-actions {
+    margin-top: 1.4rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .home-page .hero-brand-lockup {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (min-width: 761px) {
+  .site-header.home-intro-header .brand {
+    opacity: 1;
+  }
+
+  .home-page .hero-brand-lockup {
+    opacity: 1;
+  }
+}
