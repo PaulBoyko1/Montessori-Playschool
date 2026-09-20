@@ -1234,19 +1234,17 @@
 
 .hero-brand-lockup {
   align-items: center;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(87, 45, 7, 0.12);
-  border-radius: 26px;
-  box-shadow: 0 24px 60px rgba(30, 36, 31, 0.14);
+  background: transparent;
   display: inline-flex;
-  justify-content: center;
-  padding: 1.15rem 1.45rem;
+  justify-content: flex-start;
+  padding: 0;
 }
 
 .hero-brand-lockup img {
   display: block;
   height: auto;
-  width: min(330px, 27vw);
+  max-width: 100%;
+  width: min(390px, 31vw);
 }
 
 @media (min-width: 761px) {
