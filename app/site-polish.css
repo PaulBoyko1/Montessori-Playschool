@@ -1278,3 +1278,60 @@
     opacity: 1;
   }
 }
+
+
+/* Desktop homepage split hero */
+@media (min-width: 1024px) {
+  .home-page .hero {
+    background: #fdf6e8;
+    display: block;
+  }
+
+  .home-page .hero-image {
+    height: 100%;
+    left: 46%;
+    object-fit: cover;
+    object-position: 58% 30%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 54%;
+  }
+
+  .home-page .hero-wash {
+    display: none;
+  }
+
+  .home-page .hero-content {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    max-width: none;
+    padding: 2.5rem 4.5vw;
+    top: 0;
+    transform: none;
+    width: 46%;
+    height: 100%;
+  }
+
+  .home-page .hero-brand-lockup {
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .home-page .hero-brand-lockup img {
+    height: auto;
+    max-width: min(520px, 36vw);
+    width: 100%;
+  }
+
+  .home-page .hero-actions {
+    justify-content: center;
+    margin-top: 1.15rem;
+    width: 100%;
+  }
+}
