@@ -4,62 +4,13 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [main, copy-cleanup]
+    branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  repack-photo-archive:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/copy-cleanup'
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Check out branch
-        uses: actions/checkout@v4
-        with:
-          ref: copy-cleanup
-
-      - name: Remove unwanted photo from packed assets
-        shell: bash
-        run: |
-          set -euo pipefail
-          archive="photo-source/photo-assets-final.tgz"
-
-          if ! tar -tzf "$archive" | sed 's#^\./##' | grep -qx 'home-hero.webp'; then
-            echo "home-hero.webp is already absent."
-            exit 0
-          fi
-
-          tmp="$(mktemp -d)"
-          tar -xzf "$archive" -C "$tmp"
-          rm -f "$tmp/home-hero.webp"
-
-          tar -czf "$archive" -C "$tmp" \
-            airplanes.webp \
-            child-classroom.webp \
-            child-playdough.webp \
-            community.webp \
-            group-circle.webp \
-            school-age.webp \
-            teacher-art.webp \
-            teacher-group.webp \
-            teacher-sensory.webp
-
-          new_sha="$(sha256sum "$archive" | awk '{print $1}')"
-          old_sha="$(grep -Eo '[0-9a-f]{64}' scripts/materialize-photo-assets.mjs | head -1)"
-
-          sed -i '/  "home-hero.webp",/d' scripts/materialize-photo-assets.mjs
-          sed -i "s/$old_sha/$new_sha/" scripts/materialize-photo-assets.mjs
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "$archive" scripts/materialize-photo-assets.mjs
-          git commit -m "Remove unwanted photo from packed assets"
-          git push origin HEAD:copy-cleanup
-
   validate:
-    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
