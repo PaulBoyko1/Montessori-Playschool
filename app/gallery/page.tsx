@@ -9,12 +9,6 @@ export const metadata: Metadata = {
 
 const galleryImages = [
   {
-    src: "/images/photos/selected/home-hero.webp",
-    alt: "An educator engaging with two young children at their level in a bright classroom",
-    className: "photo-card photo-card-wide",
-    position: "66% 48%",
-  },
-  {
     src: "/images/photos/selected/teacher-art.webp",
     alt: "An educator and child smiling together during an art activity",
     className: "photo-card photo-card-tall",
