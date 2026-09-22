@@ -1504,3 +1504,92 @@
     margin-top: 1.15rem;
   }
 }
+
+
+/* Meals: remove the oversized day-count callout and compress the phone menu. */
+.meals-page .nutrition-intro {
+  grid-template-columns: minmax(0, 900px);
+}
+
+.meals-page .nutrition-intro > div {
+  max-width: 900px;
+}
+
+.weekly-menu-mobile {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .meals-page .weekly-menu-grid {
+    display: none;
+  }
+
+  .weekly-menu-mobile {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .weekly-menu-mobile details {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .weekly-menu-mobile summary {
+    align-items: center;
+    cursor: pointer;
+    display: grid;
+    gap: 0.8rem;
+    grid-template-columns: auto 1fr;
+    list-style: none;
+    min-height: 58px;
+    padding: 0.9rem 1rem;
+  }
+
+  .weekly-menu-mobile summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .weekly-menu-mobile summary > span {
+    color: var(--apricot);
+    font-size: 0.64rem;
+  }
+
+  .weekly-menu-mobile summary > strong {
+    font-family: var(--display);
+    font-size: 1.2rem;
+  }
+
+  .weekly-menu-mobile details[open] summary {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .weekly-menu-mobile dl {
+    margin: 0;
+    padding: 0.25rem 1rem 1rem;
+  }
+
+  .weekly-menu-mobile dl > div {
+    border-bottom: 1px solid var(--line);
+    padding: 0.8rem 0;
+  }
+
+  .weekly-menu-mobile dl > div:last-child {
+    border-bottom: 0;
+  }
+
+  .weekly-menu-mobile dt {
+    color: var(--forest);
+    font-size: 0.67rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+
+  .weekly-menu-mobile dd {
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+}

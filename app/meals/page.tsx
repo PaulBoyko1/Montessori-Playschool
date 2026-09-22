@@ -4,7 +4,7 @@ import { InnerHero, SiteFooter } from "../site-chrome";
 export const metadata: Metadata = {
   title: "Weekly Meals",
   description:
-    "Review Montessori Playschool's Monday-through-Saturday sample menu, meal times, parent-provided alternatives, and dietary guidance.",
+    "Review Montessori Playschool's Monday-through-Saturday menu, organic food, homemade meals, meal times, parent-provided alternatives, and dietary guidance.",
 };
 
 const weeklyMenu = [
@@ -65,20 +65,16 @@ export default function MealsPage() {
         />
 
         <section className="nutrition-intro content-section">
-          <div className="nutrition-callout">
-            <span aria-hidden="true">6</span>
-            <p>Meals planned Monday–Saturday.</p>
-          </div>
           <div>
             <p className="section-label">Our approach</p>
-            <h2>Wholesome meals, served daily.</h2>
-<p>Breakfast 8:00 AM · Lunch 12:00 PM · Snack 3:00 PM · Dinner 5:00 PM.</p>
+            <h2>Organic food and homemade meals.</h2>
+            <p>Breakfast 8:00 AM · Lunch 12:00 PM · Snack 3:00 PM · Dinner 5:00 PM.</p>
           </div>
         </section>
 
         <section className="meal-values">
           {[
-            ["Six-day menu", "Meals are planned Monday–Saturday."],
+            ["Four daily meals", "Breakfast, lunch, snack, and dinner are planned each day."],
             ["Age-appropriate portions", "Food groups and portions are adjusted by age."],
             ["Family alternatives", "Parent-provided meals are welcome when coordinated with the center."],
             ["Allergy communication", "Allergies and medical nutrition plans are reviewed with each family."],
@@ -111,6 +107,22 @@ export default function MealsPage() {
                   <div><dt>Dinner · 5:00 PM</dt><dd>{day.dinner}</dd></div>
                 </dl>
               </article>
+            ))}
+          </div>
+          <div className="weekly-menu-mobile" aria-label="Sample weekly menu by day">
+            {weeklyMenu.map((day, index) => (
+              <details key={day.day} open={index === 0}>
+                <summary>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <strong>{day.day}</strong>
+                </summary>
+                <dl>
+                  <div><dt>Breakfast · 8:00 AM</dt><dd>{day.breakfast}</dd></div>
+                  <div><dt>Lunch · 12:00 PM</dt><dd>{day.lunch}</dd></div>
+                  <div><dt>Snack · 3:00 PM</dt><dd>{day.snack}</dd></div>
+                  <div><dt>Dinner · 5:00 PM</dt><dd>{day.dinner}</dd></div>
+                </dl>
+              </details>
             ))}
           </div>
 <p className="menu-disclaimer">Water is available throughout the day. Portions are age-appropriate.</p>

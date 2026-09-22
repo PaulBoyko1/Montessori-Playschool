@@ -166,3 +166,13 @@ test("keeps the programs page free of placeholder graphics", async () => {
   assert.match(html, /Modeling-Clay Classes/i);
   assert.match(html, /Gymnastics Classes for Girls/i);
 });
+
+
+test("keeps meals factual and compact on phones", async () => {
+  const { html } = await render("/meals");
+
+  assert.match(html, /Organic food and homemade meals/i);
+  assert.match(html, /weekly-menu-mobile/i);
+  assert.match(html, /Four daily meals/i);
+  assert.doesNotMatch(html, /nutrition-callout/i);
+});
