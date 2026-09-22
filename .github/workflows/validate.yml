@@ -4,69 +4,29 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [main, copy-cleanup]
+    branches: [main]
 
 permissions:
   contents: read
 
 jobs:
   validate:
-    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22.13.0"
+
       - name: Install locked dependencies
         run: npm run install:ci
+
       - name: Lint
         run: npm run lint
+
       - name: Build and test rendered pages
         run: npm test
-
-  visual-audit:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/copy-cleanup'
-    runs-on: ubuntu-latest
-    timeout-minutes: 25
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22.13.0"
-      - name: Install project
-        run: npm run install:ci
-      - name: Install Chromium
-        run: npx --yes playwright@1.55.0 install --with-deps chromium
-      - name: Start site
-        shell: bash
-        run: |
-          npm run dev -- --host 127.0.0.1 > /tmp/montessori-site.log 2>&1 &
-          for i in {1..60}; do
-            if curl -fsS http://127.0.0.1:5173/ >/dev/null; then exit 0; fi
-            sleep 2
-          done
-          cat /tmp/montessori-site.log
-          exit 1
-      - name: Capture pages
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p audit/desktop audit/mobile
-          routes=(home about programs gallery meals tuition location enrollment contact privacy)
-          paths=("/" "/about" "/programs" "/gallery" "/meals" "/tuition" "/location" "/enrollment" "/contact" "/privacy")
-          for i in "${!routes[@]}"; do
-            name="${routes[$i]}"
-            path="${paths[$i]}"
-            npx --yes playwright@1.55.0 screenshot --browser=chromium --viewport-size="1440,1000" --full-page --wait-for-timeout=1000 "http://127.0.0.1:5173${path}" "audit/desktop/${name}.png"
-            npx --yes playwright@1.55.0 screenshot --browser=chromium --viewport-size="390,844" --full-page --wait-for-timeout=1000 "http://127.0.0.1:5173${path}" "audit/mobile/${name}.png"
-          done
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v4
-        with:
-          name: visual-audit-screenshots
-          path: audit/
-          if-no-files-found: error
