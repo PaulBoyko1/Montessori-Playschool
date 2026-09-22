@@ -20,6 +20,7 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
       `Child: ${data.get("child")}`,
       `Child's age: ${data.get("age")}`,
       `Program: ${data.get("program")}`,
+      `Desired start date: ${data.get("startDate") || "Not specified"}`,
       `Schedule needs: ${schedule}`,
       `Custom days or hours: ${customDays}`,
       "",
@@ -99,6 +100,10 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
           <option>School-Age Program · Kindergarten–9th grade</option>
           <option>Not sure yet</option>
         </select>
+      </div>
+      <div className="form-field">
+        <label htmlFor={`start-date-${compact}`}>Desired start date</label>
+        <input id={`start-date-${compact}`} name="startDate" type="date" />
       </div>
       {!compact && (
         <>

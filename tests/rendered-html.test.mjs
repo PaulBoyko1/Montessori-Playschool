@@ -200,3 +200,13 @@ test("keeps desktop navigation compact without reducing the mobile menu", async 
   assert.match(mobileNav, />\s*Home\s*</i);
   assert.match(mobileNav, />\s*Location\s*</i);
 });
+
+
+test("collects a requested enrollment start date", async () => {
+  const { html } = await render("/enrollment");
+
+  assert.match(html, /Desired start date/i);
+  assert.match(html, /name=["']startDate["']/i);
+  assert.match(html, />\s*Saturday\s*</i);
+  assert.match(html, />\s*Flexible schedule\s*</i);
+});
