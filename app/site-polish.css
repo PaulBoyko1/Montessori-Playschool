@@ -1303,7 +1303,7 @@
 /* Desktop homepage split hero */
 @media (min-width: 1024px) {
   .home-page .hero {
-    background: #fdf5e5;
+    background: #ffffff;
     display: block;
   }
 
@@ -1345,7 +1345,7 @@
 
   .home-page .hero-brand-lockup img {
     height: auto;
-    max-width: min(520px, 36vw);
+    max-width: min(590px, 40vw);
     width: 100%;
   }
 
