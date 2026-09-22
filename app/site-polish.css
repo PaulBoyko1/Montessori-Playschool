@@ -1465,3 +1465,42 @@
     font-size: 0.68rem;
   }
 }
+
+
+/* Programs: remove mock image blocks and keep enrichment compact. */
+.programs-page .enrichment-grid article {
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+}
+
+.programs-page .enrichment-grid article > p {
+  margin-top: 2rem;
+}
+
+@media (max-width: 760px) {
+  .programs-page .enrichment-grid {
+    gap: 0.65rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .programs-page .enrichment-grid article {
+    min-height: 0;
+    padding: 1rem;
+  }
+
+  .programs-page .enrichment-grid article header {
+    gap: 0.45rem;
+  }
+
+  .programs-page .enrichment-grid h3 {
+    font-size: 1.05rem;
+    line-height: 1.15;
+  }
+
+  .programs-page .enrichment-grid article > p {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    margin-top: 1.15rem;
+  }
+}

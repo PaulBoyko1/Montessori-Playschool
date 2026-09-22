@@ -97,7 +97,6 @@ export default function ProgramsPage() {
               </div>
               <h2>{program.name}</h2>
               <h3>{program.title}</h3>
-              <p>{program.summary}</p>
               <ul className="check-list">
                 {program.points.map((point) => <li key={point}>{point}</li>)}
               </ul>
@@ -132,7 +131,6 @@ export default function ProgramsPage() {
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   <h3>{item.title}</h3>
                 </header>
-                <div className="enrichment-image-placeholder" aria-hidden="true" />
                 <p>{item.text}</p>
               </article>
             ))}

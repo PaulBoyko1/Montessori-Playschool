@@ -157,3 +157,12 @@ test("keeps tuition coverage and mobile pricing explicit", async () => {
   assert.match(html, /Day (?:·|&middot;|&#xB7;) 7 AM(?:–|&ndash;|&#x2013;)5 PM/i);
   assert.match(html, /Evening (?:·|&middot;|&#xB7;) 5 PM(?:–|&ndash;|&#x2013;)10 PM/i);
 });
+
+
+test("keeps the programs page free of placeholder graphics", async () => {
+  const { html } = await render("/programs");
+
+  assert.doesNotMatch(html, /enrichment-image-placeholder/i);
+  assert.match(html, /Modeling-Clay Classes/i);
+  assert.match(html, /Gymnastics Classes for Girls/i);
+});
