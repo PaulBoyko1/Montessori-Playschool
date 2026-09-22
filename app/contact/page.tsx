@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import SocialLinks from "../components/SocialLinks";
-import EnrollmentForm from "../enrollment/EnrollmentForm";
+import TourInquiryForm from "./TourInquiryForm";
 import { school } from "../site-data";
 import { SiteFooter } from "../site-chrome";
 
@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <main>
-        <section className="contact-heading" id="tour">
+        <section className="contact-heading">
           <div>
             <p className="section-label">Contact &amp; tours</p>
             <h1>
@@ -58,10 +58,10 @@ export default function ContactPage() {
               <strong>Start an email <span aria-hidden="true">→</span></strong>
             </a>
           </div>
-          <div className="contact-form-wrap">
+          <div className="contact-form-wrap" id="tour">
             <p className="section-label">Tour or enrollment inquiry</p>
             <h2>Request a tour or ask a question.</h2>
-            <EnrollmentForm compact />
+            <TourInquiryForm />
           </div>
         </section>
 

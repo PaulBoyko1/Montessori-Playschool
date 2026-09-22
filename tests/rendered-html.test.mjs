@@ -134,3 +134,16 @@ test("uses the selected high-quality photography across key pages", async () => 
   assert.doesNotMatch(gallery.html, /\/images\/photos\/selected\/home-hero\.webp/);
   assert.doesNotMatch(home.html, /classroom-teacher-group\.webp/);
 });
+
+
+test("renders a dedicated tour and contact inquiry form", async () => {
+  const { html } = await render("/contact");
+
+  assert.match(html, /id=["']tour["']/i);
+  assert.match(html, /Inquiry type/i);
+  assert.match(html, /Preferred tour date/i);
+  assert.match(html, /Preferred tour time/i);
+  assert.match(html, /Question or note/i);
+  assert.match(html, /Prepare email request/i);
+  assert.doesNotMatch(html, /Prepare enrollment inquiry/i);
+});
