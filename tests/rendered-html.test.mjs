@@ -147,3 +147,13 @@ test("renders a dedicated tour and contact inquiry form", async () => {
   assert.match(html, /Prepare email request/i);
   assert.doesNotMatch(html, /Prepare enrollment inquiry/i);
 });
+
+
+test("keeps tuition coverage and mobile pricing explicit", async () => {
+  const { html } = await render("/tuition");
+
+  assert.match(html, /Published infant rates begin at 6 weeks/i);
+  assert.match(html, /published School-Age rate covers ages 6(?:–|&ndash;|&#x2013;)13/i);
+  assert.match(html, /Day (?:·|&middot;|&#xB7;) 7 AM(?:–|&ndash;|&#x2013;)5 PM/i);
+  assert.match(html, /Evening (?:·|&middot;|&#xB7;) 5 PM(?:–|&ndash;|&#x2013;)10 PM/i);
+});

@@ -1398,3 +1398,70 @@
     object-position: 50% 38%;
   }
 }
+
+
+/* Tuition rates: keep both day and evening pricing visible on phones. */
+.rate-mobile-list {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .rate-table-wrap {
+    display: none;
+  }
+
+  .rate-mobile-list {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .rate-mobile-card {
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 1.2rem;
+  }
+
+  .rate-mobile-card h3 {
+    font-family: var(--display);
+    font-size: 1.25rem;
+    margin: 0 0 1rem;
+  }
+
+  .rate-mobile-card dl {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .rate-mobile-card dl > div {
+    align-items: end;
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr auto;
+    padding-top: 0.75rem;
+  }
+
+  .rate-mobile-card dt {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .rate-mobile-card dd {
+    margin: 0;
+    text-align: right;
+  }
+
+  .rate-mobile-card dd strong {
+    display: block;
+    font-family: var(--display);
+    font-size: 1.3rem;
+  }
+
+  .rate-mobile-card dd span {
+    color: var(--muted);
+    font-size: 0.68rem;
+  }
+}

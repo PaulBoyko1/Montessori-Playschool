@@ -48,7 +48,7 @@ export default function TuitionPage() {
 
         <section className="rate-section content-section">
           <RateTable />
-<p className="rate-note">Rates shown are current Admission Agreement reference rates. Weekly rates are one-quarter of monthly rates and depend on availability. Basic tuition changes require at least 30 days&apos; written notice. Final rates are confirmed in a signed agreement.</p>
+<p className="rate-note">Rates shown are current Admission Agreement reference rates. Published infant rates begin at 6 weeks, and the published School-Age rate covers ages 6–13. Contact us to confirm enrollment timing or tuition for a child outside the listed rate bands. Weekly rates are one-quarter of monthly rates and depend on availability. Basic tuition changes require at least 30 days&apos; written notice. Final rates are confirmed in a signed agreement.</p>
         </section>
 
         <section className="assistance-section" id="assistance">
