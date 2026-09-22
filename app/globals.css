@@ -2858,6 +2858,10 @@ img {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .nutrition-callout {
+    display: none;
+  }
+
   .meal-values article:nth-child(2) {
     border-right: 0;
   }

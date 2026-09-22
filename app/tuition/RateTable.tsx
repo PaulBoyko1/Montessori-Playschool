@@ -26,6 +26,7 @@ function formatRate(value: number) {
 export default function RateTable() {
   const [period, setPeriod] = useState<BillingPeriod>("monthly");
   const divisor = period === "weekly" ? 4 : 1;
+  const periodLabel = period === "weekly" ? "week" : "month";
 
   return (
     <>
@@ -50,6 +51,7 @@ export default function RateTable() {
           </button>
         </div>
       </div>
+
       <div className="rate-table-wrap">
         <table className="rate-table">
           <caption>Standard full-time {period} tuition</caption>
@@ -72,16 +74,43 @@ export default function RateTable() {
                 <th scope="row">{rate.age}</th>
                 <td>
                   {formatRate(rate.day / divisor)}
-                  <span>/ {period === "weekly" ? "week" : "month"}</span>
+                  <span>/ {periodLabel}</span>
                 </td>
                 <td>
                   {formatRate(rate.evening / divisor)}
-                  <span>/ {period === "weekly" ? "week" : "month"}</span>
+                  <span>/ {periodLabel}</span>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div
+        className="rate-mobile-list"
+        aria-label={`Standard full-time ${period} tuition`}
+      >
+        {rates.map((rate) => (
+          <article className="rate-mobile-card" key={rate.age}>
+            <h3>{rate.age}</h3>
+            <dl>
+              <div>
+                <dt>Day · 7 AM–5 PM</dt>
+                <dd>
+                  <strong>{formatRate(rate.day / divisor)}</strong>
+                  <span>/ {periodLabel}</span>
+                </dd>
+              </div>
+              <div>
+                <dt>Evening · 5 PM–10 PM</dt>
+                <dd>
+                  <strong>{formatRate(rate.evening / divisor)}</strong>
+                  <span>/ {periodLabel}</span>
+                </dd>
+              </div>
+            </dl>
+          </article>
+        ))}
       </div>
     </>
   );

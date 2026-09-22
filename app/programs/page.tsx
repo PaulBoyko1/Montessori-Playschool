@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const programDetails = [
   {
     ...programs[0],
-    title: "Security first. Discovery follows.",
+    title: "Responsive care and safe exploration.",
     points: [
       "Responsive care and family communication",
       "Individual feeding, rest, and diapering rhythms",
@@ -22,7 +22,7 @@ const programDetails = [
   },
   {
     ...programs[1],
-    title: "Independence grows into confident learning.",
+    title: "Independence, learning, and school readiness.",
     points: [
       "Practical-life activities and child-sized routines",
       "Language, movement, music, and hands-on exploration",
@@ -32,7 +32,7 @@ const programDetails = [
   },
   {
     ...programs[2],
-    title: "A supportive place for school-age growth.",
+    title: "Homework, projects, movement, and enrichment.",
     points: [
       "Homework support and quiet work space",
       "Hands-on projects, games, and creative activities",
@@ -45,27 +45,27 @@ const programDetails = [
 const enrichment = [
   {
     title: "Modeling-Clay Classes",
-    text: "Children shape, roll, join, and sculpt clay while developing hand strength, fine-motor control, patience, and imagination.",
+    text: "Fine-motor skills, patience, and creativity through clay work.",
   },
   {
     title: "Art Classes",
-    text: "Open-ended drawing, painting, collage, and mixed-media experiences encourage observation, creativity, and personal expression.",
+    text: "Drawing, painting, collage, and mixed-media projects.",
   },
   {
     title: "Cooking Classes",
-    text: "Age-appropriate food preparation introduces measuring, sequencing, practical-life skills, cooperation, and confidence in the kitchen.",
+    text: "Measuring, sequencing, practical-life skills, and teamwork.",
   },
   {
     title: "Chess Classes",
-    text: "Guided chess activities introduce planning, pattern recognition, patience, focus, and respectful competition.",
+    text: "Planning, pattern recognition, focus, and respectful competition.",
   },
   {
     title: "Dance Classes for Girls",
-    text: "Music and guided movement support rhythm, coordination, confidence, expression, and joyful physical activity.",
+    text: "Rhythm, coordination, confidence, and movement.",
   },
   {
     title: "Gymnastics Classes for Girls",
-    text: "Developmentally appropriate movement activities encourage balance, flexibility, strength, coordination, and body awareness.",
+    text: "Balance, flexibility, strength, coordination, and body awareness.",
   },
 ];
 
@@ -77,7 +77,6 @@ export default function ProgramsPage() {
           eyebrow="Programs · Birth through 9th grade"
           title="A place for"
           accent="every stage."
-          description="Responsive care, meaningful work, joyful play, and age-appropriate enrichment meet children where they are and help them grow with confidence."
           image="/images/photos/selected/teacher-group.webp"
           imageAlt="An educator leading a group of children in a classroom activity"
         />
@@ -85,12 +84,7 @@ export default function ProgramsPage() {
         <section className="page-intro content-section">
           <p className="section-label">Three program groups</p>
           <div>
-            <h2>Clear programs for every stage of early childhood and beyond.</h2>
-            <p>
-              Each program has its own developmental focus while sharing the
-              same foundation: respect, independence, hands-on exploration,
-              creativity, and a welcoming sense of community.
-            </p>
+            <h2>Infant, Preschool, and School-Age.</h2>
           </div>
         </section>
 
@@ -103,7 +97,6 @@ export default function ProgramsPage() {
               </div>
               <h2>{program.name}</h2>
               <h3>{program.title}</h3>
-              <p>{program.summary}</p>
               <ul className="check-list">
                 {program.points.map((point) => <li key={point}>{point}</li>)}
               </ul>
@@ -118,11 +111,7 @@ export default function ProgramsPage() {
           <div className="content-section curriculum-layout">
             <div>
               <p className="section-label">The curriculum</p>
-              <h2>Learning with head, heart, and hands.</h2>
-              <p>
-                Select a curriculum area to see the activities, developmental
-                benefits, and skills children practice.
-              </p>
+              <h2>Practical life, language, math, art, movement, nature, and culture.</h2>
             </div>
             <CurriculumAccordion />
           </div>
@@ -132,12 +121,8 @@ export default function ProgramsPage() {
           <div className="section-heading">
             <div>
               <p className="section-label">Enrichment classes</p>
-              <h2>More ways to discover and create.</h2>
+              <h2>Clay, art, cooking, chess, dance, and gymnastics.</h2>
             </div>
-            <p>
-              Offerings may vary by season, enrollment, age group, and
-              instructor availability.
-            </p>
           </div>
           <div className="enrichment-grid">
             {enrichment.map((item, index) => (
@@ -146,15 +131,11 @@ export default function ProgramsPage() {
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   <h3>{item.title}</h3>
                 </header>
-                <div className="enrichment-image-placeholder" aria-hidden="true" />
                 <p>{item.text}</p>
               </article>
             ))}
           </div>
-          <p className="section-note">
-            Class schedules and any related costs will be confirmed directly
-            with families; no schedule or price is implied by this overview.
-          </p>
+<p className="section-note">Class schedules and any fees are confirmed with families.</p>
         </section>
 
         <section className="program-photo-band" aria-label="Classroom activity">
@@ -167,10 +148,6 @@ export default function ProgramsPage() {
           <div>
             <p className="section-label">Learning through participation</p>
             <h2>Hands-on experiences make the day memorable.</h2>
-            <p>
-              Children have regular opportunities to move, create, practice new
-              skills, collaborate, and build confidence through purposeful play.
-            </p>
           </div>
         </section>
 

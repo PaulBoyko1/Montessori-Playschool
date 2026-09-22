@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import SocialLinks from "../components/SocialLinks";
-import EnrollmentForm from "../enrollment/EnrollmentForm";
+import TourInquiryForm from "./TourInquiryForm";
 import { school } from "../site-data";
 import { SiteFooter } from "../site-chrome";
 
@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <main>
-        <section className="contact-heading" id="tour">
+        <section className="contact-heading">
           <div>
             <p className="section-label">Contact &amp; tours</p>
             <h1>
@@ -23,10 +23,6 @@ export default function ContactPage() {
               <em>your family.</em>
             </h1>
           </div>
-          <p>
-            Ask about programs, schedules, tuition, assistance, enrollment, or
-            a tour. Call, email, or prepare an inquiry below.
-          </p>
         </section>
 
         <section className="contact-grid content-section">
@@ -62,10 +58,10 @@ export default function ContactPage() {
               <strong>Start an email <span aria-hidden="true">→</span></strong>
             </a>
           </div>
-          <div className="contact-form-wrap">
+          <div className="contact-form-wrap" id="tour">
             <p className="section-label">Tour or enrollment inquiry</p>
-            <h2>Start the conversation.</h2>
-            <EnrollmentForm compact />
+            <h2>Request a tour or ask a question.</h2>
+            <TourInquiryForm />
           </div>
         </section>
 
@@ -94,7 +90,7 @@ export default function ContactPage() {
         <section className="follow-section content-section">
           <div>
             <p className="section-label">Follow us</p>
-            <h2>See classroom activities, announcements, events, and updates.</h2>
+            <h2>Classroom activities and school updates.</h2>
           </div>
           <SocialLinks />
         </section>

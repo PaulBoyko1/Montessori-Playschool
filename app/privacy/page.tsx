@@ -16,11 +16,11 @@ export default function PrivacyPage() {
         <section>
           <h2>Information you provide</h2>
           <p>
-            The enrollment form prepares an email draft in your browser using
-            the contact, child, scheduling, and message information you enter.
-            The website does not send or store that information automatically.
-            You decide whether to open and send the draft through your email
-            provider.
+            The enrollment and contact forms prepare email drafts in your
+            browser using the contact, child, scheduling, tour, and message
+            information you enter. The website does not send or store that
+            information automatically. You decide whether to open and send the
+            draft through your email provider.
           </p>
         </section>
         <section>

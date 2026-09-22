@@ -7,7 +7,7 @@ const root = process.cwd();
 const archive = path.join(root, "photo-source", "photo-assets-final.tgz");
 const output = path.join(root, "public", "images", "photos", "selected");
 const expectedArchiveSha256 =
-  "c1c1243cc0d18b33521968e88fa9a4e517438f56bedd24f147ba27e635a91617";
+  "37aaedd40cd7d23a1e7b2a6489b7a8be9fdacb44fc89d8ad3265be22d974bbba";
 
 const expectedFiles = [
   "airplanes.webp",
@@ -15,7 +15,6 @@ const expectedFiles = [
   "child-playdough.webp",
   "community.webp",
   "group-circle.webp",
-  "home-hero.webp",
   "school-age.webp",
   "teacher-art.webp",
   "teacher-group.webp",

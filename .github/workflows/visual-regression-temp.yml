@@ -1,0 +1,51 @@
+name: Temporary visual regression
+
+on:
+  push:
+    branches: [copy-cleanup]
+
+permissions:
+  contents: read
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install project
+        run: npm run install:ci
+      - name: Install Chromium
+        run: npx --yes playwright@1.55.0 install --with-deps chromium
+      - name: Start site
+        shell: bash
+        run: |
+          npm run dev -- --host 127.0.0.1 > /tmp/montessori-site.log 2>&1 &
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:5173/ >/dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/montessori-site.log
+          exit 1
+      - name: Capture audit pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit/desktop audit/mobile
+          routes=(home about programs meals tuition enrollment contact)
+          paths=("/" "/about" "/programs" "/meals" "/tuition" "/enrollment" "/contact")
+          for i in "${!routes[@]}"; do
+            name="${routes[$i]}"
+            path="${paths[$i]}"
+            npx --yes playwright@1.55.0 screenshot --browser=chromium --viewport-size="1440,1000" --full-page --wait-for-timeout=800 "http://127.0.0.1:5173${path}" "audit/desktop/${name}.png"
+            npx --yes playwright@1.55.0 screenshot --browser=chromium --viewport-size="390,844" --full-page --wait-for-timeout=800 "http://127.0.0.1:5173${path}" "audit/mobile/${name}.png"
+          done
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-regression
+          path: audit/
+          if-no-files-found: error

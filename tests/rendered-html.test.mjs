@@ -91,7 +91,7 @@ test("keeps current public program structure and meal schedule", async () => {
   }
 
   assert.match(meals.html, /Breakfast[^<]*8:00 AM/i);
-  assert.match(meals.html, /Lunch[^<]*1:00 PM/i);
+  assert.match(meals.html, /Lunch[^<]*12:00 PM/i);
   assert.match(meals.html, /Snack[^<]*3:00 PM/i);
   assert.match(meals.html, /Dinner[^<]*5:00 PM/i);
 });
@@ -112,7 +112,6 @@ test("uses the selected high-quality photography across key pages", async () => 
   assert.match(tuition.html, /\/images\/photos\/selected\/community\.webp/);
 
   const galleryPhotos = [
-    "home-hero.webp",
     "teacher-art.webp",
     "teacher-group.webp",
     "teacher-sensory.webp",
@@ -132,5 +131,82 @@ test("uses the selected high-quality photography across key pages", async () => 
     );
   }
 
+  assert.doesNotMatch(gallery.html, /\/images\/photos\/selected\/home-hero\.webp/);
   assert.doesNotMatch(home.html, /classroom-teacher-group\.webp/);
+});
+
+
+test("renders a dedicated tour and contact inquiry form", async () => {
+  const { html } = await render("/contact");
+
+  assert.match(html, /id=["']tour["']/i);
+  assert.match(html, /Inquiry type/i);
+  assert.match(html, /Preferred tour date/i);
+  assert.match(html, /Preferred tour time/i);
+  assert.match(html, /Question or note/i);
+  assert.match(html, /Prepare email request/i);
+  assert.doesNotMatch(html, /Prepare enrollment inquiry/i);
+});
+
+
+test("keeps tuition coverage and mobile pricing explicit", async () => {
+  const { html } = await render("/tuition");
+
+  assert.match(html, /Published infant rates begin at 6 weeks/i);
+  assert.match(html, /published School-Age rate covers ages 6(?:–|&ndash;|&#x2013;)13/i);
+  assert.match(html, /Day (?:·|&middot;|&#xB7;) 7 AM(?:–|&ndash;|&#x2013;)5 PM/i);
+  assert.match(html, /Evening (?:·|&middot;|&#xB7;) 5 PM(?:–|&ndash;|&#x2013;)10 PM/i);
+});
+
+
+test("keeps the programs page free of placeholder graphics", async () => {
+  const { html } = await render("/programs");
+
+  assert.doesNotMatch(html, /enrichment-image-placeholder/i);
+  assert.match(html, /Modeling-Clay Classes/i);
+  assert.match(html, /Gymnastics Classes for Girls/i);
+});
+
+
+test("keeps meals factual and compact on phones", async () => {
+  const { html } = await render("/meals");
+
+  assert.match(html, /Organic food and homemade meals/i);
+  assert.match(html, /weekly-menu-mobile/i);
+  assert.match(html, /Four daily meals/i);
+  assert.doesNotMatch(html, /nutrition-callout/i);
+});
+
+
+test("keeps the home page concise and fact-led", async () => {
+  const { html } = await render("/");
+
+  assert.match(html, /Montessori Playschool quick facts/i);
+  assert.match(html, /Birth(?:–|&ndash;|&#x2013;)9th Grade/i);
+  assert.match(html, /Monday(?:–|&ndash;|&#x2013;)Saturday/i);
+  assert.match(html, /7:00 AM(?:–|&ndash;|&#x2013;)10:00 PM/i);
+  assert.doesNotMatch(html, /home-quote/i);
+  assert.doesNotMatch(html, /CalWORKs and Child Action accepted for eligible families/i);
+});
+
+test("keeps desktop navigation compact without reducing the mobile menu", async () => {
+  const { html } = await render("/");
+  const desktopNav = html.match(/<nav class=["']desktop-nav["'][\s\S]*?<\/nav>/i)?.[0] ?? "";
+  const mobileNav = html.match(/<nav id=["']mobile-navigation["'][\s\S]*?<\/nav>/i)?.[0] ?? "";
+
+  assert.doesNotMatch(desktopNav, />\s*Home\s*</i);
+  assert.doesNotMatch(desktopNav, />\s*Location\s*</i);
+  assert.match(desktopNav, />\s*About Us\s*</i);
+  assert.match(mobileNav, />\s*Home\s*</i);
+  assert.match(mobileNav, />\s*Location\s*</i);
+});
+
+
+test("collects a requested enrollment start date", async () => {
+  const { html } = await render("/enrollment");
+
+  assert.match(html, /Desired start date/i);
+  assert.match(html, /name=["']startDate["']/i);
+  assert.match(html, />\s*Saturday\s*</i);
+  assert.match(html, />\s*Flexible schedule\s*</i);
 });

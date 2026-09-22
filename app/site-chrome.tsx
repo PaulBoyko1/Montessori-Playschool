@@ -18,6 +18,10 @@ const navigation = [
   { href: "/contact", label: "Contact" },
 ];
 
+const desktopNavigation = navigation.filter(
+  (item) => item.href !== "/" && item.href !== "/location",
+);
+
 function rememberNavigationDirection(currentPath: string, targetPath: string) {
   const currentIndex = navigation.findIndex((item) => item.href === currentPath);
   const targetIndex = navigation.findIndex((item) => item.href === targetPath);
@@ -41,6 +45,76 @@ export function SiteHeader({ current }: { current?: string }) {
   const pathname = usePathname();
   const activePath = current ?? pathname;
   const [menuOpen, setMenuOpen] = useState(false);
+  const isHome = pathname === "/";
+
+  useEffect(() => {
+    if (!isHome) {
+      const root = document.documentElement;
+      root.style.removeProperty("--home-scroll-progress");
+      root.style.removeProperty("--home-header-height");
+      root.style.removeProperty("--home-logo-width");
+      root.style.removeProperty("--home-parallax-y");
+      root.style.removeProperty("--home-desktop-progress");
+      return;
+    }
+
+    let frame = 0;
+
+    const updateHomeScroll = () => {
+      frame = 0;
+      const progress = Math.min(Math.max(window.scrollY / 140, 0), 1);
+      const root = document.documentElement;
+
+      root.style.setProperty("--home-scroll-progress", progress.toFixed(3));
+      root.style.setProperty(
+        "--home-header-height",
+        `${Math.round(126 - progress * 54)}px`,
+      );
+      root.style.setProperty(
+        "--home-logo-width",
+        `${Math.round(310 - progress * 122)}px`,
+      );
+      root.style.setProperty(
+        "--home-parallax-y",
+        `${Math.round(-18 + progress * 36)}px`,
+      );
+
+      const hero = document.querySelector<HTMLElement>(".home-page .hero");
+      const heroHeight = hero?.offsetHeight ?? 700;
+      const desktopStart = heroHeight * 0.25;
+      const desktopEnd = heroHeight * 0.68;
+      const desktopProgress = Math.min(
+        Math.max((window.scrollY - desktopStart) / (desktopEnd - desktopStart), 0),
+        1,
+      );
+      root.style.setProperty(
+        "--home-desktop-progress",
+        desktopProgress.toFixed(3),
+      );
+    };
+
+    const handleScroll = () => {
+      if (!frame) {
+        frame = window.requestAnimationFrame(updateHomeScroll);
+      }
+    };
+
+    updateHomeScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+      const root = document.documentElement;
+      root.style.removeProperty("--home-scroll-progress");
+      root.style.removeProperty("--home-header-height");
+      root.style.removeProperty("--home-logo-width");
+      root.style.removeProperty("--home-parallax-y");
+      root.style.removeProperty("--home-desktop-progress");
+    };
+  }, [isHome]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -56,28 +130,22 @@ export function SiteHeader({ current }: { current?: string }) {
   }, [menuOpen]);
 
   return (
-    <header className="site-header">
+    <header className={`site-header${isHome ? " home-intro-header" : ""}`}>
       <Link
         className="brand"
         href="/"
         aria-label="Montessori Playschool home"
         onClick={() => rememberNavigationDirection(pathname, "/")}
       >
-        <picture className="brand-logo-picture">
-          <source
-            media="(min-width: 761px)"
-            srcSet="/images/montessori-playschool-logo.png"
-          />
-          <img
-            className="brand-logo"
-            src="/images/montessori-playschool-logo-horizontal.png"
-            alt="Montessori Playschool"
-          />
-        </picture>
+        <img
+          className="brand-logo"
+          src="/images/montessori-playschool-logo-horizontal.png"
+          alt="Montessori Playschool"
+        />
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
         <ul>
-          {navigation.map((item) => (
+          {desktopNavigation.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
@@ -162,7 +230,6 @@ export function SiteFooter() {
             alt="Montessori Playschool"
           />
         </Link>
-        <p>A thoughtful place to learn, play, and grow.</p>
       </div>
       <div className="footer-column">
         <span>Visit</span>
@@ -222,7 +289,7 @@ export function InnerHero({
   eyebrow: string;
   title: string;
   accent?: string;
-  description: string;
+  description?: string;
   image: string;
   imageAlt: string;
 }) {
@@ -240,7 +307,7 @@ export function InnerHero({
               </>
             )}
           </h1>
-          <p>{description}</p>
+          {description && <p>{description}</p>}
         </div>
         <div className="inner-hero-image">
           <img src={image} alt={imageAlt} />

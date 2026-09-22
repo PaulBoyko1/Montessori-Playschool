@@ -22,7 +22,6 @@ export default function AboutPage() {
           eyebrow="About Montessori Playschool"
           title="Rooted in respect."
           accent="Made for childhood."
-          description="A warm Carmichael learning community where children can move with purpose, think with curiosity, and belong wholeheartedly."
           image="/images/photos/selected/teacher-art.webp"
           imageAlt="An educator and child smiling together during an art activity"
         />
@@ -30,25 +29,11 @@ export default function AboutPage() {
         <section className="story-section content-section">
           <div>
             <p className="section-label">Our approach</p>
-            <h2>Care and learning designed around how children grow.</h2>
+            <h2>Montessori-inspired care built around the child.</h2>
           </div>
           <div className="story-copy">
-            <p className="lead">
-              Montessori Playschool begins with a simple belief: children do
-              their best learning when they feel safe, respected, and genuinely
-              involved in their own growth.
-            </p>
-            <p>
-              Our program brings Montessori-inspired environments
-              together with joyful play, nourishing routines, creative
-              expression, outdoor movement, and strong family partnership. The
-              result is not a hurried childhood—it is a rich one.
-            </p>
-            <p>
-              Our home at 2925 Root Ave reflects the same values: accessible
-              materials, age-appropriate spaces, predictable routines, and room
-              for movement, creativity, and practical work.
-            </p>
+<p className="lead">Children learn best when they feel safe, respected, and involved.</p>
+<p>Montessori-inspired learning, play, creative work, outdoor movement, and practical life are part of each day.</p>
           </div>
         </section>
 
@@ -65,10 +50,6 @@ export default function AboutPage() {
               <p className="section-label">What guides us</p>
               <h2>Four principles, present in every room.</h2>
             </div>
-            <p>
-              A beautiful environment matters, but the relationships and habits
-              within it matter even more.
-            </p>
           </div>
           <div className="principle-grid">
             {principles.map(([title, text], index) => (
@@ -93,12 +74,7 @@ export default function AboutPage() {
           <div>
             <p className="section-label">The role of the educator</p>
             <h2>Observe closely. Guide gently. Trust deeply.</h2>
-            <p>
-              Montessori educators do more than deliver lessons. They prepare
-              the environment, model respectful behavior, notice readiness,
-              protect concentration, and connect each child with meaningful
-              work.
-            </p>
+<p>Educators prepare the environment, model respectful behavior, observe readiness, and guide children toward meaningful work.</p>
             <a className="inline-arrow" href="/programs">
               Explore our programs <span aria-hidden="true">→</span>
             </a>
@@ -107,7 +83,7 @@ export default function AboutPage() {
 
         <section className="simple-cta">
           <p className="section-label">Come meet us</p>
-          <h2>The best way to understand a classroom is to experience it.</h2>
+          <h2>Come see the classroom.</h2>
           <a className="button button-light" href="/contact#tour">
             Schedule a Tour <span aria-hidden="true">→</span>
           </a>
