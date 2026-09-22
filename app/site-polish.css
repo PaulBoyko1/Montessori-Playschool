@@ -1344,8 +1344,9 @@
   }
 
   .home-page .hero-brand-lockup img {
+    display: block;
     height: auto;
-    max-width: min(590px, 40vw);
+    max-width: min(520px, 38vw);
     width: 100%;
   }
 
@@ -1395,33 +1396,5 @@
 
   .about-page .inner-hero-image img {
     object-position: 50% 38%;
-  }
-}
-
-
-/* Ensure homepage hero logo always renders above hero layers */
-@media (min-width: 761px) {
-  .home-page .hero-content {
-    z-index: 5;
-  }
-
-  .home-page .hero-brand-lockup {
-    min-height: 250px;
-    opacity: 1 !important;
-    position: relative;
-    visibility: visible !important;
-    z-index: 6;
-  }
-
-  .home-page .hero-brand-lockup img {
-    display: block !important;
-    height: auto;
-    max-height: 340px;
-    object-fit: contain;
-    opacity: 1 !important;
-    position: relative;
-    visibility: visible !important;
-    width: min(520px, 36vw);
-    z-index: 7;
   }
 }
