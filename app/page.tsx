@@ -76,6 +76,25 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="home-fact-strip" aria-label="Montessori Playschool quick facts">
+          <div>
+            <span>Ages</span>
+            <strong>Birth–9th Grade</strong>
+          </div>
+          <div>
+            <span>Days</span>
+            <strong>{school.days}</strong>
+          </div>
+          <div>
+            <span>Hours</span>
+            <strong>{school.hours}</strong>
+          </div>
+          <div>
+            <span>Location</span>
+            <strong>Carmichael, CA</strong>
+          </div>
+        </section>
+
         <section className="home-programs content-section" aria-labelledby="program-heading">
           <div className="section-heading">
             <div>
@@ -158,18 +177,10 @@ export default function Home() {
           <div>
             <p className="section-label">Help with childcare costs</p>
             <h2>CalWORKs and Child Action are welcome.</h2>
-<p>CalWORKs and Child Action accepted for eligible families.</p>
           </div>
           <Link className="button button-light" href="/tuition#assistance">
             View assistance options <span aria-hidden="true">→</span>
           </Link>
-        </section>
-
-        <section className="quote-band home-quote">
-          <blockquote>
-            <p>“The child is both a hope and a promise for mankind.”</p>
-            <cite>— Maria Montessori, Education and Peace</cite>
-          </blockquote>
         </section>
 
         <section className="contact-cta" id="contact">

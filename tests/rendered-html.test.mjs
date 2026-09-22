@@ -176,3 +176,27 @@ test("keeps meals factual and compact on phones", async () => {
   assert.match(html, /Four daily meals/i);
   assert.doesNotMatch(html, /nutrition-callout/i);
 });
+
+
+test("keeps the home page concise and fact-led", async () => {
+  const { html } = await render("/");
+
+  assert.match(html, /Montessori Playschool quick facts/i);
+  assert.match(html, /Birth(?:–|&ndash;|&#x2013;)9th Grade/i);
+  assert.match(html, /Monday(?:–|&ndash;|&#x2013;)Saturday/i);
+  assert.match(html, /7:00 AM(?:–|&ndash;|&#x2013;)10:00 PM/i);
+  assert.doesNotMatch(html, /home-quote/i);
+  assert.doesNotMatch(html, /CalWORKs and Child Action accepted for eligible families/i);
+});
+
+test("keeps desktop navigation compact without reducing the mobile menu", async () => {
+  const { html } = await render("/");
+  const desktopNav = html.match(/<nav class=["']desktop-nav["'][\s\S]*?<\/nav>/i)?.[0] ?? "";
+  const mobileNav = html.match(/<nav id=["']mobile-navigation["'][\s\S]*?<\/nav>/i)?.[0] ?? "";
+
+  assert.doesNotMatch(desktopNav, />\s*Home\s*</i);
+  assert.doesNotMatch(desktopNav, />\s*Location\s*</i);
+  assert.match(desktopNav, />\s*About Us\s*</i);
+  assert.match(mobileNav, />\s*Home\s*</i);
+  assert.match(mobileNav, />\s*Location\s*</i);
+});

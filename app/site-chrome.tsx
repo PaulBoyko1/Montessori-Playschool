@@ -18,6 +18,10 @@ const navigation = [
   { href: "/contact", label: "Contact" },
 ];
 
+const desktopNavigation = navigation.filter(
+  (item) => item.href !== "/" && item.href !== "/location",
+);
+
 function rememberNavigationDirection(currentPath: string, targetPath: string) {
   const currentIndex = navigation.findIndex((item) => item.href === currentPath);
   const targetIndex = navigation.findIndex((item) => item.href === targetPath);
@@ -141,7 +145,7 @@ export function SiteHeader({ current }: { current?: string }) {
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
         <ul>
-          {navigation.map((item) => (
+          {desktopNavigation.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}

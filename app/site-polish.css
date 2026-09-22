@@ -1593,3 +1593,68 @@
     margin: 0;
   }
 }
+
+
+/* Home: factual quick-reference strip directly below the opening hero. */
+.home-fact-strip {
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.home-fact-strip > div {
+  border-right: 1px solid var(--line);
+  padding: 1rem 2vw;
+  text-align: center;
+}
+
+.home-fact-strip > div:last-child {
+  border-right: 0;
+}
+
+.home-fact-strip span {
+  color: var(--muted);
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+
+.home-fact-strip strong {
+  color: var(--brand-brown);
+  font-family: var(--display);
+  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  font-weight: 600;
+}
+
+/* Active page and keyboard focus are separate visual states. */
+.desktop-nav a[aria-current="page"] {
+  box-shadow: none;
+}
+
+@media (max-width: 760px) {
+  .home-fact-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-fact-strip > div {
+    min-width: 0;
+    padding: 0.9rem 0.65rem;
+  }
+
+  .home-fact-strip > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .home-fact-strip > div:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .home-fact-strip strong {
+    font-size: 1rem;
+  }
+}
