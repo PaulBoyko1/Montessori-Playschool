@@ -4,77 +4,13 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [main, copy-cleanup]
+    branches: [main]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  install-full-home-logo:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/copy-cleanup'
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Check out branch
-        uses: actions/checkout@v4
-        with:
-          ref: copy-cleanup
-
-      - name: Rebuild and verify exact full homepage logo
-        shell: bash
-        run: |
-          set -euo pipefail
-          cat .logo-full-parts/1.txt .logo-full-parts/2.txt .logo-full-parts/3.txt .logo-full-parts/4.txt .logo-full-parts/5.txt .logo-full-parts/6.txt > /tmp/home-logo.b64
-          test "$(wc -c < /tmp/home-logo.b64)" -eq 23228
-          base64 -d /tmp/home-logo.b64 > public/images/montessori-home-logo-white.webp
-          test "$(wc -c < public/images/montessori-home-logo-white.webp)" -eq 17420
-          echo "1b460c27c9f1eb9108d1c7bda7b6b5a2d28d99028ff6724f95d54473dbbc37ff  public/images/montessori-home-logo-white.webp" | sha256sum -c -
-
-          rm -rf .logo-full-parts .logo-parts
-
-          cat > .github/workflows/validate.yml <<'EOF'
-          name: Validate website
-
-          on:
-            pull_request:
-              branches: [main]
-            push:
-              branches: [main]
-
-          permissions:
-            contents: read
-
-          jobs:
-            validate:
-              runs-on: ubuntu-latest
-              timeout-minutes: 15
-              steps:
-                - name: Check out repository
-                  uses: actions/checkout@v4
-
-                - name: Set up Node.js
-                  uses: actions/setup-node@v4
-                  with:
-                    node-version: "22.13.0"
-
-                - name: Install locked dependencies
-                  run: npm run install:ci
-
-                - name: Lint
-                  run: npm run lint
-
-                - name: Build and test rendered pages
-                  run: npm test
-          EOF
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Replace homepage logo with full white lockup"
-          git push origin HEAD:copy-cleanup
-
   validate:
-    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
