@@ -35,8 +35,8 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p audit/desktop audit/mobile
-          routes=(home programs meals tuition contact)
-          paths=("/" "/programs" "/meals" "/tuition" "/contact")
+          routes=(home about programs meals tuition enrollment contact)
+          paths=("/" "/about" "/programs" "/meals" "/tuition" "/enrollment" "/contact")
           for i in "${!routes[@]}"; do
             name="${routes[$i]}"
             path="${paths[$i]}"

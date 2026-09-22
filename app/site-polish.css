@@ -1683,3 +1683,28 @@
     text-align: center;
   }
 }
+
+
+/* Accessibility and hero-height refinements. */
+.simple-cta .section-label,
+.assistance-teaser .section-label,
+.meal-values article > span {
+  color: #fff4c3;
+}
+
+.meal-values p,
+.enrollment-note p {
+  color: #e7f3ff;
+}
+
+@media (min-width: 901px) {
+  .about-page .inner-hero {
+    max-height: 800px;
+  }
+}
+
+@media (min-width: 761px) {
+  .contact-heading {
+    padding: 4.75rem 7vw 4rem;
+  }
+}
