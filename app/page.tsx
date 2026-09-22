@@ -3,6 +3,8 @@ import CurriculumAccordion from "./components/CurriculumAccordion";
 import { programs, school } from "./site-data";
 import { SectionDivider, SiteFooter } from "./site-chrome";
 
+const heroLogo = "data:image/webp;base64,UklGRthDAABXRUJQVlA4IMxDAABQ5QCdASoIAggCPhkMhUGhBC41MQQAYSxt346HkXrOuBE8L8b+bfir+8HliUJ5l/b/1H/uv+v/y/zU8J9OXX3uF/bP8v/heuxsfzCPDvx7+yf2T/C/5v+8f/X5OfsB7l/z//mvcA/hP8R/p/9X/tP9n/rv/y+ZT9mfc1/Zf95/tf0A+AH8j/mn91/t37dfv//1PyV/v3+w/qXuW/uX9y/3/+j/4HyAf1b+k/P/95f/n9g394fYC/mH9q/3nsz/5X+JvT+ld7f9H+vfrT/O7+T/+/83+N/av97/rv7d9mv9N+dn7af1X+k/df8f/hn9t/Yp/4d+1T3a/7D+t/9B/q/7D+Xf6r+b/4P3FfLH8V/FX8k/3H9i/zP4t+7v4r+Rf/X+H/o77L/av3X/+/wX+7fr7/O/9P+v/9N/pP7v+vf97/fL5ev+H/1/977nP8V/wfYD/qP9s/5X58d5X+8PsC/0//R/+H2gP+n/7v+P+////0+03+m/7X/2/6j/gf//6FP5p/bv+X+f//E+gD/w+1j/AP/t6gHqL8Y/yG+H3xr98/w35a/2/yOfSv3L8l/8D/6PW39RvW3mf/Hvtb+D/uf7f/3n9u/mX/n+D/yL/r/zI/x/yEfi38r/tX9m/bT/B/+3/ie5n9hO7b3b/e/971Bfaf6V/nP7v/ef+l/dPTr/u/8R6qfYr/P/mV/ovsB/nv9J/w/90/uv/O/vX///9vxgeCZ+I/6/+t9wL+P/07/b/4L8t/pv+p/+x/kP9L+5XuG/Pv8R/zv8r/ofkN/lP9W/1/98/zn/r/1////+f3k///3nfuP7JP7Q//YsBu0La2Fb7Ct9hW+wrfYVvsKwraDwRbLshvMiTYSsaWN3rEf12qbKSA3Y+1UPuixP/Q0QNvR42CUxVjQ71+ZyGpW+eib57hlZbRmd33AeqYwgeqYjOrcTmlFskX6alONkkSEuRbLZ6XX0UZJxE1O77gPVMRmd32/0kNSaEmeSyBR1YW5e+X8ZfVTZ5gazQp2u8BEVmxE5pRdXguRbRvsMdaOa77e+HR1aUem8kQMvHbv3d/cpTGJj0PHgeUCid2nU7vuA8ePYuE6Hcx3XST4i8YNeEnbgxEVXE0sTvKBR...";
+
 const parentEssentials = [
   {
     href: "/meals",
@@ -61,7 +63,7 @@ export default function Home() {
             <h1 id="hero-title" className="hero-title-sr">Montessori Playschool</h1>
             <div className="hero-brand-lockup" aria-hidden="true">
               <img
-                src="/images/montessori-playschool-icon.png"
+                src={heroLogo}
                 alt=""
               />
             </div>
