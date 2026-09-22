@@ -112,7 +112,6 @@ test("uses the selected high-quality photography across key pages", async () => 
   assert.match(tuition.html, /\/images\/photos\/selected\/community\.webp/);
 
   const galleryPhotos = [
-    "home-hero.webp",
     "teacher-art.webp",
     "teacher-group.webp",
     "teacher-sensory.webp",
@@ -132,5 +131,6 @@ test("uses the selected high-quality photography across key pages", async () => 
     );
   }
 
+  assert.doesNotMatch(gallery.html, /\/images\/photos\/selected\/home-hero\.webp/);
   assert.doesNotMatch(home.html, /classroom-teacher-group\.webp/);
 });
