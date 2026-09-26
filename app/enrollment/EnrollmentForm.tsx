@@ -22,7 +22,7 @@ function buildMailto(data: FormData) {
     `Additional notes: ${data.get("message") || "None provided"}`,
   ].join("\n");
 
-  return `mailto:social@montessori-playschool.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return `mailto:enrollment@montessori-playschool.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 export default function EnrollmentForm({ compact = false }: { compact?: boolean }) {
