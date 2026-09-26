@@ -3,47 +3,104 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
 
+type SubmitState = "idle" | "submitting" | "sent" | "error";
+
+function buildMailto(data: FormData) {
+  const schedule = data.getAll("schedule").join(", ") || "Not specified";
+  const customDays = data.get("customDays") || "Not specified";
+  const subject = `Enrollment inquiry for ${data.get("child")}`;
+  const body = [
+    `Parent or guardian: ${data.get("guardian")}`,
+    `Email: ${data.get("email")}`,
+    `Phone: ${data.get("phone")}`,
+    `Child: ${data.get("child")}`,
+    `Child's age: ${data.get("age")}`,
+    `Program: ${data.get("program")}`,
+    `Schedule needs: ${schedule}`,
+    `Custom days or hours: ${customDays}`,
+    "",
+    `Additional notes: ${data.get("message") || "None provided"}`,
+  ].join("\n");
+
+  return `mailto:enroll@montessori-playschool.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 export default function EnrollmentForm({ compact = false }: { compact?: boolean }) {
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [emailDraft, setEmailDraft] = useState("");
   const [customSchedule, setCustomSchedule] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const schedule = data.getAll("schedule").join(", ") || "Not specified";
-    const customDays = data.get("customDays") || "Not specified";
-    const subject = `Enrollment inquiry for ${data.get("child")}`;
-    const body = [
-      `Parent or guardian: ${data.get("guardian")}`,
-      `Email: ${data.get("email")}`,
-      `Phone: ${data.get("phone")}`,
-      `Child: ${data.get("child")}`,
-      `Child's age: ${data.get("age")}`,
-      `Program: ${data.get("program")}`,
-      `Schedule needs: ${schedule}`,
-      `Custom days or hours: ${customDays}`,
-      "",
-      `Additional notes: ${data.get("message") || "None provided"}`,
-    ].join("\n");
 
-    setEmailDraft(
-      `mailto:enroll@montessori-playschool.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
-    );
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const fallback = buildMailto(data);
+    setEmailDraft(fallback);
+    setSubmitState("submitting");
+
+    const schedule = data.getAll("schedule").map(String);
+    const payload = {
+      guardian: String(data.get("guardian") || ""),
+      email: String(data.get("email") || ""),
+      phone: String(data.get("phone") || ""),
+      child: String(data.get("child") || ""),
+      age: String(data.get("age") || ""),
+      program: String(data.get("program") || ""),
+      schedule,
+      customDays: String(data.get("customDays") || ""),
+      message: String(data.get("message") || ""),
+      website: String(data.get("website") || ""),
+    };
+
+    try {
+      const response = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Inquiry delivery failed");
+      }
+
+      setSubmitState("sent");
+      form.reset();
+      setCustomSchedule(false);
+    } catch {
+      setSubmitState("error");
+    }
   }
 
-  if (emailDraft) {
+  if (submitState === "sent") {
     return (
       <div className="form-success" role="status">
         <span aria-hidden="true">✓</span>
-        <h2>Your inquiry is ready.</h2>
+        <h2>Thank you. Your inquiry was sent.</h2>
         <p>
-          Open the prepared email, review the details, and press Send in your
-          email app to complete your inquiry.
+          Montessori Playschool received your information. We&apos;ll use the
+          phone number or email you provided to follow up.
+        </p>
+        <button type="button" onClick={() => setSubmitState("idle")}>
+          Send another inquiry
+        </button>
+      </div>
+    );
+  }
+
+  if (submitState === "error") {
+    return (
+      <div className="form-success" role="alert">
+        <span aria-hidden="true">!</span>
+        <h2>Automatic delivery is not available yet.</h2>
+        <p>
+          You can still send the same information using the prepared email
+          below.
         </p>
         <a className="button button-primary" href={emailDraft}>
-          Open email draft <span aria-hidden="true">↗</span>
+          Open prepared email <span aria-hidden="true">↗</span>
         </a>
-        <button type="button" onClick={() => setEmailDraft("")}>
+        <button type="button" onClick={() => setSubmitState("idle")}>
           Edit this inquiry
         </button>
       </div>
@@ -52,6 +109,14 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
 
   return (
     <form className={`enrollment-form ${compact ? "form-compact" : ""}`} onSubmit={handleSubmit}>
+      <input
+        aria-hidden="true"
+        autoComplete="off"
+        name="website"
+        tabIndex={-1}
+        type="text"
+        style={{ position: "absolute", left: "-10000px", width: "1px", height: "1px", opacity: 0 }}
+      />
       <div className="form-field">
         <label htmlFor={`guardian-${compact}`}>Parent or guardian name</label>
         <input id={`guardian-${compact}`} name="guardian" autoComplete="name" required />
@@ -157,12 +222,16 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
           </div>
         </>
       )}
-      <button className="button button-primary form-submit" type="submit">
-        Prepare enrollment inquiry <span aria-hidden="true">→</span>
+      <button
+        className="button button-primary form-submit"
+        type="submit"
+        disabled={submitState === "submitting"}
+      >
+        {submitState === "submitting" ? "Sending…" : "Send enrollment inquiry"}{" "}
+        <span aria-hidden="true">→</span>
       </button>
       <p className="form-note">
-        Your information stays in your browser until you choose to open and send
-        the prepared email.
+        Submitting sends these details directly to Montessori Playschool.
       </p>
     </form>
   );
