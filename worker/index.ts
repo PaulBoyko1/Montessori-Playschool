@@ -2,22 +2,10 @@
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
 
-interface EmailBinding {
-  send(message: {
-    to: string;
-    from: string;
-    subject: string;
-    text: string;
-    replyTo?: string;
-  }): Promise<{ messageId: string }>;
-}
-
 interface Env {
   ASSETS: Fetcher;
   DB: D1Database;
-  EMAIL?: EmailBinding;
-  INQUIRY_TO_EMAIL?: string;
-  INQUIRY_FROM_EMAIL?: string;
+  GOOGLE_WEBHOOK_SECRET?: string;
   INQUIRY_TO_PHONE?: string;
   TWILIO_ACCOUNT_SID?: string;
   TWILIO_AUTH_TOKEN?: string;
@@ -70,6 +58,62 @@ function jsonResponse(body: unknown, status = 200): Response {
       "cache-control": "no-store",
     },
   });
+}
+
+
+const GOOGLE_INQUIRY_WEBHOOK =
+  "https://script.google.com/macros/s/AKfycbw_eO1rrIXEi9OuxyubyHhwOyI6LXlx-_fxfe5yvG42rvk9CbUPQAZPc3MwFuhn4K1TRg/exec";
+
+async function sendInquiryEmail(
+  env: Env,
+  inquiry: {
+    guardian: string;
+    email: string;
+    phone: string;
+    child: string;
+    age: string;
+    program: string;
+    schedule: string[];
+    customDays: string;
+    message: string;
+  },
+): Promise<void> {
+  const secret = env.GOOGLE_WEBHOOK_SECRET;
+  if (!secret) {
+    throw new Error("Google inquiry webhook secret is not configured");
+  }
+
+  const response = await fetch(GOOGLE_INQUIRY_WEBHOOK, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify({
+      secret,
+      ...inquiry,
+    }),
+    redirect: "follow",
+  });
+
+  const responseText = await response.text();
+
+  if (!response.ok) {
+    throw new Error(
+      `Google inquiry webhook failed (${response.status}): ${responseText.slice(0, 300)}`,
+    );
+  }
+
+  try {
+    const result = JSON.parse(responseText) as { ok?: boolean; error?: string };
+    if (!result.ok) {
+      throw new Error(result.error || "Google inquiry webhook rejected the request");
+    }
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      throw new Error("Google inquiry webhook returned an invalid response");
+    }
+    throw error;
+  }
 }
 
 async function sendSms(env: Env, body: string): Promise<void> {
@@ -140,26 +184,6 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
     return jsonResponse({ ok: false, error: "Invalid email address" }, 400);
   }
 
-  const scheduleText = schedule.length ? schedule.join(", ") : "Not specified";
-  const customDaysText = customDays || "Not specified";
-  const notesText = message || "None provided";
-  const subject = `New Montessori Playschool inquiry — ${child}`;
-
-  const emailText = [
-    "New website inquiry",
-    "",
-    `Parent or guardian: ${guardian}`,
-    `Email: ${email}`,
-    `Phone: ${phone}`,
-    `Child: ${child}`,
-    `Child's age: ${age}`,
-    `Program: ${program}`,
-    `Schedule needs: ${scheduleText}`,
-    `Custom days or hours: ${customDaysText}`,
-    "",
-    `Additional notes: ${notesText}`,
-  ].join("\n");
-
   const smsText = [
     "New Montessori Playschool website inquiry.",
     `Parent: ${guardian}`,
@@ -171,21 +195,24 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
   ].join("\n");
 
   const outcomes = { email: false, sms: false };
-  if (env.EMAIL) {
-    try {
-      await env.EMAIL.send({
-        to: env.INQUIRY_TO_EMAIL || "enroll@montessori-playschool.com",
-        from: env.INQUIRY_FROM_EMAIL || "website@montessori-playschool.com",
-        subject,
-        text: emailText,
-        replyTo: email,
-      });
-      outcomes.email = true;
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Email delivery failed";
-      console.error("Inquiry email error:", message);
-    }
-  } else {
+
+  try {
+    await sendInquiryEmail(env, {
+      guardian,
+      email,
+      phone,
+      child,
+      age,
+      program,
+      schedule,
+      customDays,
+      message,
+    });
+    outcomes.email = true;
+  } catch (error) {
+    const deliveryError =
+      error instanceof Error ? error.message : "Email delivery failed";
+    console.error("Inquiry email error:", deliveryError);
   }
 
   try {
