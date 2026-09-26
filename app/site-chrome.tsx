@@ -63,17 +63,11 @@ export function SiteHeader({ current }: { current?: string }) {
         aria-label="Montessori Playschool home"
         onClick={() => rememberNavigationDirection(pathname, "/")}
       >
-        <picture className="brand-logo-picture">
-          <source
-            media="(min-width: 761px)"
-            srcSet="/images/montessori-playschool-logo.png"
-          />
-          <img
-            className="brand-logo"
-            src="/images/montessori-playschool-logo-horizontal.png"
-            alt="Montessori Playschool"
-          />
-        </picture>
+        <img
+          className="brand-logo"
+          src="/images/montessori-playschool-logo-horizontal.png"
+          alt="Montessori Playschool"
+        />
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
         <ul>
@@ -155,7 +149,7 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-brand">
-        <Link href="/" aria-label="Montessori Playschool home">
+        <Link className="footer-logo-link" href="/" aria-label="Montessori Playschool home">
           <img
             className="footer-logo"
             src="/images/montessori-playschool-logo-stacked.png"
@@ -256,8 +250,6 @@ export function SectionDivider({ className = "" }: { className?: string }) {
     <div
       className={`section-divider ${className}`.trim()}
       aria-hidden="true"
-    >
-      <span className="divider-leaf" />
-    </div>
+    />
   );
 }
