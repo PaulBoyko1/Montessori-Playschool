@@ -1161,3 +1161,215 @@
     max-width: calc(100% - 2rem);
   }
 }
+
+
+/* Mobile tuition selector: no sideways scrolling on phones. */
+.mobile-rate-table {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .desktop-rate-table {
+    display: none;
+  }
+
+  .mobile-rate-table {
+    display: block;
+    width: 100%;
+  }
+
+  .mobile-rate-heading {
+    align-items: end;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 0.9rem;
+  }
+
+  .mobile-rate-heading > div {
+    display: grid;
+    gap: 0.18rem;
+    min-width: 0;
+  }
+
+  .mobile-rate-heading span {
+    color: var(--muted);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mobile-rate-heading strong {
+    color: var(--brand-brown);
+    font-family: var(--display);
+    font-size: 1.55rem;
+    font-weight: 500;
+    line-height: 1.05;
+  }
+
+  .mobile-rate-heading small {
+    color: var(--muted);
+    flex: 0 0 auto;
+    font-size: 0.72rem;
+    padding-bottom: 0.12rem;
+  }
+
+  .mobile-rate-switch {
+    background: var(--soft-green);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    display: grid;
+    gap: 0.3rem;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1rem;
+    padding: 0.3rem;
+    width: 100%;
+  }
+
+  .mobile-rate-switch button {
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.86rem;
+    font-weight: 800;
+    min-height: 46px;
+    padding: 0.7rem 0.9rem;
+  }
+
+  .mobile-rate-switch button.is-active {
+    background: var(--brand-blue-action);
+    box-shadow: 0 5px 14px rgba(7, 94, 168, 0.18);
+    color: #fff;
+  }
+
+  .mobile-rate-list {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .mobile-rate-column-head,
+  .mobile-rate-row {
+    align-items: center;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    width: 100%;
+  }
+
+  .mobile-rate-column-head {
+    background: var(--brand-blue-deep);
+    color: #fff;
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    padding: 0.85rem 0.9rem;
+    text-transform: uppercase;
+  }
+
+  .mobile-rate-column-head span:last-child {
+    text-align: right;
+  }
+
+  .mobile-rate-row {
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    min-height: 64px;
+    padding: 0.82rem 0.9rem;
+  }
+
+  .mobile-rate-row > span {
+    color: var(--brand-brown);
+    font-size: 0.93rem;
+    font-weight: 700;
+    line-height: 1.25;
+    min-width: 0;
+  }
+
+  .mobile-rate-row > strong {
+    color: var(--brand-brown);
+    font-family: var(--display);
+    font-size: 1.28rem;
+    font-weight: 600;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .mobile-rate-row > strong small {
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 600;
+    margin-left: 0.18rem;
+  }
+
+  /* The other two-column tuition tables can also fit the viewport cleanly. */
+  .part-time-section .rate-table-wrap,
+  .holiday-section .rate-table-wrap {
+    margin-right: 0;
+    overflow-x: visible;
+    padding-right: 0;
+  }
+
+  .part-time-section .rate-table,
+  .holiday-section .rate-table {
+    min-width: 0;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .part-time-section .rate-table th,
+  .part-time-section .rate-table td,
+  .holiday-section .rate-table th,
+  .holiday-section .rate-table td {
+    overflow-wrap: anywhere;
+    padding: 0.82rem 0.7rem;
+  }
+
+  .part-time-section .rate-table th,
+  .part-time-section .rate-table td {
+    width: 50%;
+  }
+
+  .holiday-section .rate-table th:first-child,
+  .holiday-section .rate-table td:first-child {
+    width: 46%;
+  }
+
+  .holiday-section .rate-table th,
+  .holiday-section .rate-table td {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 390px) {
+  .mobile-rate-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .mobile-rate-heading small {
+    padding-bottom: 0;
+  }
+
+  .mobile-rate-column-head,
+  .mobile-rate-row {
+    gap: 0.45rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .mobile-rate-row > span {
+    font-size: 0.88rem;
+  }
+
+  .mobile-rate-row > strong {
+    font-size: 1.18rem;
+  }
+}
