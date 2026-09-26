@@ -89,10 +89,6 @@ export default function TuitionPage() {
 
         <section className="rate-sheet-facts content-section" aria-label="Rate sheet details">
           <article>
-            <span>Type of care</span>
-            <strong>Center</strong>
-          </article>
-          <article>
             <span>Effective date</span>
             <strong>09/23/2026</strong>
           </article>
