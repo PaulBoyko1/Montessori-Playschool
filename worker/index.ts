@@ -112,7 +112,7 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
 
   let raw: InquiryPayload;
   try {
-    raw = await request.json<InquiryPayload>();
+    raw = (await request.json()) as InquiryPayload;
   } catch {
     return jsonResponse({ ok: false, error: "Invalid request" }, 400);
   }
@@ -171,8 +171,6 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
   ].join("\n");
 
   const outcomes = { email: false, sms: false };
-  const errors: string[] = [];
-
   if (env.EMAIL) {
     try {
       await env.EMAIL.send({
@@ -186,10 +184,8 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
     } catch (error) {
       const message = error instanceof Error ? error.message : "Email delivery failed";
       console.error("Inquiry email error:", message);
-      errors.push(message);
     }
   } else {
-    errors.push("Cloudflare email binding is not configured");
   }
 
   try {
@@ -198,7 +194,6 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
   } catch (error) {
     const message = error instanceof Error ? error.message : "SMS delivery failed";
     console.error("Inquiry SMS error:", message);
-    errors.push(message);
   }
 
   if (!outcomes.email && !outcomes.sms) {
