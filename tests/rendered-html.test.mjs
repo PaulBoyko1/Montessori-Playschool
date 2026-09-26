@@ -83,6 +83,7 @@ test("keeps current public program structure and meal schedule", async () => {
   const meals = await render("/meals");
 
   assert.match(home.html, /birth through 9th grade/i);
+  assert.match(programs.html, /Age 3(?:–|&ndash;|&#x2013;)entry into kindergarten/i);
   assert.match(programs.html, /Kindergarten(?:–|&ndash;|&#x2013;)9th grade/i);
   assert.match(enrollment.html, /Infant, Preschool (?:&amp;|&) School Age/i);
 
@@ -158,4 +159,8 @@ test("renders the September 2026 rate sheet without weekly tuition pricing", asy
   assert.doesNotMatch(html, /\/ week/i);
   assert.doesNotMatch(html, /\$1,450/);
   assert.doesNotMatch(html, /\$1,600/);
+  assert.doesNotMatch(html, /Part-time attendance/i);
+  assert.doesNotMatch(html, /Tuition is due on the first day of each month/i);
+  assert.doesNotMatch(html, /late fee/i);
+  assert.doesNotMatch(html, /Returned payments/i);
 });

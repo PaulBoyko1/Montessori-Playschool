@@ -60,10 +60,6 @@ const ratePolicies = [
     text: "Tuition remains due regardless of a child’s attendance, including vacation, illness, or other absences.",
   },
   {
-    title: "Part-time attendance",
-    text: "Monthly tuition is not prorated for reduced attendance. Hourly part-time care uses the separate hourly rates shown above when arranged as hourly care.",
-  },
-  {
     title: "Schedule overlap",
     text: "If a child’s schedule overlaps the day and evening programs, the evening-program rate applies.",
   },
@@ -290,20 +286,6 @@ export default function TuitionPage() {
               </a>
             </div>
           </div>
-        </section>
-
-        <section className="payment-details content-section">
-          <div>
-            <p className="section-label">Payment details</p>
-            <h2>Simple monthly expectations.</h2>
-          </div>
-          <ul>
-            <li>Tuition is due on the first day of each month.</li>
-            <li>Payments received after the fifth are subject to a $50 late fee.</li>
-            <li>Returned payments are subject to a $50 fee.</li>
-            <li>Tuition remains due regardless of attendance.</li>
-            <li>Family discounts are not currently offered.</li>
-          </ul>
         </section>
 
         <section className="simple-cta">
