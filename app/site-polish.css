@@ -996,6 +996,14 @@
 /* Mobile hero + brand cleanup                                                 */
 /* -------------------------------------------------------------------------- */
 
+.site-header {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+.footer-brand > a {
+  background: #ffffff;
+}
+
 /* Keep section breaks simple. The earlier decorative leaf no longer matches
    the current logo system, so the divider is now just a quiet neutral rule. */
 .section-divider {
