@@ -31,7 +31,7 @@ export const programs = [
   {
     slug: "preschool",
     name: "Preschool Program",
-    age: "Age 3–entry into kindergarten",
+    age: "24 months–entry into kindergarten",
     summary:
       "Montessori-inspired practical life, language, movement, early academics, creativity, and guided play build independence, confidence, and school readiness.",
   },
