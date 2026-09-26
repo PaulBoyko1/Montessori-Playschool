@@ -42,7 +42,7 @@ const federalHolidays = [
 const ratePolicies = [
   {
     title: "Open on federal holidays",
-    text: "The center remains open year-round, including the federal holidays listed below. The center is closed on Sundays.",
+    text: "Montessori Playschool remains open year-round, including the federal holidays listed below. The center is closed on Sundays.",
   },
   {
     title: "Federal holiday rate",
@@ -56,10 +56,13 @@ const ratePolicies = [
     title: "Schedule overlap",
     text: "If a child’s schedule overlaps the day and evening programs, the evening-program rate applies.",
   },
-  {
-    title: "Discounts",
-    text: "Family discounts are not offered.",
-  },
+];
+
+const partTimeRates = [
+  ["0–6 months", "$18 / hour"],
+  ["6–12 months", "$15 / hour"],
+  ["12 months–2 years", "$10 / hour"],
+  ["2–6 years", "$8 / hour"],
 ];
 
 export default function TuitionPage() {
@@ -77,7 +80,7 @@ export default function TuitionPage() {
 
         <section className="tuition-intro content-section">
           <div>
-            <p className="section-label">Rate sheet effective September 23, 2026</p>
+            <p className="section-label">Tuition</p>
             <h2>Monthly care by age and schedule.</h2>
           </div>
           <p>
@@ -87,13 +90,9 @@ export default function TuitionPage() {
           </p>
         </section>
 
-        <section className="rate-sheet-facts content-section" aria-label="Rate sheet details">
+        <section className="rate-sheet-facts rate-sheet-facts-clean content-section" aria-label="School details">
           <article>
-            <span>Effective date</span>
-            <strong>09/23/2026</strong>
-          </article>
-          <article>
-            <span>Hours of operation</span>
+            <span>Hours</span>
             <strong>Monday–Saturday</strong>
             <p>7:00 AM–10:00 PM</p>
           </article>
@@ -106,11 +105,40 @@ export default function TuitionPage() {
         <section className="rate-section content-section">
           <RateTable />
           <p className="rate-note">
-            Preschool tuition applies beginning at 24 months through entry into
-            kindergarten. If a schedule overlaps the day and evening programs,
-            the evening-program rate applies. Part-time schedules and pricing
-            are discussed directly with the center.
+            If a schedule overlaps the day and evening programs, the
+            evening-program rate applies.
           </p>
+        </section>
+
+        <section className="part-time-section content-section">
+          <div className="section-heading">
+            <div>
+              <p className="section-label">Part-time care</p>
+              <h2>Hourly rates by age.</h2>
+            </div>
+            <p>
+              Hourly rates are based on the child&apos;s age at the time of care.
+            </p>
+          </div>
+          <div className="rate-table-wrap">
+            <table className="rate-table compact-rate-table">
+              <caption>Hourly part-time rates</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Child&apos;s age</th>
+                  <th scope="col">Part-time care rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                {partTimeRates.map(([age, rate]) => (
+                  <tr key={age}>
+                    <th scope="row">{age}</th>
+                    <td>{rate}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section className="fee-section">
@@ -121,8 +149,8 @@ export default function TuitionPage() {
                 <h2>What families can plan for.</h2>
               </div>
               <p>
-                These enrollment and activity fees are listed on the current
-                childcare rate sheet.
+                Registration, supplies, and summer activity fees are shown
+                below.
               </p>
             </div>
             <div className="fee-grid">

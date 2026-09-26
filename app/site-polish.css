@@ -1373,3 +1373,24 @@
     font-size: 1.18rem;
   }
 }
+
+
+/* Cleaner tuition details: only parent-useful operating information remains. */
+.rate-sheet-facts-clean {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 620px) {
+  .rate-sheet-facts-clean {
+    grid-template-columns: 1fr;
+  }
+
+  .part-time-section .rate-table {
+    min-width: 0;
+  }
+
+  .part-time-section .rate-table th,
+  .part-time-section .rate-table td {
+    padding: 0.95rem 0.75rem;
+  }
+}
