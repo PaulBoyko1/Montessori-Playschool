@@ -5,15 +5,8 @@ import RateTable from "./RateTable";
 export const metadata: Metadata = {
   title: "Tuition & Assistance",
   description:
-    "Review Montessori Playschool monthly tuition, hourly part-time rates, fees, federal-holiday policies, and childcare assistance options.",
+    "Review Montessori Playschool monthly tuition, fees, federal-holiday policies, and childcare assistance options.",
 };
-
-const partTimeRates = [
-  { age: "0–6 months", rate: "$18 / hour" },
-  { age: "6–12 months", rate: "$15 / hour" },
-  { age: "12 months–2 years", rate: "$10 / hour" },
-  { age: "2–6 years", rate: "$8 / hour" },
-];
 
 const fees = [
   {
@@ -77,7 +70,7 @@ export default function TuitionPage() {
           eyebrow="Tuition & financial assistance"
           title="Clear costs."
           accent="More ways to pay."
-          description="Review current tuition, hourly part-time care, fees, holiday policies, and childcare assistance options."
+          description="Review current monthly tuition, fees, holiday policies, and childcare assistance options."
           image="/images/photos/selected/community.webp"
           imageAlt="Two children and a caring adult smiling together in the classroom"
         />
@@ -117,44 +110,11 @@ export default function TuitionPage() {
         <section className="rate-section content-section">
           <RateTable />
           <p className="rate-note">
-            The September 23, 2026 rate sheet does not list a separate monthly
-            full-time rate for children 24–35 months. Please contact the center
-            for the applicable monthly rate for that age range. If a schedule
-            overlaps the day and evening programs, the evening-program rate
-            applies.
+            Preschool tuition applies beginning at 24 months through entry into
+            kindergarten. If a schedule overlaps the day and evening programs,
+            the evening-program rate applies. Part-time schedules and pricing
+            are discussed directly with the center.
           </p>
-        </section>
-
-        <section className="part-time-section content-section">
-          <div className="section-heading">
-            <div>
-              <p className="section-label">Hourly part-time rates</p>
-              <h2>Hourly care by child&apos;s age.</h2>
-            </div>
-            <p>
-              Hourly part-time rates are based on the child&apos;s age at the time
-              of care.
-            </p>
-          </div>
-          <div className="rate-table-wrap">
-            <table className="rate-table compact-rate-table">
-              <caption>Hourly part-time care rates</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Child&apos;s age</th>
-                  <th scope="col">Part-time care rate</th>
-                </tr>
-              </thead>
-              <tbody>
-                {partTimeRates.map((item) => (
-                  <tr key={item.age}>
-                    <th scope="row">{item.age}</th>
-                    <td>{item.rate}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </section>
 
         <section className="fee-section">
