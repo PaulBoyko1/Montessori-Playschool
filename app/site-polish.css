@@ -995,86 +995,114 @@
 /* -------------------------------------------------------------------------- */
 /* Mobile hero + brand cleanup                                                 */
 /* -------------------------------------------------------------------------- */
-.divider-leaf {
-  display: none;
-}
 
+/* Keep section breaks simple. The earlier decorative leaf no longer matches
+   the current logo system, so the divider is now just a quiet neutral rule. */
 .section-divider {
-  height: 24px;
+  background: transparent;
+  height: 1px;
 }
 
 .section-divider::before {
-  background: rgba(87, 45, 7, 0.16);
+  background: rgba(87, 45, 7, 0.14);
+  inset: 0;
 }
 
 @media (min-width: 1321px) {
   .site-header {
-    grid-template-columns: minmax(260px, 310px) minmax(0, 1fr) auto;
+    background: rgba(255, 255, 255, 0.98);
+    grid-template-columns: minmax(285px, 345px) minmax(0, 1fr) auto;
+  }
+
+  .brand {
+    min-height: 86px;
   }
 
   .brand-logo {
-    height: 72px;
-    max-width: 300px;
+    height: 82px;
+    max-width: 340px;
+    object-fit: contain;
+    object-position: left center;
+    width: auto;
   }
 }
 
 @media (max-width: 760px) {
+  .site-header {
+    background: rgba(255, 255, 255, 0.99);
+  }
+
+  /* The opening photo now owns the first phone viewport. The actual image is
+     always contained in full, while a very soft duplicate behind it fills any
+     unused space without cropping children out of the foreground photo. */
   .home-page .hero {
     background: var(--cream);
-    display: flex;
-    flex-direction: column;
-    height: auto;
+    display: block;
+    height: calc(100svh - 72px);
     min-height: 0;
     overflow: hidden;
+    position: relative;
+  }
+
+  .home-page .hero::before {
+    background:
+      linear-gradient(rgba(255, 253, 247, 0.08), rgba(255, 253, 247, 0.08)),
+      url("/images/photos/selected/group-circle.webp") center 38% / cover no-repeat;
+    content: "";
+    filter: blur(18px) saturate(0.88);
+    inset: -22px;
+    opacity: 0.18;
+    position: absolute;
+    transform: scale(1.05);
+    z-index: 0;
   }
 
   .home-page .hero-image {
     bottom: auto;
     display: block;
-    height: auto;
-    left: auto;
+    height: 100%;
+    inset: 0;
+    left: 0;
     max-width: none;
     object-fit: contain;
     object-position: center top;
-    order: 1;
-    position: relative;
+    position: absolute;
     right: auto;
-    top: auto;
+    top: 0;
     transform: none;
     width: 100%;
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      #000 0%,
-      #000 86%,
-      rgba(0, 0, 0, 0.82) 91%,
-      rgba(0, 0, 0, 0.35) 96%,
-      transparent 100%
-    );
-    mask-image: linear-gradient(
-      to bottom,
-      #000 0%,
-      #000 86%,
-      rgba(0, 0, 0, 0.82) 91%,
-      rgba(0, 0, 0, 0.35) 96%,
-      transparent 100%
-    );
+    z-index: 1;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .home-page .hero-wash {
-    display: none;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 253, 247, 0) 0%,
+      rgba(255, 253, 247, 0) 68%,
+      rgba(255, 253, 247, 0.18) 75%,
+      rgba(255, 253, 247, 0.78) 88%,
+      var(--cream) 100%
+    );
+    display: block;
+    inset: 0;
+    position: absolute;
+    z-index: 2;
   }
 
   .home-page .hero-content {
-    left: auto;
-    margin-top: -1.2rem;
-    max-width: none;
-    order: 2;
-    padding: 0.4rem 1rem 2.8rem;
-    position: relative;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    left: 1rem;
+    margin: 0;
+    max-width: 360px;
+    padding: 0;
+    position: absolute;
+    right: 1rem;
     top: auto;
     transform: none;
-    width: 100%;
-    z-index: 2;
+    width: auto;
+    z-index: 3;
   }
 
   .home-page .hero h1 {
@@ -1082,25 +1110,32 @@
   }
 
   .home-page .hero-lede {
+    color: var(--brand-brown);
+    font-size: 0.94rem;
+    line-height: 1.45;
     margin: 0;
-    max-width: 355px;
+    max-width: 330px;
   }
 
   .home-page .hero-actions {
-    margin-top: 1.25rem;
+    margin-top: 0.9rem;
   }
 
   .home-page .hero-actions .button {
-    width: 100%;
+    min-height: 48px;
+    width: min(100%, 280px);
   }
 
   .section-divider,
   .hero-section-divider {
-    height: 18px;
+    height: 1px;
   }
 
-  .footer-brand > a {
-    display: none;
+  /* The stacked footer logo sits nicely on desktop, but its white card was
+     reading as a stray rectangle on phones. The header already carries the
+     full brand, so phones go straight to the footer tagline and details. */
+  .footer-logo-link {
+    display: none !important;
   }
 
   .footer-brand > p {
@@ -1111,11 +1146,10 @@
 
 @media (max-width: 430px) {
   .home-page .hero {
-    min-height: 0;
+    height: calc(100svh - 72px);
   }
 
-  .home-page .hero-image {
-    height: auto;
-    max-width: none;
+  .home-page .hero-content {
+    max-width: calc(100% - 2rem);
   }
 }
