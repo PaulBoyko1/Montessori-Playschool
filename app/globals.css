@@ -463,7 +463,7 @@ img {
   background: var(--forest);
   color: white;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   padding: 1.2rem 5vw;
 }
 
@@ -2571,9 +2571,14 @@ img {
 }
 
 .rate-sheet-facts article {
+  align-items: center;
   background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-height: 145px;
   padding: 1.5rem;
+  text-align: center;
 }
 
 .rate-sheet-facts article > span {
@@ -4246,7 +4251,7 @@ body {
 
 @media (max-width: 960px) {
   .rate-sheet-facts {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .holiday-layout {
