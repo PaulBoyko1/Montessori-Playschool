@@ -224,7 +224,14 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
   }
 
   if (!outcomes.email && !outcomes.sms) {
-    return jsonResponse({ ok: false, channels: outcomes, error: "Notifications are not configured" }, 503);
+    return jsonResponse(
+      {
+        ok: false,
+        channels: outcomes,
+        error: "Email delivery failed. Check the Google Apps Script deployment and GOOGLE_WEBHOOK_SECRET.",
+      },
+      503,
+    );
   }
 
   return jsonResponse({ ok: true, channels: outcomes });
