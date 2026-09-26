@@ -2559,6 +2559,106 @@ img {
   margin: 1.3rem 0 0;
 }
 
+
+.rate-sheet-facts {
+  background: var(--line);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(4, 1fr);
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.rate-sheet-facts article {
+  background: var(--paper);
+  min-height: 145px;
+  padding: 1.5rem;
+}
+
+.rate-sheet-facts article > span {
+  color: var(--muted);
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.rate-sheet-facts article > strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.15;
+  margin-top: 1.25rem;
+}
+
+.rate-sheet-facts article > p {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin: 0.35rem 0 0;
+}
+
+.part-time-section {
+  padding-top: 0;
+}
+
+.compact-rate-table {
+  min-width: 520px;
+}
+
+.compact-rate-table tbody td {
+  font-size: 1.2rem;
+}
+
+.holiday-section {
+  background: var(--cream);
+}
+
+.holiday-layout {
+  align-items: start;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+}
+
+.holiday-rate-table {
+  background: var(--paper);
+  min-width: 620px;
+}
+
+.rate-policy-grid {
+  background: var(--line);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 1px;
+}
+
+.rate-policy-grid article {
+  background: var(--paper);
+  padding: 1.35rem 1.5rem;
+}
+
+.rate-policy-grid article > span {
+  color: var(--muted);
+  font-size: 0.62rem;
+}
+
+.rate-policy-grid h3 {
+  font-family: var(--display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0.45rem 0 0.45rem;
+}
+
+.rate-policy-grid p {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
 .fee-section {
   background: var(--soft-green);
 }
@@ -4141,4 +4241,33 @@ body {
   .page-enter-from-right,
   .page-enter-from-left { animation: none; }
   .accordion-panel { transition: none; }
+}
+
+
+@media (max-width: 960px) {
+  .rate-sheet-facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .holiday-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .rate-sheet-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .rate-sheet-facts article {
+    min-height: 0;
+  }
+
+  .compact-rate-table {
+    min-width: 500px;
+  }
+
+  .holiday-rate-table {
+    min-width: 560px;
+  }
 }
