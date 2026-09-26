@@ -83,7 +83,7 @@ test("keeps current public program structure and meal schedule", async () => {
   const meals = await render("/meals");
 
   assert.match(home.html, /birth through 9th grade/i);
-  assert.match(programs.html, /Age 3(?:–|&ndash;|&#x2013;)entry into kindergarten/i);
+  assert.match(programs.html, /24 months(?:–|&ndash;|&#x2013;)entry into kindergarten/i);
   assert.match(programs.html, /Kindergarten(?:–|&ndash;|&#x2013;)9th grade/i);
   assert.match(enrollment.html, /Infant, Preschool (?:&amp;|&) School Age/i);
 
@@ -148,13 +148,15 @@ test("renders the September 2026 rate sheet without weekly tuition pricing", asy
   assert.match(html, /\$2,700/);
   assert.match(html, /\$1,250/);
   assert.match(html, /\$1,400/);
-  assert.match(html, /\$18 \/ hour/);
-  assert.match(html, /\$8 \/ hour/);
+  assert.match(html, /Preschool:[\s\S]*24 months through entry into kindergarten/i);
+  assert.match(html, /Part-time schedules and pricing[\s\S]*discussed directly with the center/i);
   assert.match(html, /additional[\s\S]*\$75 per day/i);
   assert.match(html, /New Year(?:’|&rsquo;|&#x2019;)s Day/i);
   assert.match(html, /Thanksgiving Day/i);
   assert.match(html, /School supplies fee/i);
 
+  assert.doesNotMatch(html, /Hourly part-time rates/i);
+  assert.doesNotMatch(html, /\/ hour/i);
   assert.doesNotMatch(html, /Weekly reference rates/i);
   assert.doesNotMatch(html, /\/ week/i);
   assert.doesNotMatch(html, /\$1,450/);
