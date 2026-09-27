@@ -4520,9 +4520,37 @@ body {
   }
 }
 
-/* Home hero: exact white logo field */
+/* Home hero: guaranteed white logo panel */
 .home-page .hero {
   background: #ffffff;
+  isolation: isolate;
+}
+
+.home-page .hero-image {
+  z-index: 0;
+}
+
+.home-page .hero-wash {
+  z-index: 1;
+}
+
+.home-page .hero-content {
+  z-index: 3;
+}
+
+.home-page .hero::before {
+  background: #ffffff;
+  content: "";
+  inset: 0 auto 0 0;
+  position: absolute;
+  width: 50%;
+  z-index: 2;
+}
+
+.home-page .home-hero-logo {
+  filter: brightness(1.02);
+  position: relative;
+  z-index: 3;
 }
 
 @media (min-width: 621px) {
@@ -4537,26 +4565,28 @@ body {
       90deg,
       #ffffff 0%,
       #ffffff 46%,
-      rgba(255, 255, 255, 0.98) 49%,
-      rgba(255, 255, 255, 0.78) 54%,
-      rgba(255, 255, 255, 0.28) 63%,
-      rgba(255, 255, 255, 0) 76%
+      rgba(255, 255, 255, 0.98) 50%,
+      rgba(255, 255, 255, 0.72) 57%,
+      rgba(255, 255, 255, 0.22) 66%,
+      rgba(255, 255, 255, 0) 78%
     );
   }
 }
 
 @media (max-width: 620px) {
-  .home-page .hero {
-    background: #ffffff;
+  .home-page .hero::before {
+    height: 58%;
+    inset: 0 0 auto;
+    width: 100%;
   }
 
   .home-page .hero-wash {
     background: linear-gradient(
       180deg,
       #ffffff 0%,
-      #ffffff 50%,
-      rgba(255, 255, 255, 0.96) 58%,
-      rgba(255, 255, 255, 0) 78%
+      #ffffff 52%,
+      rgba(255, 255, 255, 0.96) 60%,
+      rgba(255, 255, 255, 0) 80%
     );
   }
 }
