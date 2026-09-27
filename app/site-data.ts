@@ -24,7 +24,7 @@ export const programs = [
   {
     slug: "infant",
     name: "Infant Program",
-    age: "Birth–24 months",
+    age: "Birth–23 months",
     summary:
       "Responsive care, peaceful routines, safe movement, language, and sensory discovery help our youngest children feel secure and ready to explore.",
   },
