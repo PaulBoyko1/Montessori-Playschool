@@ -62,7 +62,7 @@ export default function Home() {
             <img
               id="home-hero-logo"
               className="home-hero-logo"
-              src="/images/home-logo-attached.webp"
+              src="/images/montessori-playschool-logo.png"
               alt=""
               aria-hidden="true"
             />
