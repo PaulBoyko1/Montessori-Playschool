@@ -4520,5 +4520,43 @@ body {
   }
 }
 
+/* Home hero: exact white logo field */
+.home-page .hero {
+  background: #ffffff;
+}
 
+@media (min-width: 621px) {
+  .home-page .hero-image {
+    left: 46%;
+    right: 0;
+    width: 54%;
+  }
 
+  .home-page .hero-wash {
+    background: linear-gradient(
+      90deg,
+      #ffffff 0%,
+      #ffffff 46%,
+      rgba(255, 255, 255, 0.98) 49%,
+      rgba(255, 255, 255, 0.78) 54%,
+      rgba(255, 255, 255, 0.28) 63%,
+      rgba(255, 255, 255, 0) 76%
+    );
+  }
+}
+
+@media (max-width: 620px) {
+  .home-page .hero {
+    background: #ffffff;
+  }
+
+  .home-page .hero-wash {
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #ffffff 50%,
+      rgba(255, 255, 255, 0.96) 58%,
+      rgba(255, 255, 255, 0) 78%
+    );
+  }
+}
