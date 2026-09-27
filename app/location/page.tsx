@@ -29,11 +29,6 @@ export default function LocationPage() {
               {school.streetAddress}
               <span>{school.locality}</span>
             </a>
-            <p>
-              Open the exact destination in Google Maps for turn-by-turn
-              directions. On mobile, the link will open the Google Maps app
-              when it is available.
-            </p>
             <a
               className="button button-primary button-large"
               href={school.directionsUrl}
