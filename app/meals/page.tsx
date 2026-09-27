@@ -60,7 +60,6 @@ export default function MealsPage() {
           eyebrow="Weekly meals"
           title="Nourishment is"
           accent="part of care."
-          description="Familiar foods, balanced components, and a calm shared table give children energy for learning, movement, and play."
           image="/images/photos/selected/child-playdough.webp"
           imageAlt="A smiling young child enjoying a hands-on table activity"
         />
