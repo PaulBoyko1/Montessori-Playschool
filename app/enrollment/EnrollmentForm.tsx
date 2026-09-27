@@ -11,7 +11,7 @@ type ExtraChild = {
   age: string;
   months: string;
   program: string;
-  time: string;
+  schedule: string[];
 };
 
 const INFANT_PROGRAM = "Infant Program · Birth–23 months";
@@ -114,7 +114,7 @@ function normalizeExtraChildren(children: ExtraChild[]) {
     name: child.name.trim(),
     age: normalizeAgeInput(child.age, child.months).normalized,
     program: child.program,
-    time: child.time.trim(),
+    schedule: child.schedule,
   }));
 }
 
@@ -135,7 +135,7 @@ function buildMailto(data: FormData, children: ReturnType<typeof normalizeExtraC
       `Additional child ${index + 2}: ${child.name}`,
       `Age: ${child.age}`,
       `Program: ${child.program}`,
-      `Schedule / time: ${child.time}`,
+      `Schedule needs: ${child.schedule.join(", ") || "Not specified"}`,
     ]),
     "",
     `Additional information: ${data.get("message") || "None provided"}`,
@@ -177,6 +177,21 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
     );
   }
 
+  function toggleExtraChildSchedule(id: number, option: string) {
+    setExtraChildren((children) =>
+      children.map((child) => {
+        if (child.id !== id) return child;
+        const selected = child.schedule.includes(option);
+        return {
+          ...child,
+          schedule: selected
+            ? child.schedule.filter((item) => item !== option)
+            : [...child.schedule, option],
+        };
+      }),
+    );
+  }
+
   function addChild() {
     setExtraChildren((children) => [
       ...children,
@@ -186,7 +201,7 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
         age: "",
         months: "",
         program: "",
-        time: "",
+        schedule: [],
       },
     ]);
   }
@@ -242,16 +257,24 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
 
   if (submitState === "sent") {
     return (
-      <div className="form-success" role="status">
-        <span aria-hidden="true">✓</span>
-        <h2>Thank you. Your inquiry was sent.</h2>
-        <p>
-          Montessori Playschool received your information. We&apos;ll use the
-          phone number, text messaging, or email you provided to follow up.
-        </p>
-        <button type="button" onClick={() => setSubmitState("idle")}>
-          Send another inquiry
-        </button>
+      <div className="inquiry-success-overlay" role="status" aria-live="polite">
+        <div className="inquiry-success-panel">
+          <span className="inquiry-success-mark" aria-hidden="true">✓</span>
+          <p className="inquiry-success-eyebrow">Enrollment inquiry</p>
+          <h1>Your inquiry was sent.</h1>
+          <p>
+            Thank you for contacting Montessori Playschool. We received your
+            enrollment information and will follow up using the contact methods
+            you provided.
+          </p>
+          <button
+            className="button button-primary"
+            type="button"
+            onClick={() => setSubmitState("idle")}
+          >
+            Send another inquiry
+          </button>
+        </div>
       </div>
     );
   }
@@ -468,39 +491,41 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
             </div>
           </div>
 
-          <div className="form-split">
-            <div className="form-field">
-              <label htmlFor={`extra-child-program-${child.id}`}>Program</label>
-              <select
-                id={`extra-child-program-${child.id}`}
-                value={child.program}
-                onChange={(event) =>
-                  updateExtraChild(child.id, { program: event.target.value })
-                }
-                required
-              >
-                <option value="" disabled>
-                  Choose a program
-                </option>
-                <option value={INFANT_PROGRAM}>{INFANT_PROGRAM}</option>
-                <option value={PRESCHOOL_PROGRAM}>{PRESCHOOL_PROGRAM}</option>
-                <option value={SCHOOL_AGE_PROGRAM}>{SCHOOL_AGE_PROGRAM}</option>
-                <option value="Not sure yet">Not sure yet</option>
-              </select>
-            </div>
-
-            <div className="form-field">
-              <label htmlFor={`extra-child-time-${child.id}`}>Schedule / time</label>
-              <input
-                id={`extra-child-time-${child.id}`}
-                value={child.time}
-                onChange={(event) =>
-                  updateExtraChild(child.id, { time: event.target.value })
-                }
-                required
-              />
-            </div>
+          <div className="form-field">
+            <label htmlFor={`extra-child-program-${child.id}`}>Program</label>
+            <select
+              id={`extra-child-program-${child.id}`}
+              value={child.program}
+              onChange={(event) =>
+                updateExtraChild(child.id, { program: event.target.value })
+              }
+              required
+            >
+              <option value="" disabled>
+                Choose a program
+              </option>
+              <option value={INFANT_PROGRAM}>{INFANT_PROGRAM}</option>
+              <option value={PRESCHOOL_PROGRAM}>{PRESCHOOL_PROGRAM}</option>
+              <option value={SCHOOL_AGE_PROGRAM}>{SCHOOL_AGE_PROGRAM}</option>
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
           </div>
+
+          <fieldset>
+            <legend>Schedule needs</legend>
+            <div className="checkbox-grid">
+              {scheduleOptions.map((option) => (
+                <label key={option}>
+                  <input
+                    type="checkbox"
+                    checked={child.schedule.includes(option)}
+                    onChange={() => toggleExtraChildSchedule(child.id, option)}
+                  />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
         </section>
       ))}
 
