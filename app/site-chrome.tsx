@@ -86,7 +86,7 @@ export function SiteHeader({ current }: { current?: string }) {
       >
         <img
           className="brand-logo"
-          src="/images/montessori-playschool-brand.webp"
+          src="/images/montessori-playschool-logo-horizontal.png"
           alt="Montessori Playschool"
         />
       </Link>
