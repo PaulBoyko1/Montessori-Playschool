@@ -2154,15 +2154,84 @@ img {
   resize: vertical;
 }
 
-.age-input-row {
+.months-reveal {
+  animation: monthsReveal 180ms ease-out both;
   display: grid;
-  gap: 0.55rem;
-  grid-template-columns: minmax(0, 1fr) 112px;
+  gap: 0.4rem;
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 0.15rem;
 }
 
-.age-input-row input,
-.age-input-row select {
-  min-width: 0;
+.months-reveal label {
+  color: var(--muted);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+}
+
+.months-reveal input {
+  max-width: 180px;
+}
+
+@keyframes monthsReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.additional-child-card {
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.additional-child-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.additional-child-heading strong {
+  color: var(--forest);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+.remove-child-button {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.7rem;
+  padding: 0.25rem 0;
+  text-decoration: underline;
+  text-underline-offset: 0.18rem;
+}
+
+.add-child-button {
+  align-items: center;
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid var(--forest);
+  color: var(--forest);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  gap: 0.45rem;
+  padding: 0.7rem 0.95rem;
+}
+
+.add-child-button:hover {
+  background: var(--sage-pale);
 }
 
 .additional-info-field textarea::placeholder {
