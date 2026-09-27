@@ -4555,25 +4555,25 @@ body {
 
 @media (min-width: 621px) {
   .home-page .hero-image {
-    left: 50%;
+    left: 60%;
     right: 0;
-    width: 50%;
+    width: 40%;
   }
 
   .home-page .hero::before {
-    width: 56%;
+    width: 64%;
   }
 
   .home-page .hero-wash {
     background: linear-gradient(
       90deg,
       #ffffff 0%,
-      #ffffff 58%,
-      rgba(255, 255, 255, 0.97) 64%,
-      rgba(255, 255, 255, 0.86) 70%,
-      rgba(255, 255, 255, 0.62) 76%,
-      rgba(255, 255, 255, 0.30) 82%,
-      rgba(255, 255, 255, 0) 88%
+      #ffffff 64%,
+      rgba(255, 255, 255, 1) 68%,
+      rgba(255, 255, 255, 0.96) 70%,
+      rgba(255, 255, 255, 0.72) 72%,
+      rgba(255, 255, 255, 0.36) 74%,
+      rgba(255, 255, 255, 0) 76%
     );
   }
 }
