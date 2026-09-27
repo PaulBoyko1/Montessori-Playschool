@@ -41,6 +41,7 @@ export function SiteHeader({ current }: { current?: string }) {
   const pathname = usePathname();
   const activePath = current ?? pathname;
   const [menuOpen, setMenuOpen] = useState(false);
+  const [homeHeaderVisible, setHomeHeaderVisible] = useState(false);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -55,8 +56,30 @@ export function SiteHeader({ current }: { current?: string }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (pathname !== "/") {
+      setHomeHeaderVisible(true);
+      return;
+    }
+
+    setHomeHeaderVisible(false);
+
+    const heroLogo = document.getElementById("home-hero-logo");
+    if (!heroLogo) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHomeHeaderVisible(!entry.isIntersecting),
+      { threshold: 0.01 },
+    );
+
+    observer.observe(heroLogo);
+    return () => observer.disconnect();
+  }, [pathname]);
+
   return (
-    <header className="site-header">
+    <header
+      className={`site-header${pathname === "/" ? ` home-site-header ${homeHeaderVisible ? "is-visible" : "is-hidden"}` : ""}`}
+    >
       <Link
         className="brand"
         href="/"
@@ -209,14 +232,12 @@ export function InnerHero({
   eyebrow,
   title,
   accent,
-  description,
   image,
   imageAlt,
 }: {
   eyebrow: string;
   title: string;
   accent?: string;
-  description: string;
   image: string;
   imageAlt: string;
 }) {
@@ -234,7 +255,6 @@ export function InnerHero({
               </>
             )}
           </h1>
-          <p>{description}</p>
         </div>
         <div className="inner-hero-image">
           <img src={image} alt={imageAlt} />
