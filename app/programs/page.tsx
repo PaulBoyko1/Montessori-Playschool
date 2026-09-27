@@ -77,7 +77,6 @@ export default function ProgramsPage() {
           eyebrow="Programs · Birth through 9th grade"
           title="A place for"
           accent="every stage."
-          description="Responsive care, meaningful work, joyful play, and age-appropriate enrichment meet children where they are and help them grow with confidence."
           image="/images/photos/selected/teacher-group.webp"
           imageAlt="An educator leading a group of children in a classroom activity"
         />
