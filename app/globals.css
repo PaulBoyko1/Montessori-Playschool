@@ -4488,12 +4488,12 @@ body {
 }
 
 .home-hero-logo {
-  background: #fff;
+  background: #ffffff;
   height: auto;
-  max-height: min(56vh, 620px);
+  max-height: min(56vh, 600px);
   object-fit: contain;
   object-position: left center;
-  width: clamp(380px, 46vw, 680px);
+  width: clamp(340px, 43vw, 600px);
 }
 
 .home-page .hero-actions {
