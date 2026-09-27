@@ -4452,3 +4452,80 @@ body {
   margin: 0 auto 1.75rem;
   max-width: 560px;
 }
+
+
+/* Home logo handoff */
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.home-site-header {
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity 220ms ease, transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.home-site-header.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-110%);
+}
+
+.home-site-header.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.home-page .hero {
+  height: 100svh;
+  min-height: 680px;
+}
+
+.home-hero-logo {
+  height: auto;
+  max-height: min(52vh, 520px);
+  object-fit: contain;
+  object-position: left center;
+  width: clamp(300px, 38vw, 560px);
+}
+
+.home-page .hero-actions {
+  margin-top: 1.6rem;
+}
+
+.inner-hero-copy h1 {
+  margin-bottom: 0;
+}
+
+.contact-heading {
+  grid-template-columns: 1fr;
+}
+
+.gallery-heading > h1 {
+  margin-bottom: 0;
+}
+
+@media (max-width: 620px) {
+  .home-page .hero {
+    height: 100svh;
+    min-height: 660px;
+  }
+
+  .home-hero-logo {
+    max-height: 46vh;
+    width: min(82vw, 430px);
+  }
+}
