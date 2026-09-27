@@ -41,7 +41,7 @@ export function SiteHeader({ current }: { current?: string }) {
   const pathname = usePathname();
   const activePath = current ?? pathname;
   const [menuOpen, setMenuOpen] = useState(false);
-  const [homeHeaderVisible, setHomeHeaderVisible] = useState(false);
+  const [homeBrandVisible, setHomeBrandVisible] = useState(false);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -58,17 +58,17 @@ export function SiteHeader({ current }: { current?: string }) {
 
   useEffect(() => {
     if (pathname !== "/") {
-      setHomeHeaderVisible(true);
+      setHomeBrandVisible(true);
       return;
     }
 
-    setHomeHeaderVisible(false);
+    setHomeBrandVisible(false);
 
     const heroLogo = document.getElementById("home-hero-logo");
     if (!heroLogo) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setHomeHeaderVisible(!entry.isIntersecting),
+      ([entry]) => setHomeBrandVisible(!entry.isIntersecting),
       { threshold: 0.01 },
     );
 
@@ -77,11 +77,9 @@ export function SiteHeader({ current }: { current?: string }) {
   }, [pathname]);
 
   return (
-    <header
-      className={`site-header${pathname === "/" ? ` home-site-header ${homeHeaderVisible ? "is-visible" : "is-hidden"}` : ""}`}
-    >
+    <header className={`site-header${pathname === "/" ? " home-site-header" : ""}`}>
       <Link
-        className="brand"
+        className={`brand${pathname === "/" ? ` home-header-brand ${homeBrandVisible ? "is-visible" : "is-hidden"}` : ""}`}
         href="/"
         aria-label="Montessori Playschool home"
         onClick={() => rememberNavigationDirection(pathname, "/")}
