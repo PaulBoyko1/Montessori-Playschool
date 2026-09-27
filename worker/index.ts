@@ -62,7 +62,7 @@ function jsonResponse(body: unknown, status = 200): Response {
 
 
 const GOOGLE_INQUIRY_WEBHOOK =
-  "https://script.google.com/macros/s/AKfycbw_eO1rrIXEi9OuxyubyHhwOyI6LXlx-_fxfe5yvG42rvk9CbUPQAZPc3MwFuhn4K1TRg/exec";
+  "https://script.google.com/macros/s/AKfycbywO9BTHRR7Gb6VrPJrBUTx3Hq8jIlOnQcpywR6Zzmv6FGextY3GmvONryb_lNu5SB7bA/exec";
 
 async function sendInquiryEmail(
   env: Env,
