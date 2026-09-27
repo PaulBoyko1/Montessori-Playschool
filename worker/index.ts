@@ -34,6 +34,7 @@ type InquiryPayload = {
   schedule?: unknown;
   customDays?: unknown;
   message?: unknown;
+  additionalChildren?: unknown;
   smsConsent?: unknown;
   emailConsent?: unknown;
   website?: unknown;
@@ -50,6 +51,78 @@ function cleanSchedule(value: unknown): string[] {
     .map((item) => item.trim().slice(0, 80))
     .filter(Boolean)
     .slice(0, 12);
+}
+
+function normalizeAge(value: unknown): string {
+  const raw = clean(value, 80);
+  if (!raw) return "";
+
+  const lower = raw.toLowerCase().replace(/\s+/g, " ");
+
+  const combined = lower.match(
+    /^(\d+(?:\.\d+)?)\s*(?:years?|yrs?|yr|y)\s*(\d+)\s*(?:months?|mos?|mo|m)$/,
+  );
+  if (combined) {
+    const years = Number(combined[1]);
+    const months = Number(combined[2]);
+    return `${Number.isInteger(years) ? years : Number(years.toFixed(1))} ${
+      years === 1 ? "year" : "years"
+    } ${months} ${months === 1 ? "month" : "months"}`;
+  }
+
+  const monthsMatch = lower.match(
+    /^(\d+(?:\.\d+)?)\s*(?:months?|mos?|mo|m)$/,
+  );
+  if (monthsMatch) {
+    const months = Number(monthsMatch[1]);
+    return `${Number.isInteger(months) ? months : Number(months.toFixed(1))} ${
+      months === 1 ? "month" : "months"
+    }`;
+  }
+
+  const yearsMatch = lower.match(
+    /^(\d+(?:\.\d+)?)\s*(?:years?|yrs?|yr|y)$/,
+  );
+  if (yearsMatch) {
+    const years = Number(yearsMatch[1]);
+    return `${Number.isInteger(years) ? years : Number(years.toFixed(1))} ${
+      years === 1 ? "year" : "years"
+    }`;
+  }
+
+  if (/^\d+(?:\.\d+)?$/.test(lower)) {
+    const years = Number(lower);
+    return `${Number.isInteger(years) ? years : Number(years.toFixed(1))} ${
+      years === 1 ? "year" : "years"
+    }`;
+  }
+
+  return raw;
+}
+
+type AdditionalChild = {
+  name: string;
+  age: string;
+  program: string;
+  time: string;
+};
+
+function cleanAdditionalChildren(value: unknown): AdditionalChild[] {
+  if (!Array.isArray(value)) return [];
+
+  return value.slice(0, 8).map((item) => {
+    const child =
+      item && typeof item === "object"
+        ? (item as Record<string, unknown>)
+        : {};
+
+    return {
+      name: clean(child.name, 120),
+      age: normalizeAge(child.age),
+      program: clean(child.program, 180),
+      time: clean(child.time, 180),
+    };
+  });
 }
 
 function jsonResponse(body: unknown, status = 200): Response {
@@ -174,11 +247,12 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
   const email = clean(raw.email, 180);
   const phone = clean(raw.phone, 80);
   const child = clean(raw.child, 120);
-  const age = clean(raw.age, 80);
+  const age = normalizeAge(raw.age);
   const program = clean(raw.program, 180);
   const schedule = cleanSchedule(raw.schedule);
   const customDays = clean(raw.customDays, 240);
   const message = clean(raw.message, 1800);
+  const additionalChildren = cleanAdditionalChildren(raw.additionalChildren);
   const smsConsent = raw.smsConsent === true;
   const emailConsent = raw.emailConsent === true;
 
@@ -188,6 +262,17 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return jsonResponse({ ok: false, error: "Invalid email address" }, 400);
+  }
+
+  if (
+    additionalChildren.some(
+      (child) => !child.name || !child.age || !child.program || !child.time,
+    )
+  ) {
+    return jsonResponse(
+      { ok: false, error: "Please complete all added child fields" },
+      400,
+    );
   }
 
   if (!smsConsent || !emailConsent) {
@@ -203,9 +288,34 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
     `Phone: ${phone}`,
     `Child: ${child}, age ${age}`,
     `Program: ${program}`,
+    additionalChildren.length
+      ? `Additional children: ${additionalChildren.length}`
+      : "",
     `Email: ${email}`,
     "Full details sent by email.",
-  ].join("\n");
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const additionalChildrenText = additionalChildren.length
+    ? [
+        "ADDITIONAL CHILDREN",
+        ...additionalChildren.flatMap((child, index) => [
+          `Child ${index + 2}: ${child.name}`,
+          `Age: ${child.age}`,
+          `Program: ${child.program}`,
+          `Schedule / time: ${child.time}`,
+          "",
+        ]),
+      ].join("\n").trim()
+    : "";
+
+  const emailMessage = [
+    additionalChildrenText,
+    message ? `ADDITIONAL INFORMATION\n${message}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n\n");
 
   const outcomes = { email: false, sms: false };
 
@@ -219,7 +329,7 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
       program,
       schedule,
       customDays,
-      message,
+      message: emailMessage,
       smsConsent,
       emailConsent,
     });
