@@ -47,11 +47,6 @@ export default function EnrollmentPage() {
               <br />
               <em>your family.</em>
             </h1>
-            <p>
-              Montessori Playschool is welcoming enrollment inquiries from
-              birth through 9th grade. Share what you need and we&apos;ll help you
-              understand the next step.
-            </p>
           </div>
           <div className="enrollment-facts">
             <div>
