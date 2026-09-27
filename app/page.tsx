@@ -58,11 +58,14 @@ export default function Home() {
           />
           <div className="hero-wash" />
           <div className="hero-content">
-            <h1 id="hero-title">Montessori Playschool</h1>
-            <p className="hero-lede">
-              Warm, age-appropriate care for infants, preschoolers, and
-              school-age children from birth through 9th grade.
-            </p>
+            <h1 id="hero-title" className="visually-hidden">Montessori Playschool</h1>
+            <img
+              id="home-hero-logo"
+              className="home-hero-logo"
+              src="/images/montessori-playschool-logo-stacked.png"
+              alt=""
+              aria-hidden="true"
+            />
             <div className="hero-actions">
               <Link className="button button-primary" href="/contact#tour">
                 Schedule a Tour <span aria-hidden="true">→</span>
