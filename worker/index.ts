@@ -104,7 +104,7 @@ type AdditionalChild = {
   name: string;
   age: string;
   program: string;
-  time: string;
+  schedule: string[];
 };
 
 function cleanAdditionalChildren(value: unknown): AdditionalChild[] {
@@ -120,7 +120,7 @@ function cleanAdditionalChildren(value: unknown): AdditionalChild[] {
       name: clean(child.name, 120),
       age: normalizeAge(child.age),
       program: clean(child.program, 180),
-      time: clean(child.time, 180),
+      schedule: cleanSchedule(child.schedule),
     };
   });
 }
@@ -266,7 +266,7 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
 
   if (
     additionalChildren.some(
-      (child) => !child.name || !child.age || !child.program || !child.time,
+      (child) => !child.name || !child.age || !child.program,
     )
   ) {
     return jsonResponse(
@@ -304,7 +304,7 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
           `Child ${index + 2}: ${child.name}`,
           `Age: ${child.age}`,
           `Program: ${child.program}`,
-          `Schedule / time: ${child.time}`,
+          `Schedule needs: ${child.schedule.join(", ") || "Not specified"}`,
           "",
         ]),
       ].join("\n").trim()
