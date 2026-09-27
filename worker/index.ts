@@ -34,6 +34,8 @@ type InquiryPayload = {
   schedule?: unknown;
   customDays?: unknown;
   message?: unknown;
+  smsConsent?: unknown;
+  emailConsent?: unknown;
   website?: unknown;
 };
 
@@ -76,6 +78,8 @@ async function sendInquiryEmail(
     schedule: string[];
     customDays: string;
     message: string;
+    smsConsent: boolean;
+    emailConsent: boolean;
   },
 ): Promise<void> {
   const secret = env.GOOGLE_WEBHOOK_SECRET;
@@ -175,6 +179,8 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
   const schedule = cleanSchedule(raw.schedule);
   const customDays = clean(raw.customDays, 240);
   const message = clean(raw.message, 1800);
+  const smsConsent = raw.smsConsent === true;
+  const emailConsent = raw.emailConsent === true;
 
   if (!guardian || !email || !phone || !child || !age || !program) {
     return jsonResponse({ ok: false, error: "Please complete all required fields" }, 400);
@@ -182,6 +188,13 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return jsonResponse({ ok: false, error: "Invalid email address" }, 400);
+  }
+
+  if (!smsConsent || !emailConsent) {
+    return jsonResponse(
+      { ok: false, error: "SMS and email consent are required" },
+      400,
+    );
   }
 
   const smsText = [
@@ -207,6 +220,8 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
       schedule,
       customDays,
       message,
+      smsConsent,
+      emailConsent,
     });
     outcomes.email = true;
   } catch (error) {
