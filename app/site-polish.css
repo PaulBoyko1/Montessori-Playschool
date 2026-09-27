@@ -1395,38 +1395,39 @@
   }
 }
 
-/* About page: trim 20% from top and bottom of the opening photo */
+/* About page: fixed-height opening photo, centered vertically */
 .about-page .inner-hero-image {
   align-self: center;
-  height: 366px;
+  aspect-ratio: auto;
+  height: 480px;
   min-height: 0;
   overflow: hidden;
 }
 
 .about-page .inner-hero-image img {
-  height: 166.6667%;
+  height: 100%;
   object-fit: cover;
   object-position: 50% 50%;
-  position: absolute;
-  top: -33.3333%;
+  position: static;
   width: 100%;
 }
 
 @media (min-width: 761px) and (max-width: 900px) {
   .about-page .inner-hero-image {
-    height: 288px;
+    height: 420px;
   }
 }
 
 @media (max-width: 760px) {
   .about-page .inner-hero-image {
-    aspect-ratio: 4 / 3;
-    height: auto;
+    aspect-ratio: auto;
+    height: 340px;
     min-height: 0;
   }
 
   .about-page .inner-hero-image img {
-    height: 166.6667%;
-    top: -33.3333%;
+    height: 100%;
+    object-position: 50% 50%;
+    position: static;
   }
 }
