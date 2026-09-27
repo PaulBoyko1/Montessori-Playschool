@@ -4555,26 +4555,35 @@ body {
 
 @media (min-width: 621px) {
   .home-page .hero-image {
-    left: 60%;
+    left: 58%;
     right: 0;
-    width: 40%;
+    width: 42%;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.08) 2%,
+      rgba(0, 0, 0, 0.35) 5%,
+      rgba(0, 0, 0, 0.72) 8%,
+      #000000 11%,
+      #000000 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.08) 2%,
+      rgba(0, 0, 0, 0.35) 5%,
+      rgba(0, 0, 0, 0.72) 8%,
+      #000000 11%,
+      #000000 100%
+    );
   }
 
   .home-page .hero::before {
-    width: 64%;
+    width: 58%;
   }
 
   .home-page .hero-wash {
-    background: linear-gradient(
-      90deg,
-      #ffffff 0%,
-      #ffffff 64%,
-      rgba(255, 255, 255, 1) 68%,
-      rgba(255, 255, 255, 0.96) 70%,
-      rgba(255, 255, 255, 0.72) 72%,
-      rgba(255, 255, 255, 0.36) 74%,
-      rgba(255, 255, 255, 0) 76%
-    );
+    display: none;
   }
 }
 
