@@ -30,8 +30,8 @@ const rates = [
     evening: 1900,
   },
   {
-    age: "Preschool: age 3 through entry into kindergarten",
-    mobileAge: "Preschool age 3–K",
+    age: "Preschool: 24 months through entry into kindergarten",
+    mobileAge: "Preschool 24 mo.–K",
     day: 1350,
     evening: 1500,
   },
