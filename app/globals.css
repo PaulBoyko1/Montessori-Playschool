@@ -2154,6 +2154,22 @@ img {
   resize: vertical;
 }
 
+.age-input-row {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: minmax(0, 1fr) 112px;
+}
+
+.age-input-row input,
+.age-input-row select {
+  min-width: 0;
+}
+
+.additional-info-field textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.62;
+}
+
 .form-field input:focus,
 .form-field select:focus,
 .form-field textarea:focus {
