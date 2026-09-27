@@ -108,11 +108,6 @@ export default function GalleryPage() {
             <br />
             <em>joy, and belonging.</em>
           </h1>
-          <p>
-            Real classroom moments from our daycare community—children learning,
-            creating, moving, and building relationships with the educators who
-            care for them each day.
-          </p>
           <nav className="gallery-jump-links" aria-label="Gallery categories">
             {galleryGroups.map((group) => (
               <a href={`#${group.id}`} key={group.id}>{group.eyebrow}</a>
