@@ -276,10 +276,11 @@ img {
 .hero-wash {
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.99) 0%,
-    rgba(255, 255, 255, 0.9) 28%,
-    rgba(255, 255, 255, 0.2) 58%,
-    rgba(255, 255, 255, 0) 76%
+    #ffffff 0%,
+    #ffffff 42%,
+    rgba(255, 255, 255, 0.88) 52%,
+    rgba(255, 255, 255, 0.3) 65%,
+    rgba(255, 255, 255, 0) 78%
   );
   inset: 0;
   position: absolute;
@@ -1159,10 +1160,10 @@ img {
   .hero-wash {
     background: linear-gradient(
       180deg,
-      var(--cream) 0%,
-      var(--cream) 45%,
-      rgba(248, 243, 233, 0.95) 57%,
-      rgba(248, 243, 233, 0) 78%
+      #ffffff 0%,
+      #ffffff 45%,
+      rgba(255, 255, 255, 0.95) 57%,
+      rgba(255, 255, 255, 0) 78%
     );
   }
 
