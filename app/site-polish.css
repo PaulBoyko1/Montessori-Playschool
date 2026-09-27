@@ -1394,3 +1394,39 @@
     padding: 0.95rem 0.75rem;
   }
 }
+
+/* About page: trim 20% from top and bottom of the opening photo */
+.about-page .inner-hero-image {
+  align-self: center;
+  height: 366px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.about-page .inner-hero-image img {
+  height: 166.6667%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  position: absolute;
+  top: -33.3333%;
+  width: 100%;
+}
+
+@media (min-width: 761px) and (max-width: 900px) {
+  .about-page .inner-hero-image {
+    height: 288px;
+  }
+}
+
+@media (max-width: 760px) {
+  .about-page .inner-hero-image {
+    aspect-ratio: 4 / 3;
+    height: auto;
+    min-height: 0;
+  }
+
+  .about-page .inner-hero-image img {
+    height: 166.6667%;
+    top: -33.3333%;
+  }
+}
