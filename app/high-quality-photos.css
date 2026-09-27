@@ -3,7 +3,7 @@
    faces and interactions at desktop, tablet, and phone aspect ratios. */
 
 .home-page .hero {
-  background: var(--cream);
+  background: #ffffff;
   height: min(860px, calc(100vh - 40px));
   min-height: 720px;
 }
@@ -122,10 +122,10 @@
     background:
       linear-gradient(
         180deg,
-        var(--cream) 0%,
-        var(--cream) 40%,
-        rgba(248, 243, 233, 0.93) 54%,
-        rgba(248, 243, 233, 0.12) 76%
+        #ffffff 0%,
+        #ffffff 40%,
+        rgba(255, 255, 255, 0.93) 54%,
+        rgba(255, 255, 255, 0.12) 76%
       );
   }
 }

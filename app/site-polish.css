@@ -1044,7 +1044,7 @@
      always contained in full, while a very soft duplicate behind it fills any
      unused space without cropping children out of the foreground photo. */
   .home-page .hero {
-    background: var(--cream);
+    background: #ffffff;
     display: block;
     height: calc(100svh - 72px);
     min-height: 0;
@@ -1054,7 +1054,7 @@
 
   .home-page .hero::before {
     background:
-      linear-gradient(rgba(255, 253, 247, 0.08), rgba(255, 253, 247, 0.08)),
+      linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)),
       url("/images/photos/selected/group-circle.webp") center 38% / cover no-repeat;
     content: "";
     filter: blur(18px) saturate(0.88);
@@ -1087,11 +1087,11 @@
   .home-page .hero-wash {
     background: linear-gradient(
       180deg,
-      rgba(255, 253, 247, 0) 0%,
-      rgba(255, 253, 247, 0) 68%,
-      rgba(255, 253, 247, 0.18) 75%,
-      rgba(255, 253, 247, 0.78) 88%,
-      var(--cream) 100%
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 68%,
+      rgba(255, 255, 255, 0.18) 75%,
+      rgba(255, 255, 255, 0.78) 88%,
+      #ffffff 100%
     );
     display: block;
     inset: 0;
