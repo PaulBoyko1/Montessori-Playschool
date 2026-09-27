@@ -4468,38 +4468,31 @@ body {
   width: 1px;
 }
 
-.home-site-header {
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  transition: opacity 220ms ease, transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+.home-header-brand {
+  transition: opacity 260ms ease, transform 260ms ease, visibility 260ms ease;
   will-change: opacity, transform;
 }
 
-.home-site-header.is-hidden {
+.home-header-brand.is-hidden {
   opacity: 0;
   pointer-events: none;
-  transform: translateY(-110%);
+  transform: translateY(-4px);
+  visibility: hidden;
 }
 
-.home-site-header.is-visible {
+.home-header-brand.is-visible {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
-}
-
-.home-page .hero {
-  height: 100svh;
-  min-height: 680px;
+  visibility: visible;
 }
 
 .home-hero-logo {
   height: auto;
-  max-height: min(52vh, 520px);
+  max-height: min(52vh, 540px);
   object-fit: contain;
   object-position: left center;
-  width: clamp(300px, 38vw, 560px);
+  width: clamp(340px, 43vw, 620px);
 }
 
 .home-page .hero-actions {
@@ -4519,13 +4512,8 @@ body {
 }
 
 @media (max-width: 620px) {
-  .home-page .hero {
-    height: 100svh;
-    min-height: 660px;
-  }
-
   .home-hero-logo {
-    max-height: 46vh;
-    width: min(82vw, 430px);
+    max-height: 44vh;
+    width: min(86vw, 430px);
   }
 }
