@@ -1414,9 +1414,13 @@
 
 
 @media (min-width: 901px) {
+  .about-page .inner-hero {
+    min-height: 788px;
+  }
+
   .about-page .inner-hero-image {
     height: 788px;
-    margin-top: -80px;
+    margin-top: 0;
   }
 }
 
