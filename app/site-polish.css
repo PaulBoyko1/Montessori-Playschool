@@ -1600,26 +1600,27 @@
     display: block;
     height: auto;
     left: 50%;
-    max-height: 24.8svh;
-    max-width: none;
+    max-height: 11svh;
+    max-width: calc(100% - 60px);
     object-fit: contain;
     position: absolute;
-    top: calc(env(safe-area-inset-top) + 12px);
+    top: 0.75svh;
     transform: translateX(-50%);
-    width: calc(80% - 48px);
+    width: auto;
     z-index: 4;
   }
 
   .home-page .home-mobile-hero-wordmark {
-    bottom: 86px;
+    bottom: 76px;
     display: block;
     height: auto;
-    left: 30px;
-    max-height: 17svh;
+    left: 50%;
+    max-height: 16.15svh;
     max-width: none;
     object-fit: contain;
     position: absolute;
-    width: calc(100% - 60px);
+    transform: translateX(-50%);
+    width: calc(95% - 57px);
     z-index: 4;
   }
 
