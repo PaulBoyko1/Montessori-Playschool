@@ -149,9 +149,12 @@ test("renders current tuition cleanly without weekly pricing or admin clutter", 
   assert.match(html, /\$1,250/);
   assert.match(html, /\$1,400/);
   assert.match(html, /Preschool:[\s\S]*24 months through entry into kindergarten/i);
-  assert.match(html, /Hourly part-time rates/i);
-  assert.match(html, /\$18 \/ hour/i);
-  assert.match(html, /\$8 \/ hour/i);
+  assert.doesNotMatch(html, /Hourly part-time rates/i);
+  assert.doesNotMatch(html, /Part-time care/i);
+  assert.doesNotMatch(html, /\$18 \/ hour/i);
+  assert.doesNotMatch(html, /\$15 \/ hour/i);
+  assert.doesNotMatch(html, /\$10 \/ hour/i);
+  assert.doesNotMatch(html, /\$8 \/ hour/i);
   assert.match(html, /additional[\s\S]*\$75 per day/i);
   assert.match(html, /New Year(?:’|&rsquo;|&#x2019;)s Day/i);
   assert.match(html, /Thanksgiving Day/i);

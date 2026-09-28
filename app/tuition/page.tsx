@@ -58,13 +58,6 @@ const ratePolicies = [
   },
 ];
 
-const partTimeRates = [
-  ["0–6 months", "$18 / hour"],
-  ["6–12 months", "$15 / hour"],
-  ["12 months–2 years", "$10 / hour"],
-  ["2–6 years", "$8 / hour"],
-];
-
 export default function TuitionPage() {
   return (
     <>
@@ -107,37 +100,6 @@ export default function TuitionPage() {
             If a schedule overlaps the day and evening programs, the
             evening-program rate applies.
           </p>
-        </section>
-
-        <section className="part-time-section content-section">
-          <div className="section-heading">
-            <div>
-              <p className="section-label">Part-time care</p>
-              <h2>Hourly rates by age.</h2>
-            </div>
-            <p>
-              Hourly rates are based on the child&apos;s age at the time of care.
-            </p>
-          </div>
-          <div className="rate-table-wrap">
-            <table className="rate-table compact-rate-table">
-              <caption>Hourly part-time rates</caption>
-              <thead>
-                <tr>
-                  <th scope="col">Child&apos;s age</th>
-                  <th scope="col">Part-time care rate</th>
-                </tr>
-              </thead>
-              <tbody>
-                {partTimeRates.map(([age, rate]) => (
-                  <tr key={age}>
-                    <th scope="row">{age}</th>
-                    <td>{rate}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </section>
 
         <section className="fee-section">
