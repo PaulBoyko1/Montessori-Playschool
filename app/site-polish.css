@@ -1463,9 +1463,11 @@
   }
 }
 
-/* About desktop hero: shift visible crop upward without changing frame size. */
+/* About desktop hero: shift the crop window 50px upward.
+   Because the cover image is taller than its frame, the image itself must move
+   DOWN 50px to reveal 50px more from the top and crop 50px more from the bottom. */
 @media (min-width: 901px) {
   .about-page .inner-hero-image img {
-    object-position: 50% calc(50% - 50px);
+    object-position: 50% calc(50% + 50px);
   }
 }
