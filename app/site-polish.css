@@ -1572,9 +1572,10 @@
   }
 
   .home-page .hero-image {
-    height: 100%;
+    height: calc(100% - 12.5svh);
     object-fit: contain;
     object-position: center top;
+    top: 12.5svh;
     width: 100%;
   }
 
@@ -1598,13 +1599,14 @@
   .home-page .home-mobile-hero-symbol {
     display: block;
     height: auto;
-    left: 30px;
-    max-height: 31svh;
+    left: 50%;
+    max-height: 24.8svh;
     max-width: none;
     object-fit: contain;
     position: absolute;
-    top: calc(env(safe-area-inset-top) + 18px);
-    width: calc(100% - 60px);
+    top: calc(env(safe-area-inset-top) + 12px);
+    transform: translateX(-50%);
+    width: calc(80% - 48px);
     z-index: 4;
   }
 
