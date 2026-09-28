@@ -1412,6 +1412,14 @@
   width: 100%;
 }
 
+
+@media (min-width: 901px) {
+  .about-page .inner-hero-image {
+    height: 788px;
+    margin-top: -80px;
+  }
+}
+
 @media (min-width: 761px) and (max-width: 900px) {
   .about-page .inner-hero-image {
     height: 420px;
