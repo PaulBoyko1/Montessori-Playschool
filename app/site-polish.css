@@ -1462,3 +1462,10 @@
     width: 100%;
   }
 }
+
+/* About desktop hero: shift visible crop upward without changing frame size. */
+@media (min-width: 901px) {
+  .about-page .inner-hero-image img {
+    object-position: 50% calc(50% - 50px);
+  }
+}
