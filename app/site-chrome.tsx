@@ -42,6 +42,7 @@ export function SiteHeader({ current }: { current?: string }) {
   const activePath = current ?? pathname;
   const [menuOpen, setMenuOpen] = useState(false);
   const [homeBrandVisible, setHomeBrandVisible] = useState(false);
+  const [homeScrolled, setHomeScrolled] = useState(false);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -55,6 +56,21 @@ export function SiteHeader({ current }: { current?: string }) {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [menuOpen]);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setHomeScrolled(false);
+      return;
+    }
+
+    const updateHomeScrollState = () => {
+      setHomeScrolled(window.scrollY > 16);
+    };
+
+    updateHomeScrollState();
+    window.addEventListener("scroll", updateHomeScrollState, { passive: true });
+    return () => window.removeEventListener("scroll", updateHomeScrollState);
+  }, [pathname]);
 
   useEffect(() => {
     if (pathname !== "/") {
@@ -77,7 +93,16 @@ export function SiteHeader({ current }: { current?: string }) {
   }, [pathname]);
 
   return (
-    <header className={`site-header${pathname === "/" ? " home-site-header" : ""}`}>
+    <header
+      className={[
+        "site-header",
+        pathname === "/" ? "home-site-header" : "",
+        pathname === "/" && homeScrolled ? "is-home-scrolled" : "",
+        pathname === "/" && menuOpen ? "is-menu-open" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
       <Link
         className={`brand${pathname === "/" ? ` home-header-brand ${homeBrandVisible ? "is-visible" : "is-hidden"}` : ""}`}
         href="/"
