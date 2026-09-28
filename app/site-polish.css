@@ -1472,15 +1472,18 @@
   }
 }
 
-
 /* Homepage responsive brand/header treatment — desktop and phone only. */
 .home-page .home-hero-logo {
   background: transparent;
 }
 
-/* Wide desktop only: make the main hero logo substantially larger, then let
-   it scale down continuously as the browser narrows toward the existing
-   1320px navigation breakpoint. Tablet rules remain unchanged. */
+.home-mobile-hero-symbol,
+.home-mobile-hero-wordmark {
+  display: none;
+}
+
+/* Wide desktop only: the full transparent stacked logo grows on large screens
+   and scales down continuously toward the existing 1320px breakpoint. */
 @media (min-width: 1321px) {
   .home-page .hero-content {
     max-width: 780px;
@@ -1493,9 +1496,7 @@
   }
 }
 
-/* Phone homepage only. The header occupies no layout space at the top:
-   the photograph begins at the top of the viewport, the transparent stacked
-   logo sits over it, and only the hamburger control is visible. */
+/* Phone homepage only. Tablet layout (761px–1320px) is intentionally untouched. */
 @media (max-width: 760px) {
   .home-site-header {
     background: transparent;
@@ -1558,8 +1559,23 @@
 
   .home-page .hero,
   .home-page .hero.hero {
+    background: #ffffff;
     height: 100svh;
     min-height: 100svh;
+  }
+
+  /* Do not use the blurred cover duplicate on phones. The actual hero photo
+     remains fully visible with object-fit: contain; any unused viewport space
+     stays white for the lower wordmark. */
+  .home-page .hero::before {
+    display: none;
+  }
+
+  .home-page .hero-image {
+    height: 100%;
+    object-fit: contain;
+    object-position: center top;
+    width: 100%;
   }
 
   .home-page .hero-content {
@@ -1576,14 +1592,33 @@
   }
 
   .home-page .home-hero-logo {
-    background: transparent;
-    left: 0.75rem;
-    max-height: none;
+    display: none;
+  }
+
+  .home-page .home-mobile-hero-symbol {
+    display: block;
+    height: auto;
+    left: 30px;
+    max-height: 31svh;
     max-width: none;
-    object-position: left top;
+    object-fit: contain;
     position: absolute;
-    top: 0.75rem;
-    width: min(72vw, 300px);
+    top: calc(env(safe-area-inset-top) + 18px);
+    width: calc(100% - 60px);
+    z-index: 4;
+  }
+
+  .home-page .home-mobile-hero-wordmark {
+    bottom: 86px;
+    display: block;
+    height: auto;
+    left: 30px;
+    max-height: 17svh;
+    max-width: none;
+    object-fit: contain;
+    position: absolute;
+    width: calc(100% - 60px);
+    z-index: 4;
   }
 
   .home-page .hero-actions {

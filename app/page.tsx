@@ -66,6 +66,18 @@ export default function Home() {
               alt=""
               aria-hidden="true"
             />
+            <img
+              className="home-mobile-hero-symbol"
+              src="/images/montessori-playschool-symbol-transparent.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <img
+              className="home-mobile-hero-wordmark"
+              src="/images/montessori-playschool-wordmark-transparent.svg"
+              alt=""
+              aria-hidden="true"
+            />
             <div className="hero-actions">
               <Link className="button button-primary" href="/contact#tour">
                 Schedule a Tour <span aria-hidden="true">→</span>
