@@ -1395,39 +1395,16 @@
   }
 }
 
-/* About page: fixed-height opening photo, centered vertically */
-.about-page .inner-hero-image {
-  align-self: center;
-  aspect-ratio: auto;
-  height: 708px;
-  min-height: 0;
-  overflow: hidden;
-}
-
+/* About page focal point; desktop sizing is handled by the shared hero rule below. */
 .about-page .inner-hero-image img {
-  height: 100%;
-  object-fit: cover;
   object-position: 50% 50%;
-  position: static;
-  width: 100%;
-}
-
-
-@media (min-width: 901px) {
-  .about-page .inner-hero {
-    min-height: 788px;
-    overflow: visible;
-  }
-
-  .about-page .inner-hero-image {
-    height: 868px;
-    margin-top: -80px;
-  }
 }
 
 @media (min-width: 761px) and (max-width: 900px) {
   .about-page .inner-hero-image {
+    aspect-ratio: auto;
     height: 420px;
+    min-height: 0;
   }
 }
 
@@ -1441,6 +1418,47 @@
   .about-page .inner-hero-image img {
     height: 100%;
     object-position: 50% 50%;
-    position: static;
+  }
+}
+
+/* Desktop opening heroes fill the browser viewport from below the header
+   to the bottom edge, with no blank strip beneath the photo. */
+@media (min-width: 901px) and (max-width: 1320px) {
+  .inner-hero {
+    height: calc(100vh - 120px);
+    min-height: calc(100vh - 120px);
+    overflow: hidden;
+  }
+
+  .inner-hero-image {
+    align-self: stretch;
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+  }
+
+  .inner-hero-image img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1321px) {
+  .inner-hero {
+    height: calc(100vh - 96px);
+    min-height: calc(100vh - 96px);
+    overflow: hidden;
+  }
+
+  .inner-hero-image {
+    align-self: stretch;
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+  }
+
+  .inner-hero-image img {
+    height: 100%;
+    width: 100%;
   }
 }
