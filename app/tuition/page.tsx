@@ -54,7 +54,7 @@ const ratePolicies = [
   },
   {
     title: "Custom schedules",
-    text: "Need care outside a standard schedule? Contact us to discuss custom drop-off and pick-up times that may work for your family.",
+    text: "Need care outside a standard schedule? Contact us to discuss custom times that may work for your family.",
   },
 ];
 
@@ -97,8 +97,8 @@ export default function TuitionPage() {
         <section className="rate-section content-section">
           <RateTable />
           <p className="rate-note">
-            Need a custom schedule? Contact us to discuss drop-off and pick-up
-            times that may work for your family.
+            Need a custom schedule? Contact us to discuss times that may work
+            for your family.
           </p>
         </section>
 
