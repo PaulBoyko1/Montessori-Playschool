@@ -58,27 +58,23 @@ export function SiteHeader({ current }: { current?: string }) {
   }, [menuOpen]);
 
   useEffect(() => {
-    if (pathname !== "/") {
-      setHomeScrolled(false);
-      return;
-    }
+    if (pathname !== "/") return;
 
     const updateHomeScrollState = () => {
       setHomeScrolled(window.scrollY > 16);
     };
 
-    updateHomeScrollState();
+    const frame = window.requestAnimationFrame(updateHomeScrollState);
     window.addEventListener("scroll", updateHomeScrollState, { passive: true });
-    return () => window.removeEventListener("scroll", updateHomeScrollState);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateHomeScrollState);
+    };
   }, [pathname]);
 
   useEffect(() => {
-    if (pathname !== "/") {
-      setHomeBrandVisible(true);
-      return;
-    }
-
-    setHomeBrandVisible(false);
+    if (pathname !== "/") return;
 
     const heroLogo = document.getElementById("home-hero-logo");
     if (!heroLogo) return;
