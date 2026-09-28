@@ -53,8 +53,8 @@ const ratePolicies = [
     text: "Tuition remains due regardless of a child’s attendance, including vacation, illness, or other absences.",
   },
   {
-    title: "Schedule overlap",
-    text: "If a child’s schedule overlaps the day and evening programs, the evening-program rate applies.",
+    title: "Custom schedules",
+    text: "Need care outside a standard schedule? Contact us to discuss custom drop-off and pick-up times that may work for your family.",
   },
 ];
 
@@ -97,8 +97,8 @@ export default function TuitionPage() {
         <section className="rate-section content-section">
           <RateTable />
           <p className="rate-note">
-            If a schedule overlaps the day and evening programs, the
-            evening-program rate applies.
+            Need a custom schedule? Contact us to discuss drop-off and pick-up
+            times that may work for your family.
           </p>
         </section>
 

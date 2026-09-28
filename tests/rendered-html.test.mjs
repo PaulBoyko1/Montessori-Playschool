@@ -165,6 +165,9 @@ test("renders current tuition cleanly without weekly pricing or admin clutter", 
   assert.doesNotMatch(html, /Type of care/i);
   assert.doesNotMatch(html, /Weekly reference rates/i);
   assert.doesNotMatch(html, /\/ week/i);
+  assert.doesNotMatch(html, /schedule overlaps the day and evening programs/i);
+  assert.match(html, /Need a custom schedule\?/i);
+  assert.match(html, /custom drop-off and pick-up times/i);
   assert.doesNotMatch(html, /\$1,450/);
   assert.doesNotMatch(html, /\$1,600/);
   assert.doesNotMatch(html, /Part-time attendance/i);
