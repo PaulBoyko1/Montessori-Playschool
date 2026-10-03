@@ -1,5 +1,5 @@
-/* Final responsive polish and small-screen safeguards. This file intentionally
-   loads after the legacy design CSS so fixes stay isolated and easy to audit. */
+/* Responsive layout, branding, and page-specific presentation rules.
+   This file contains the intentional final rules that sit above the shared base styles. */
 
 /* Long contact values should never force horizontal scrolling. */
 .footer-column a,
@@ -108,36 +108,6 @@
 }
 
 @media (max-width: 760px) {
-  .site-header {
-    min-height: 84px;
-    padding: 0.2rem 0.75rem;
-  }
-
-  .brand {
-    max-width: calc(100vw - 76px);
-    min-height: 72px;
-  }
-
-  .brand-logo {
-    height: 70px;
-    max-width: min(72vw, 250px);
-  }
-
-  .mobile-menu-button {
-    height: 48px;
-    min-height: 48px;
-    min-width: 48px;
-    width: 48px;
-  }
-
-  .mobile-menu nav {
-    max-height: calc(100dvh - 96px);
-    right: -0.1rem;
-    top: calc(100% + 0.35rem);
-    width: min(350px, calc(100vw - 1rem));
-  }
-
-
   .button,
 .header-cta {
     max-width: 100%;
@@ -176,12 +146,12 @@
 
   .brand {
     max-width: calc(100vw - 70px);
-    min-height: 62px;
+    min-height: 58px;
   }
 
   .brand-logo {
-    height: 58px;
-    max-width: min(68vw, 215px);
+    height: 48px;
+    max-width: min(67vw, 188px);
     object-fit: contain;
   }
 
@@ -193,8 +163,9 @@
   }
 
   .mobile-menu nav {
+    background: var(--paper);
     border-radius: 18px;
-    box-shadow: 0 22px 55px rgba(20, 45, 36, 0.2);
+    box-shadow: 0 22px 55px rgba(87, 45, 7, 0.18);
     left: 0.75rem;
     max-height: calc(100dvh - 84px);
     padding: 0.5rem;
@@ -215,63 +186,13 @@
   }
 
   .mobile-menu nav a[aria-current="page"] {
-    background: var(--soft-green);
-    color: var(--forest-deep);
+    background: #fff6c9;
+    color: var(--brand-brown);
   }
 
   .mobile-menu nav .mobile-tour-link {
     justify-content: center;
     min-height: 50px;
-  }
-
-  /* Home hero: keep the whole group readable instead of making the portrait
-     photo behave like a landscape crop. */
-  .home-page .hero {
-    min-height: 760px;
-  }
-
-  .home-page .hero-content {
-    left: 1rem;
-    max-width: calc(100% - 2rem);
-    top: 2.8rem;
-  }
-
-  .home-page .hero h1 {
-    font-size: clamp(3rem, 14.5vw, 4.15rem);
-    line-height: 0.92;
-  }
-
-
-  .home-page .hero-actions {
-    margin-top: 1.35rem;
-  }
-
-  .home-page .hero-actions .button {
-    width: min(100%, 285px);
-  }
-
-  .home-page .hero-image {
-    bottom: 0;
-    height: 49%;
-    left: 50%;
-    max-width: 430px;
-    object-fit: contain;
-    object-position: center bottom;
-    right: auto;
-    top: auto;
-    transform: translateX(-50%);
-    width: 100%;
-  }
-
-  .home-page .hero-wash {
-    background: linear-gradient(
-      180deg,
-      var(--cream) 0%,
-      var(--cream) 45%,
-      rgba(255, 255, 255, 0.96) 52%,
-      rgba(255, 255, 255, 0.48) 61%,
-      rgba(255, 255, 255, 0) 72%
-    );
   }
 
   /* Tighter, more consistent vertical rhythm throughout the phone layout. */
@@ -299,11 +220,6 @@
     font-size: 0.62rem;
     letter-spacing: 0.13em;
   }
-
-  .section-divider {
-    height: 26px;
-  }
-
 
   /* Inner page heroes become a compact text block followed by a photo whose
      aspect ratio matches the underlying source instead of one generic crop. */
@@ -355,10 +271,6 @@
     aspect-ratio: 4 / 3;
   }
 
-  .about-page .inner-hero-image img {
-    object-position: 50% 28%;
-  }
-
   .programs-page .inner-hero-image img {
     object-position: 50% 35%;
   }
@@ -369,10 +281,6 @@
 
   .tuition-page .inner-hero-image img {
     object-position: 50% 42%;
-  }
-
-  .hero-section-divider {
-    height: 24px;
   }
 
   /* Cards should read as compact tap targets, not desktop tiles stacked one
@@ -748,23 +656,25 @@
 /* Montessori Playschool brand refresh                                        */
 /* -------------------------------------------------------------------------- */
 .site-header {
-  background: rgba(255, 253, 247, 0.98);
+  background: rgba(255, 255, 255, 0.98);
 }
 
 @media (min-width: 1321px) {
   .site-header {
-    grid-template-columns: minmax(205px, 235px) minmax(0, 1fr) auto;
+    grid-template-columns: minmax(285px, 345px) minmax(0, 1fr) auto;
     min-height: 96px;
     padding-block: 0.35rem;
   }
 
   .brand {
-    min-height: 82px;
+    min-height: 86px;
   }
 
   .brand-logo {
-    height: 58px;
-    max-width: 230px;
+    height: 82px;
+    max-width: 340px;
+    object-fit: contain;
+    object-position: left center;
     width: auto;
   }
 }
@@ -818,7 +728,7 @@
 }
 
 .footer-brand > a {
-  background: var(--brand-cream);
+  background: #ffffff;
   border: 1px solid rgba(252, 209, 7, 0.38);
   border-radius: 18px;
   padding: 0.7rem;
@@ -870,26 +780,7 @@
 
 @media (max-width: 760px) {
   .site-header {
-    background: rgba(255, 253, 247, 0.99);
-  }
-
-  .brand-logo {
-    height: 48px;
-    max-width: min(67vw, 188px);
-  }
-
-  .brand {
-    min-height: 58px;
-  }
-
-  .mobile-menu nav {
-    background: var(--paper);
-    box-shadow: 0 22px 55px rgba(87, 45, 7, 0.18);
-  }
-
-  .mobile-menu nav a[aria-current="page"] {
-    background: #fff6c9;
-    color: var(--brand-brown);
+    background: rgba(255, 255, 255, 0.99);
   }
 
   .footer-brand > a {
@@ -901,21 +792,8 @@
   }
 }
 
-
 /* -------------------------------------------------------------------------- */
-/* Mobile hero + brand cleanup                                                 */
-/* -------------------------------------------------------------------------- */
-
-.site-header {
-  background: rgba(255, 255, 255, 0.98);
-}
-
-.footer-brand > a {
-  background: #ffffff;
-}
-
-/* Keep section breaks simple. The earlier decorative leaf no longer matches
-   the current logo system, so the divider is now just a quiet neutral rule. */
+/* Shared divider and phone footer treatment. */
 .section-divider {
   background: transparent;
   height: 1px;
@@ -926,125 +804,11 @@
   inset: 0;
 }
 
-@media (min-width: 1321px) {
-  .site-header {
-    background: rgba(255, 255, 255, 0.98);
-    grid-template-columns: minmax(285px, 345px) minmax(0, 1fr) auto;
-  }
-
-  .brand {
-    min-height: 86px;
-  }
-
-  .brand-logo {
-    height: 82px;
-    max-width: 340px;
-    object-fit: contain;
-    object-position: left center;
-    width: auto;
-  }
-}
-
 @media (max-width: 760px) {
-  .site-header {
-    background: rgba(255, 255, 255, 0.99);
-  }
-
-  /* The opening photo now owns the first phone viewport. The actual image is
-     always contained in full, while a very soft duplicate behind it fills any
-     unused space without cropping children out of the foreground photo. */
-  .home-page .hero {
-    background: #ffffff;
-    display: block;
-    height: calc(100svh - 72px);
-    min-height: 0;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .home-page .hero::before {
-    background:
-      linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)),
-      url("/images/photos/selected/group-circle.webp") center 38% / cover no-repeat;
-    content: "";
-    filter: blur(18px) saturate(0.88);
-    inset: -22px;
-    opacity: 0.18;
-    position: absolute;
-    transform: scale(1.05);
-    z-index: 0;
-  }
-
-  .home-page .hero-image {
-    bottom: auto;
-    display: block;
-    height: 100%;
-    inset: 0;
-    left: 0;
-    max-width: none;
-    object-fit: contain;
-    object-position: center top;
-    position: absolute;
-    right: auto;
-    top: 0;
-    transform: none;
-    width: 100%;
-    z-index: 1;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .home-page .hero-wash {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0) 68%,
-      rgba(255, 255, 255, 0.18) 75%,
-      rgba(255, 255, 255, 0.78) 88%,
-      #ffffff 100%
-    );
-    display: block;
-    inset: 0;
-    position: absolute;
-    z-index: 2;
-  }
-
-  .home-page .hero-content {
-    bottom: max(1rem, env(safe-area-inset-bottom));
-    left: 1rem;
-    margin: 0;
-    max-width: 360px;
-    padding: 0;
-    position: absolute;
-    right: 1rem;
-    top: auto;
-    transform: none;
-    width: auto;
-    z-index: 3;
-  }
-
-  .home-page .hero h1 {
-    display: none;
-  }
-
-
-  .home-page .hero-actions {
-    margin-top: 0.9rem;
-  }
-
-  .home-page .hero-actions .button {
-    min-height: 48px;
-    width: min(100%, 280px);
-  }
-
-  .section-divider,
-.hero-section-divider {
+  .hero-section-divider {
     height: 1px;
   }
 
-  /* The stacked footer logo sits nicely on desktop, but its white card was
-     reading as a stray rectangle on phones. The header already carries the
-     full brand, so phones go straight to the footer tagline and details. */
   .footer-logo-link {
     display: none !important;
   }
@@ -1052,16 +816,6 @@
   .footer-brand > p {
     margin-top: 0;
     max-width: 290px;
-  }
-}
-
-@media (max-width: 430px) {
-  .home-page .hero {
-    height: calc(100svh - 72px);
-  }
-
-  .home-page .hero-content {
-    max-width: calc(100% - 2rem);
   }
 }
 
@@ -1419,7 +1173,7 @@
   }
 
   .home-site-header.is-home-scrolled::before,
-.home-site-header.is-menu-open::before {
+  .home-site-header.is-menu-open::before {
     opacity: 1;
     transform: translateY(0);
   }
@@ -1432,7 +1186,7 @@
   }
 
   .home-site-header.is-home-scrolled .home-header-brand,
-.home-site-header.is-menu-open .home-header-brand {
+  .home-site-header.is-menu-open .home-header-brand {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
@@ -1445,41 +1199,64 @@
     box-shadow: none;
   }
 
-  .home-page .hero,
-.home-page .hero.hero {
+  .home-page .hero {
     background: #ffffff;
+    display: block;
     height: 100svh;
     min-height: 100svh;
+    overflow: hidden;
+    position: relative;
   }
 
-  /* Do not use the blurred cover duplicate on phones. The actual hero photo
-     remains fully visible with object-fit: contain; any unused viewport space
-     stays white for the lower wordmark. */
   .home-page .hero::before {
     display: none;
   }
 
   .home-page .hero-image {
+    bottom: auto;
+    display: block;
     height: calc(100% - 12.5svh);
+    left: 0;
+    max-width: none;
     object-fit: contain;
     object-position: center top;
+    position: absolute;
+    right: 0;
     top: 12.5svh;
+    transform: none;
     width: 100%;
+    z-index: 1;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .home-page .hero-wash {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0) 68%,
+      rgba(255, 255, 255, 0.18) 75%,
+      rgba(255, 255, 255, 0.78) 88%,
+      #ffffff 100%
+    );
+    display: block;
+    inset: 0;
+    position: absolute;
+    z-index: 2;
   }
 
   .home-page .hero-content {
-    bottom: 0;
     inset: 0;
-    left: 0;
     margin: 0;
     max-width: none;
     padding: 0;
     pointer-events: none;
-    right: 0;
-    top: 0;
+    position: absolute;
     width: 100%;
+    z-index: 3;
   }
 
+  .home-page .hero h1,
   .home-page .home-hero-logo {
     display: none;
   }
@@ -1519,5 +1296,10 @@
     pointer-events: auto;
     position: absolute;
     right: 1rem;
+  }
+
+  .home-page .hero-actions .button {
+    min-height: 48px;
+    width: min(100%, 280px);
   }
 }
