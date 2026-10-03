@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import type { FormEvent } from "react";
+import { useRef, useState } from "react";
+import type { FormEvent, MouseEvent } from "react";
 import { school } from "../site-data";
 
 type SubmitState = "idle" | "submitting" | "sent" | "error";
@@ -149,6 +149,7 @@ function buildMailto(data: FormData, children: ReturnType<typeof normalizeExtraC
 }
 
 export default function EnrollmentForm({ compact = false }: { compact?: boolean }) {
+  const formRef = useRef<HTMLFormElement>(null);
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
   const [emailDraft, setEmailDraft] = useState("");
   const [program, setProgram] = useState("");
@@ -207,6 +208,18 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
     ]);
   }
 
+  function openPreparedEmail(event: MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault();
+    const form = formRef.current;
+    if (!form) return;
+
+    const currentDraft = buildMailto(
+      new FormData(form),
+      normalizeExtraChildren(extraChildren),
+    );
+    setEmailDraft(currentDraft);
+    window.location.href = currentDraft;
+  }
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -292,14 +305,7 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
   const normalizedPrimaryAge = normalizeAgeInput(ageValue, ageMonths).normalized;
 
   return (
-    <form className={`enrollment-form ${compact ? "form-compact" : ""}`} onSubmit={handleSubmit}>
-      {submitState === "error" && (
-        <p className="form-note" role="alert">
-          We couldn&apos;t send your inquiry. Your information is still here;
-          you can edit it and try again, or{" "}
-          <a href={emailDraft}>open the prepared email</a>.
-        </p>
-      )}
+    <form ref={formRef} className={`enrollment-form ${compact ? "form-compact" : ""}`} onSubmit={handleSubmit}>
 
       <input
         aria-hidden="true"
@@ -348,6 +354,7 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
           <label htmlFor={`age-input-${compact}`}>Child&apos;s age (years or months)</label>
           <input
             id={`age-input-${compact}`}
+            aria-describedby={`age-hint-${compact}`}
             type="text"
             inputMode="text"
             autoComplete="off"
@@ -356,8 +363,9 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
             required
           />
           <input type="hidden" name="age" value={normalizedPrimaryAge} />
-          <p className="form-note">
-            For example: 18 months, 2 years, or 2 years 6 months.
+          <p className="form-note" id={`age-hint-${compact}`}>
+            Include years or months; numbers alone mean years. For example: 18
+            months, 2 years, or 2 years 6 months.
           </p>
 
           {shouldShowMonths(ageValue) && (
@@ -453,6 +461,7 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
               <label htmlFor={`extra-child-age-${child.id}`}>Child&apos;s age (years or months)</label>
               <input
                 id={`extra-child-age-${child.id}`}
+                aria-describedby={`extra-child-age-hint-${child.id}`}
                 type="text"
                 inputMode="text"
                 autoComplete="off"
@@ -462,8 +471,9 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
                 }
                 required
               />
-              <p className="form-note">
-                For example: 18 months, 2 years, or 2 years 6 months.
+              <p className="form-note" id={`extra-child-age-hint-${child.id}`}>
+                Include years or months; numbers alone mean years. For example:
+                18 months, 2 years, or 2 years 6 months.
               </p>
               {shouldShowMonths(child.age) && (
                 <div className="months-reveal">
@@ -559,6 +569,14 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
           </label>
         </div>
       </fieldset>
+
+      {submitState === "error" && (
+        <p className="form-note" role="alert">
+          We couldn&apos;t send your inquiry. Your information is still here;
+          you can edit it and try again, or{" "}
+          <a href={emailDraft} onClick={openPreparedEmail}>open the prepared email</a>.
+        </p>
+      )}
 
       <button
         className="button button-primary form-submit"
