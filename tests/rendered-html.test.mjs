@@ -1,9 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
-
 let workerPromise;
 
 function getWorker() {
@@ -36,7 +33,7 @@ async function render(pathname) {
   return { response, html };
 }
 
-test("renders development preview metadata", async () => {
+test("renders the homepage as HTML", async () => {
   const { response, html } = await render("/");
 
   assert.equal(response.status, 200);
@@ -44,7 +41,8 @@ test("renders development preview metadata", async () => {
     response.headers.get("content-type") ?? "",
     /^text\/html\b/i,
   );
-  assert.match(html, developmentPreviewMeta);
+  assert.match(html, /Montessori Playschool/i);
+  assert.doesNotMatch(html, /codex-preview/i);
 });
 
 test("renders every public page", async () => {
