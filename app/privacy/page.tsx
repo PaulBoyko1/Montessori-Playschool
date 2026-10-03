@@ -12,23 +12,24 @@ export default function PrivacyPage() {
       <main className="legal-page content-section">
         <p className="section-label">Privacy</p>
         <h1>Website privacy notice</h1>
-        <p className="legal-updated">Last updated · July 2026</p>
+        <p className="legal-updated">Last updated · October 2026</p>
         <section>
           <h2>Information you provide</h2>
           <p>
-            The enrollment form prepares an email draft in your browser using
-            the contact, child, scheduling, and message information you enter.
-            The website does not send or store that information automatically.
-            You decide whether to open and send the draft through your email
-            provider.
+            When you submit the enrollment inquiry form, the website sends the
+            contact, child, scheduling, consent, and message information you
+            provide to Montessori Playschool so we can respond to your inquiry.
+            Submitted information may be retained in the school&apos;s email and
+            communication systems as part of the enrollment process.
           </p>
         </section>
         <section>
           <h2>How information may be used</h2>
           <p>
-            Information you choose to email may be used to answer questions,
-            discuss program availability, plan a visit, and support the
-            enrollment process. It will not be sold.
+            Information you submit may be used to answer questions, discuss
+            program availability, plan a visit, follow up about enrollment,
+            and provide communications you consented to receive. It will not be
+            sold.
           </p>
         </section>
         <section>
@@ -43,9 +44,10 @@ export default function PrivacyPage() {
         <section>
           <h2>Contact and future updates</h2>
           <p>
-            Privacy questions may be sent to enroll@montessori-playschool.com. This notice
-            will be updated before any server-side form provider, analytics
-            service, or other data-collection tool is added.
+            Privacy questions may be sent to
+            enrollment@montessori-playschool.com. This notice will be updated
+            if the website&apos;s data-collection or communication practices
+            materially change.
           </p>
         </section>
       </main>

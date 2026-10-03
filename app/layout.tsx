@@ -30,13 +30,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-  other: {
-    "codex-preview": "development",
-  },
   icons: {
-    icon: "/images/montessori-playschool-icon.png",
-    shortcut: "/images/montessori-playschool-icon.png",
-    apple: "/images/montessori-playschool-icon.png",
+    icon: "/images/montessori-playschool-symbol-transparent.svg",
+    shortcut: "/images/montessori-playschool-symbol-transparent.svg",
+    apple: "/images/montessori-playschool-symbol-transparent.svg",
   },
 };
 

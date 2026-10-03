@@ -23,7 +23,7 @@ jobs:
           node-version: "22.13.0"
 
       - name: Install locked dependencies
-        run: npm run install:ci
+        run: npm ci
 
       - name: Lint
         run: npm run lint
