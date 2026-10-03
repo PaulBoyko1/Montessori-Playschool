@@ -271,7 +271,7 @@
   }
 
   .photo-card,
-  .photo-card-wide {
+.photo-card-wide {
     grid-column: span 6;
   }
 
@@ -327,8 +327,8 @@
   }
 
   .photo-card,
-  .photo-card-wide,
-  .photo-card-tall {
+.photo-card-wide,
+.photo-card-tall {
     height: 360px;
   }
 

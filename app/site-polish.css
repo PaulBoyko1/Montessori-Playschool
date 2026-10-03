@@ -137,15 +137,9 @@
     width: min(350px, calc(100vw - 1rem));
   }
 
-  /* The desktop-style full-screen slide is visually heavy on phones and can
-     feel like horizontal page movement. Keep mobile navigation immediate. */
-  .page-enter-from-right,
-  .page-enter-from-left {
-    animation: none;
-  }
 
   .button,
-  .header-cta {
+.header-cta {
     max-width: 100%;
   }
 
@@ -154,9 +148,9 @@
   }
 
   .footer-column,
-  .contact-cards,
-  .contact-form-wrap,
-  .form-wrap {
+.contact-cards,
+.contact-form-wrap,
+.form-wrap {
     min-width: 0;
   }
 }
@@ -247,12 +241,6 @@
     line-height: 0.92;
   }
 
-  .home-page .hero-lede {
-    font-size: 0.98rem;
-    line-height: 1.5;
-    margin-top: 1.25rem;
-    max-width: 345px;
-  }
 
   .home-page .hero-actions {
     margin-top: 1.35rem;
@@ -297,13 +285,12 @@
   }
 
   .section-heading h2,
-  .programs-intro h2,
-  .curriculum-layout h2,
-  .parent-priorities > h2,
-  .assistance-teaser h2,
-  .assistance-section h2,
-  .map-help h2,
-  .follow-section h2 {
+.curriculum-layout h2,
+.parent-priorities > h2,
+.assistance-teaser h2,
+.assistance-section h2,
+.map-help h2,
+.follow-section h2 {
     font-size: clamp(2.25rem, 10vw, 3rem);
     line-height: 1.03;
   }
@@ -317,13 +304,6 @@
     height: 26px;
   }
 
-  .divider-leaf {
-    flex-basis: 58px;
-    height: 24px;
-    margin-left: 0.65rem;
-    transform: scale(0.82);
-    transform-origin: left center;
-  }
 
   /* Inner page heroes become a compact text block followed by a photo whose
      aspect ratio matches the underlying source instead of one generic crop. */
@@ -336,10 +316,10 @@
   }
 
   .inner-hero-copy h1,
-  .gallery-heading h1,
-  .enrollment-heading h1,
-  .contact-heading h1,
-  .legal-page h1 {
+.gallery-heading h1,
+.enrollment-heading h1,
+.contact-heading h1,
+.legal-page h1 {
     font-size: clamp(2.8rem, 13vw, 3.45rem);
     line-height: 0.98;
     margin: 0.9rem 0 1.2rem;
@@ -366,12 +346,12 @@
   }
 
   .about-page .inner-hero-image,
-  .programs-page .inner-hero-image {
+.programs-page .inner-hero-image {
     aspect-ratio: 4 / 5;
   }
 
   .meals-page .inner-hero-image,
-  .tuition-page .inner-hero-image {
+.tuition-page .inner-hero-image {
     aspect-ratio: 4 / 3;
   }
 
@@ -398,26 +378,24 @@
   /* Cards should read as compact tap targets, not desktop tiles stacked one
      after another. */
   .home-program-grid,
-  .parent-priority-grid,
-  .program-age-grid,
-  .assistance-grid,
-  .fee-grid,
-  .space-grid,
-  .weekly-menu-grid,
-  .family-essential-grid,
-  .enrichment-grid {
+.parent-priority-grid,
+.program-age-grid,
+.assistance-grid,
+.fee-grid,
+.weekly-menu-grid,
+.family-essential-grid,
+.enrichment-grid {
     gap: 0.75rem;
     grid-template-columns: 1fr;
   }
 
   .home-program-card,
-  .parent-priority-grid > a,
-  .program-age-grid > article,
-  .assistance-grid > a,
-  .fee-grid article,
-  .space-grid article,
-  .weekly-menu-grid article,
-  .family-essential-grid article {
+.parent-priority-grid > a,
+.program-age-grid > article,
+.assistance-grid > a,
+.fee-grid article,
+.weekly-menu-grid article,
+.family-essential-grid article {
     min-height: 0;
     padding: 1.35rem;
   }
@@ -427,8 +405,8 @@
   }
 
   .home-program-card strong,
-  .parent-priority-grid strong,
-  .assistance-grid strong {
+.parent-priority-grid strong,
+.assistance-grid strong {
     padding-top: 1.4rem;
   }
 
@@ -437,7 +415,7 @@
   }
 
   .parent-priority-grid h3,
-  .assistance-grid h3 {
+.assistance-grid h3 {
     margin-top: 1.5rem;
   }
 
@@ -472,7 +450,7 @@
   }
 
   .home-moment-grid figure,
-  .home-moment-large {
+.home-moment-large {
     aspect-ratio: 4 / 3;
     height: auto !important;
   }
@@ -481,21 +459,9 @@
     object-fit: cover;
   }
 
-  .program-detail {
-    gap: 2rem;
-  }
-
-  .program-detail-image {
-    aspect-ratio: 4 / 3;
-    min-height: 0;
-  }
-
-  .program-detail-image img {
-    object-position: center;
-  }
 
   .image-statement > img,
-  .program-photo-band > img {
+.program-photo-band > img {
     aspect-ratio: 4 / 3;
     height: auto;
     min-height: 0;
@@ -503,7 +469,7 @@
   }
 
   .image-statement > div,
-  .program-photo-band > div {
+.program-photo-band > div {
     padding: 3.75rem 1rem;
   }
 
@@ -534,8 +500,8 @@
   }
 
   .photo-card,
-  .photo-card-wide,
-  .photo-card-tall {
+.photo-card-wide,
+.photo-card-tall {
     aspect-ratio: 4 / 3;
     height: auto;
   }
@@ -559,48 +525,23 @@
     padding: 2rem 0.25rem;
   }
 
-  .menu-list > div {
-    gap: 0.35rem 0.8rem;
-    grid-template-columns: 58px 1fr;
-    min-height: 0;
-    padding: 1rem 0;
-  }
-
-  .menu-list > div p {
-    grid-column: 2;
-  }
 
   .allergy-section,
-  .assistance-teaser,
-  .tuition-teaser,
-  .contact-map-section,
-  .follow-section,
-  .simple-cta,
-  .contact-cta {
+.assistance-teaser,
+.tuition-teaser,
+.contact-map-section,
+.follow-section,
+.simple-cta,
+.contact-cta {
     padding: 4rem 1rem;
   }
 
   .assistance-help,
-  .map-help {
+.map-help {
     gap: 1.25rem;
     padding: 1.25rem;
   }
 
-  .rate-period-switch {
-    align-items: stretch;
-    gap: 0.65rem;
-  }
-
-  .rate-period-switch > div {
-    align-self: stretch;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-  }
-
-  .rate-period-switch button {
-    min-height: 46px;
-  }
 
   .rate-table-wrap {
     margin-right: -1rem;
@@ -615,7 +556,7 @@
   }
 
   .rate-table th,
-  .rate-table td {
+.rate-table td {
     padding: 1rem 0.8rem;
   }
 
@@ -624,7 +565,7 @@
   }
 
   .map-section iframe,
-  .contact-map-section iframe {
+.contact-map-section iframe {
     min-height: 300px;
   }
 
@@ -644,13 +585,13 @@
 
   /* Forms: one column, iOS-safe input sizing, and full-width primary action. */
   .enrollment-heading,
-  .contact-heading {
+.contact-heading {
     gap: 1.5rem;
     padding: 3.75rem 1rem;
   }
 
   .contact-form-wrap,
-  .form-wrap {
+.form-wrap {
     border-radius: 16px;
     padding: 1.15rem;
   }
@@ -670,8 +611,8 @@
   }
 
   .form-field input,
-  .form-field select,
-  .form-field textarea {
+.form-field select,
+.form-field textarea {
     border-radius: 10px;
     font-size: 16px;
     min-height: 52px;
@@ -693,7 +634,7 @@
   }
 
   .form-submit,
-  .form-success .button {
+.form-success .button {
     min-height: 52px;
     width: 100%;
   }
@@ -706,15 +647,14 @@
   /* Use the full phone width for primary CTAs while keeping secondary inline
      text links compact. */
   .cta-actions,
-  .hero-actions {
+.hero-actions {
     width: 100%;
   }
 
   .cta-actions .button,
-  .assistance-teaser > .button,
-  .simple-cta .button,
-  .map-help .button,
-  .contact-map-placeholder .button {
+.assistance-teaser > .button,
+.simple-cta .button,
+.map-help .button {
     width: 100%;
   }
 
@@ -731,7 +671,7 @@
   }
 
   .footer-brand,
-  .footer-bottom {
+.footer-bottom {
     grid-column: 1 / -1;
   }
 
@@ -768,11 +708,11 @@
   }
 
   .inner-hero-copy h1,
-  .gallery-heading h1,
-  .enrollment-heading h1,
-  .contact-heading h1,
-  .legal-page h1,
-  .location-hero h1 {
+.gallery-heading h1,
+.enrollment-heading h1,
+.contact-heading h1,
+.legal-page h1,
+.location-hero h1 {
     font-size: 2.75rem;
   }
 
@@ -785,20 +725,19 @@
   }
 
   .footer-column,
-  .footer-social {
+.footer-social {
     grid-column: 1;
   }
 }
 
 @media (hover: none) and (pointer: coarse) {
   .home-program-card:hover,
-  .parent-priority-grid > a:hover,
-  .assistance-grid > a:hover,
-  .fee-grid article:hover,
-  .photo-card:hover img,
-  .program-detail-image:hover img,
-  .inner-hero:hover .inner-hero-image img,
-  .image-statement:hover > img {
+.parent-priority-grid > a:hover,
+.assistance-grid > a:hover,
+.fee-grid article:hover,
+.photo-card:hover img,
+.inner-hero:hover .inner-hero-image img,
+.image-statement:hover > img {
     box-shadow: none;
     transform: none;
   }
@@ -848,23 +787,6 @@
   color: var(--forest-deep);
 }
 
-.announcement {
-  background: linear-gradient(90deg, var(--brand-blue-deep), var(--brand-blue-action));
-}
-
-.announcement div span {
-  color: #e7f3ff;
-}
-
-.announcement > a {
-  background: var(--brand-yellow);
-  color: var(--brand-brown);
-}
-
-.announcement > a:hover,
-.announcement > a:focus-visible {
-  background: #ffe45a;
-}
 
 .header-cta,
 .button-primary,
@@ -883,20 +805,11 @@
   background: var(--brand-yellow);
 }
 
-.divider-leaf::before {
-  background: var(--brand-blue);
-}
-
-.divider-leaf::after {
-  background: var(--brand-yellow);
-}
 
 .contact-cta,
 .assistance-teaser,
-.capacity-strip,
 .meal-values,
-.simple-cta,
-.program-card-text {
+.simple-cta {
   background-color: var(--brand-blue-deep);
 }
 
@@ -942,9 +855,6 @@
   color: #eadfce;
 }
 
-.rate-period-switch button.is-active {
-  background: var(--brand-blue-action);
-}
 
 .form-field input:focus,
 .form-field select:focus,
@@ -1117,13 +1027,6 @@
     display: none;
   }
 
-  .home-page .hero-lede {
-    color: var(--brand-brown);
-    font-size: 0.94rem;
-    line-height: 1.45;
-    margin: 0;
-    max-width: 330px;
-  }
 
   .home-page .hero-actions {
     margin-top: 0.9rem;
@@ -1135,7 +1038,7 @@
   }
 
   .section-divider,
-  .hero-section-divider {
+.hero-section-divider {
     height: 1px;
   }
 
@@ -1253,7 +1156,7 @@
   }
 
   .mobile-rate-column-head,
-  .mobile-rate-row {
+.mobile-rate-row {
     align-items: center;
     display: grid;
     gap: 0.75rem;
@@ -1308,40 +1211,32 @@
   }
 
   /* The other two-column tuition tables can also fit the viewport cleanly. */
-  .part-time-section .rate-table-wrap,
   .holiday-section .rate-table-wrap {
     margin-right: 0;
     overflow-x: visible;
     padding-right: 0;
   }
 
-  .part-time-section .rate-table,
   .holiday-section .rate-table {
     min-width: 0;
     table-layout: fixed;
     width: 100%;
   }
 
-  .part-time-section .rate-table th,
-  .part-time-section .rate-table td,
   .holiday-section .rate-table th,
-  .holiday-section .rate-table td {
+.holiday-section .rate-table td {
     overflow-wrap: anywhere;
     padding: 0.82rem 0.7rem;
   }
 
-  .part-time-section .rate-table th,
-  .part-time-section .rate-table td {
-    width: 50%;
-  }
 
   .holiday-section .rate-table th:first-child,
-  .holiday-section .rate-table td:first-child {
+.holiday-section .rate-table td:first-child {
     width: 46%;
   }
 
   .holiday-section .rate-table th,
-  .holiday-section .rate-table td {
+.holiday-section .rate-table td {
     font-size: 0.8rem;
     line-height: 1.3;
   }
@@ -1359,7 +1254,7 @@
   }
 
   .mobile-rate-column-head,
-  .mobile-rate-row {
+.mobile-rate-row {
     gap: 0.45rem;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -1385,14 +1280,7 @@
     grid-template-columns: 1fr;
   }
 
-  .part-time-section .rate-table {
-    min-width: 0;
-  }
 
-  .part-time-section .rate-table th,
-  .part-time-section .rate-table td {
-    padding: 0.95rem 0.75rem;
-  }
 }
 
 /* About page focal point; desktop sizing is handled by the shared hero rule below. */
@@ -1531,7 +1419,7 @@
   }
 
   .home-site-header.is-home-scrolled::before,
-  .home-site-header.is-menu-open::before {
+.home-site-header.is-menu-open::before {
     opacity: 1;
     transform: translateY(0);
   }
@@ -1544,7 +1432,7 @@
   }
 
   .home-site-header.is-home-scrolled .home-header-brand,
-  .home-site-header.is-menu-open .home-header-brand {
+.home-site-header.is-menu-open .home-header-brand {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
@@ -1558,7 +1446,7 @@
   }
 
   .home-page .hero,
-  .home-page .hero.hero {
+.home-page .hero.hero {
     background: #ffffff;
     height: 100svh;
     min-height: 100svh;
