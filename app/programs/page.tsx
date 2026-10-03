@@ -145,7 +145,6 @@ export default function ProgramsPage() {
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   <h3>{item.title}</h3>
                 </header>
-                <div className="enrichment-image-placeholder" aria-hidden="true" />
                 <p>{item.text}</p>
               </article>
             ))}

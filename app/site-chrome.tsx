@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SocialLinks from "./components/SocialLinks";
 import { school } from "./site-data";
 
@@ -22,34 +22,46 @@ function rememberNavigationDirection(currentPath: string, targetPath: string) {
   const currentIndex = navigation.findIndex((item) => item.href === currentPath);
   const targetIndex = navigation.findIndex((item) => item.href === targetPath);
 
-  if (currentIndex < 0 || targetIndex < 0 || currentIndex === targetIndex) {
-    window.sessionStorage.removeItem("montessori-nav-direction");
-    return;
-  }
+  try {
+    if (currentIndex < 0 || targetIndex < 0 || currentIndex === targetIndex) {
+      window.sessionStorage.removeItem("montessori-nav-direction");
+      return;
+    }
 
-  window.sessionStorage.setItem(
-    "montessori-nav-direction",
-    JSON.stringify({
-      direction: targetIndex > currentIndex ? "right" : "left",
-      target: targetPath,
-      createdAt: Date.now(),
-    }),
-  );
+    window.sessionStorage.setItem(
+      "montessori-nav-direction",
+      JSON.stringify({
+        direction: targetIndex > currentIndex ? "right" : "left",
+        target: targetPath,
+        createdAt: Date.now(),
+      }),
+    );
+  } catch {
+    // Navigation must still work when browser storage is unavailable.
+  }
 }
 
 export function SiteHeader({ current }: { current?: string }) {
   const pathname = usePathname();
   const activePath = current ?? pathname;
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuPath, setMenuPath] = useState<string | null>(null);
+  const menuOpen = menuPath === pathname;
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [homeBrandVisible, setHomeBrandVisible] = useState(false);
   const [homeScrolled, setHomeScrolled] = useState(false);
+
+  // Reset the disclosure during a route change so Back cannot reopen it.
+  if (menuPath !== null && menuPath !== pathname) {
+    setMenuPath(null);
+  }
 
   useEffect(() => {
     if (!menuOpen) return;
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setMenuOpen(false);
+        setMenuPath(null);
+        menuButtonRef.current?.focus();
       }
     }
 
@@ -103,7 +115,10 @@ export function SiteHeader({ current }: { current?: string }) {
         className={`brand${pathname === "/" ? ` home-header-brand ${homeBrandVisible ? "is-visible" : "is-hidden"}` : ""}`}
         href="/"
         aria-label="Montessori Playschool home"
-        onClick={() => rememberNavigationDirection(pathname, "/")}
+        onClick={() => {
+          rememberNavigationDirection(pathname, "/");
+          setMenuPath(null);
+        }}
       >
         <img
           className="brand-logo"
@@ -120,7 +135,7 @@ export function SiteHeader({ current }: { current?: string }) {
                 aria-current={activePath === item.href ? "page" : undefined}
                 onClick={() => {
                   rememberNavigationDirection(pathname, item.href);
-                  setMenuOpen(false);
+                  setMenuPath(null);
                 }}
               >
                 {item.label}
@@ -132,7 +147,10 @@ export function SiteHeader({ current }: { current?: string }) {
       <Link
         className="header-cta"
         href="/contact#tour"
-        onClick={() => rememberNavigationDirection(pathname, "/contact")}
+        onClick={() => {
+          rememberNavigationDirection(pathname, "/contact");
+          setMenuPath(null);
+        }}
       >
         Schedule a Tour
         <span aria-hidden="true">→</span>
@@ -140,11 +158,12 @@ export function SiteHeader({ current }: { current?: string }) {
       <div className="mobile-menu">
         <button
           className="mobile-menu-button"
+          ref={menuButtonRef}
           type="button"
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
           aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-          onClick={() => setMenuOpen((value) => !value)}
+          onClick={() => setMenuPath(menuOpen ? null : pathname)}
         >
           <span className="mobile-menu-icon" aria-hidden="true">
             <i />
@@ -165,7 +184,7 @@ export function SiteHeader({ current }: { current?: string }) {
               aria-current={activePath === item.href ? "page" : undefined}
               onClick={() => {
                 rememberNavigationDirection(pathname, item.href);
-                setMenuOpen(false);
+                setMenuPath(null);
               }}
             >
               {item.label}
@@ -176,7 +195,7 @@ export function SiteHeader({ current }: { current?: string }) {
             href="/contact#tour"
             onClick={() => {
               rememberNavigationDirection(pathname, "/contact");
-              setMenuOpen(false);
+              setMenuPath(null);
             }}
           >
             Schedule a Tour
@@ -241,7 +260,7 @@ export function SiteFooter() {
       </div>
       <div className="footer-bottom">
         <p>© 2026 Montessori Playschool. All rights reserved.</p>
-        <p>Licensing details will be posted after approval.</p>
+        <p>License #{school.licenseNumber}</p>
       </div>
     </footer>
   );

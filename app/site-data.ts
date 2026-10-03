@@ -1,5 +1,6 @@
 export const school = {
   name: "Montessori Playschool",
+  licenseNumber: "343628256",
   address: "2925 Root Ave, Carmichael, CA 95608",
   streetAddress: "2925 Root Ave",
   locality: "Carmichael, CA 95608",

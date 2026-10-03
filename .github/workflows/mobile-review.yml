@@ -1,0 +1,52 @@
+name: Review phone layouts
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "public/**"
+      - "photo-source/**"
+      - "scripts/mobile-review.mjs"
+      - ".github/workflows/mobile-review.yml"
+      - "package*.json"
+      - "vite.config.ts"
+
+permissions:
+  contents: read
+
+jobs:
+  mobile-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - run: npm ci
+      - name: Install pinned browser tooling
+        run: |
+          npm install --no-save --package-lock=false playwright@1.63.0
+          npx playwright install --with-deps chromium webkit
+      - run: npm run build
+      - name: Start the built website
+        run: |
+          npm run start > mobile-server.log 2>&1 &
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:3000/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat mobile-server.log
+          exit 1
+      - name: Review all pages at phone sizes
+        run: node scripts/mobile-review.mjs
+      - name: Save screenshots and measurements
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phone-layout-review
+          path: |
+            mobile-review/
+            mobile-server.log
+          retention-days: 14
