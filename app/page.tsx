@@ -100,7 +100,7 @@ export default function Home() {
           <div className="home-program-grid">
             {programs.map((program, index) => (
               <Link
-                className={`home-program-card program-color-${index + 1}`}
+                className="home-program-card"
                 href={`/programs#${program.slug}`}
                 key={program.slug}
               >

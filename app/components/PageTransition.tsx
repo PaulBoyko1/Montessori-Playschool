@@ -43,7 +43,8 @@ export default function PageTransition({ children }: { children: React.ReactNode
     const direction = getDirection(pathname);
     if (!page || direction === "none") return;
 
-    const className = `page-enter-from-${direction}`;
+    const className =
+      direction === "right" ? "page-enter-from-right" : "page-enter-from-left";
     page.classList.add(className);
     const timer = window.setTimeout(() => page.classList.remove(className), 840);
 

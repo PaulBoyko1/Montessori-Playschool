@@ -108,8 +108,13 @@
 }
 
 @media (max-width: 760px) {
+  .page-enter-from-right,
+  .page-enter-from-left {
+    animation: none;
+  }
+
   .button,
-.header-cta {
+  .header-cta {
     max-width: 100%;
   }
 
