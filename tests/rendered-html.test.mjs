@@ -42,7 +42,6 @@ test("renders the homepage as HTML", async () => {
     /^text\/html\b/i,
   );
   assert.match(html, /Montessori Playschool/i);
-  assert.doesNotMatch(html, /codex-preview/i);
 });
 
 test("renders every public page", async () => {

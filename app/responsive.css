@@ -1,5 +1,5 @@
 /* Responsive layout, branding, and page-specific presentation rules.
-   This file contains the intentional final rules that sit above the shared base styles. */
+   These are the canonical responsive rules loaded after the shared and photo styles. */
 
 /* Long contact values should never force horizontal scrolling. */
 .footer-column a,

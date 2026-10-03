@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import PageTransition from "./components/PageTransition";
 import { SiteHeader } from "./site-chrome";
 import "./globals.css";
-import "./photo-enhancements.css";
-import "./high-quality-photos.css";
-import "./site-polish.css";
+import "./photos.css";
+import "./responsive.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.montessori-playschool.com"),
