@@ -438,12 +438,34 @@
     padding: 2rem 0.25rem;
   }
 
+  .meal-values h3 {
+    margin-top: 1.25rem;
+  }
+
   .weekly-menu-grid dt {
     font-size: 0.75rem;
   }
 
   .weekly-menu-grid dd {
     font-size: 0.95rem;
+  }
+
+  .enrichment-grid article > p {
+    margin-top: 1rem;
+  }
+
+  .form-note {
+    font-size: 0.85rem;
+  }
+
+  .form-note[role="alert"] {
+    border-left: 3px solid var(--brand-blue-action);
+    padding: 0.75rem 0.85rem;
+  }
+
+  .form-note[role="alert"] a {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
   }
 
 
@@ -639,12 +661,12 @@
     min-width: 0;
   }
 
-  .footer-column a {
-    align-items: center;
-    display: flex;
+  .footer-column > a {
+    display: block;
     font-size: 0.875rem;
     line-height: 1.5;
     min-height: 44px;
+    padding: 0.55rem 0;
   }
 
   .footer-social {
