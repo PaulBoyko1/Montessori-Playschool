@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "../site-chrome";
+import { school } from "../site-data";
 
 export const metadata: Metadata = {
   title: "Privacy",
@@ -44,8 +45,8 @@ export default function PrivacyPage() {
         <section>
           <h2>Contact and future updates</h2>
           <p>
-            Privacy questions may be sent to
-            enrollment@montessori-playschool.com. This notice will be updated
+            Privacy questions may be sent to{" "}
+            <a href={school.emailHref}>{school.email}</a>. This notice will be updated
             if the website&apos;s data-collection or communication practices
             materially change.
           </p>

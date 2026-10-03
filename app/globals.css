@@ -1889,7 +1889,7 @@ img {
   .meal-values article {
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
     border-right: 0;
-    min-height: 250px;
+    min-height: 0;
   }
 
 
@@ -2393,7 +2393,6 @@ body {
 
 .enrichment-grid article {
   border: 1px solid var(--line);
-  min-height: 390px;
   padding: 1.4rem;
 }
 
@@ -2416,12 +2415,6 @@ body {
   margin: 0;
 }
 
-.enrichment-image-placeholder {
-  aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, var(--sage), var(--sky));
-  border: 1px solid rgba(12, 134, 254, 0.12);
-  margin: 1.25rem 0;
-}
 
 .enrichment-grid article > p {
   color: var(--muted);
