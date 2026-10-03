@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <main>
-        <section className="contact-heading" id="tour">
+        <section className="contact-heading">
           <div>
             <p className="section-label">Contact &amp; tours</p>
             <h1>
@@ -58,7 +58,7 @@ export default function ContactPage() {
               <strong>Start an email <span aria-hidden="true">→</span></strong>
             </a>
           </div>
-          <div className="contact-form-wrap">
+          <div className="contact-form-wrap" id="tour">
             <p className="section-label">Tour or enrollment inquiry</p>
             <h2>Start the conversation.</h2>
             <EnrollmentForm compact />
