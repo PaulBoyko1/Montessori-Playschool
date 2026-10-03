@@ -107,6 +107,12 @@
   }
 }
 
+@media (min-width: 761px) and (max-width: 1320px) {
+  html {
+    scroll-padding-top: 128px;
+  }
+}
+
 @media (max-width: 760px) {
   .page-enter-from-right,
   .page-enter-from-left {
