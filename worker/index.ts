@@ -328,25 +328,25 @@ async function handleInquiry(request: Request, env: Env): Promise<Response> {
     const deliveryError =
       error instanceof Error ? error.message : "Email delivery failed";
     console.error("Inquiry email error:", deliveryError);
-  }
-
-  try {
-    await sendSms(env, smsText);
-    outcomes.sms = true;
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "SMS delivery failed";
-    console.error("Inquiry SMS error:", message);
-  }
-
-  if (!outcomes.email && !outcomes.sms) {
     return jsonResponse(
       {
         ok: false,
         channels: outcomes,
-        error: "Email delivery failed. Check the Google Apps Script deployment and GOOGLE_WEBHOOK_SECRET.",
+        error: "Your inquiry could not be delivered. Please try again or contact the school.",
       },
       503,
     );
+  }
+
+  // SMS is only a notification; the complete inquiry must arrive by email first.
+  if (env.TWILIO_ACCOUNT_SID && env.TWILIO_AUTH_TOKEN && env.TWILIO_FROM_NUMBER) {
+    try {
+      await sendSms(env, smsText);
+      outcomes.sms = true;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "SMS delivery failed";
+      console.error("Inquiry SMS error:", message);
+    }
   }
 
   return jsonResponse({ ok: true, channels: outcomes });

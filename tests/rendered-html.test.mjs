@@ -172,3 +172,145 @@ test("renders current tuition cleanly without weekly pricing or admin clutter", 
   assert.doesNotMatch(html, /late fee/i);
   assert.doesNotMatch(html, /Returned payments/i);
 });
+
+
+test("inquiry delivery requires the complete email and treats SMS as optional", async (t) => {
+  const worker = await getWorker();
+  const inquiry = {
+    guardian: "Test Parent",
+    email: "parent@example.com",
+    phone: "+15555550100",
+    child: "Test Child",
+    age: "18 months",
+    program: "Infant Program",
+    schedule: ["Mornings"],
+    message: "Please discuss a visit.",
+    additionalChildren: [
+      {
+        name: "Test Sibling",
+        age: "4 years",
+        program: "Preschool Program",
+        schedule: ["Full day"],
+      },
+    ],
+    smsConsent: true,
+    emailConsent: true,
+    website: "",
+  };
+  const emailEnv = { GOOGLE_WEBHOOK_SECRET: "test-only-secret" };
+  const smsEnv = {
+    TWILIO_ACCOUNT_SID: "test-account",
+    TWILIO_AUTH_TOKEN: "test-only-token",
+    TWILIO_FROM_NUMBER: "+15555550101",
+    INQUIRY_TO_PHONE: "+15555550102",
+  };
+
+  async function submit(env) {
+    return worker.fetch(
+      new Request("http://localhost/api/inquiry", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(inquiry),
+      }),
+      env,
+      { waitUntil() {}, passThroughOnException() {} },
+    );
+  }
+
+  await t.test("missing email configuration cannot succeed through SMS", async (t) => {
+    const calls = [];
+    t.mock.method(console, "error", () => {});
+    t.mock.method(globalThis, "fetch", async (input) => {
+      calls.push(String(input));
+      if (String(input).startsWith("https://api.twilio.com/")) {
+        return new Response("{}", { status: 201 });
+      }
+      throw new Error("Unexpected outbound request");
+    });
+
+    const response = await submit(smsEnv);
+    assert.equal(response.status, 503);
+    assert.deepEqual((await response.json()).channels, { email: false, sms: false });
+    assert.deepEqual(calls, [], "do not notify by SMS when the full inquiry was not sent");
+  });
+
+  await t.test("a rejected email is recoverable even when SMS is configured", async (t) => {
+    const calls = [];
+    t.mock.method(console, "error", () => {});
+    t.mock.method(globalThis, "fetch", async (input) => {
+      const url = String(input);
+      calls.push(url);
+      if (url.startsWith("https://script.google.com/macros/")) {
+        return Response.json({ ok: false, error: "Test rejection" });
+      }
+      if (url.startsWith("https://api.twilio.com/")) {
+        return new Response("{}", { status: 201 });
+      }
+      throw new Error("Unexpected outbound request");
+    });
+
+    const response = await submit({ ...emailEnv, ...smsEnv });
+    const result = await response.json();
+    assert.equal(response.status, 503);
+    assert.equal(result.ok, false);
+    assert.deepEqual(result.channels, { email: false, sms: false });
+    assert.equal(calls.length, 1, "failed email must not trigger a misleading SMS");
+  });
+
+  await t.test("an email network error does not report success", async (t) => {
+    t.mock.method(console, "error", () => {});
+    const outbound = t.mock.method(globalThis, "fetch", async () => {
+      throw new Error("Simulated connection failure");
+    });
+
+    const response = await submit({ ...emailEnv, ...smsEnv });
+    assert.equal(response.status, 503);
+    assert.equal((await response.json()).ok, false);
+    assert.equal(outbound.mock.callCount(), 1);
+  });
+
+  await t.test("email alone accepts the complete family inquiry", async (t) => {
+    const payloads = [];
+    t.mock.method(globalThis, "fetch", async (input, init) => {
+      assert.match(String(input), /^https:\/\/script\.google\.com\/macros\//);
+      payloads.push(JSON.parse(init.body));
+      return Response.json({ ok: true });
+    });
+
+    const response = await submit(emailEnv);
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), {
+      ok: true,
+      channels: { email: true, sms: false },
+    });
+    assert.equal(payloads.length, 1);
+    assert.deepEqual(payloads[0].schedule, ["Mornings"]);
+    assert.match(payloads[0].message, /Test Sibling/);
+    assert.match(payloads[0].message, /Full day/);
+    assert.match(payloads[0].message, /Please discuss a visit\./);
+  });
+
+  await t.test("optional SMS failure does not reject an accepted email", async (t) => {
+    const calls = [];
+    t.mock.method(console, "error", () => {});
+    t.mock.method(globalThis, "fetch", async (input) => {
+      const url = String(input);
+      calls.push(url);
+      if (url.startsWith("https://script.google.com/macros/")) {
+        return Response.json({ ok: true });
+      }
+      if (url.startsWith("https://api.twilio.com/")) {
+        return new Response("Test SMS failure", { status: 503 });
+      }
+      throw new Error("Unexpected outbound request");
+    });
+
+    const response = await submit({ ...emailEnv, ...smsEnv });
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), {
+      ok: true,
+      channels: { email: true, sms: false },
+    });
+    assert.equal(calls.length, 2);
+  });
+});
