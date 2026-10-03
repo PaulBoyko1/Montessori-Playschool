@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { school } from "../site-data";
 
 type SubmitState = "idle" | "submitting" | "sent" | "error";
 
@@ -101,7 +102,7 @@ function programForAge(input: string, monthsAfterBirthday = "") {
   if (totalMonths === null) return "";
   if (totalMonths < 24) return INFANT_PROGRAM;
   if (totalMonths < 60) return PRESCHOOL_PROGRAM;
-  return SCHOOL_AGE_PROGRAM;
+  return "";
 }
 
 function shouldShowMonths(input: string) {
@@ -144,7 +145,7 @@ function buildMailto(data: FormData, children: ReturnType<typeof normalizeExtraC
     `Email consent: ${data.get("emailConsent") ? "Yes" : "No"}`,
   ].join("\n");
 
-  return `mailto:enrollment@montessori-playschool.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return `${school.emailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 export default function EnrollmentForm({ compact = false }: { compact?: boolean }) {
@@ -279,25 +280,6 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
     );
   }
 
-  if (submitState === "error") {
-    return (
-      <div className="form-success" role="alert">
-        <span aria-hidden="true">!</span>
-        <h2>Automatic delivery is not available yet.</h2>
-        <p>
-          You can still send the same information using the prepared email
-          below.
-        </p>
-        <a className="button button-primary" href={emailDraft}>
-          Open prepared email <span aria-hidden="true">↗</span>
-        </a>
-        <button type="button" onClick={() => setSubmitState("idle")}>
-          Edit this inquiry
-        </button>
-      </div>
-    );
-  }
-
   const scheduleOptions = [
     "Weekdays",
     "Saturday",
@@ -311,6 +293,14 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
 
   return (
     <form className={`enrollment-form ${compact ? "form-compact" : ""}`} onSubmit={handleSubmit}>
+      {submitState === "error" && (
+        <p className="form-note" role="alert">
+          We couldn&apos;t send your inquiry. Your information is still here;
+          you can edit it and try again, or{" "}
+          <a href={emailDraft}>open the prepared email</a>.
+        </p>
+      )}
+
       <input
         aria-hidden="true"
         autoComplete="off"
@@ -355,7 +345,7 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
         </div>
 
         <div className="form-field">
-          <label htmlFor={`age-input-${compact}`}>Child&apos;s age</label>
+          <label htmlFor={`age-input-${compact}`}>Child&apos;s age (years or months)</label>
           <input
             id={`age-input-${compact}`}
             type="text"
@@ -366,6 +356,9 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
             required
           />
           <input type="hidden" name="age" value={normalizedPrimaryAge} />
+          <p className="form-note">
+            For example: 18 months, 2 years, or 2 years 6 months.
+          </p>
 
           {shouldShowMonths(ageValue) && (
             <div className="months-reveal">
@@ -457,7 +450,7 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
             </div>
 
             <div className="form-field">
-              <label htmlFor={`extra-child-age-${child.id}`}>Child&apos;s age</label>
+              <label htmlFor={`extra-child-age-${child.id}`}>Child&apos;s age (years or months)</label>
               <input
                 id={`extra-child-age-${child.id}`}
                 type="text"
@@ -469,6 +462,9 @@ export default function EnrollmentForm({ compact = false }: { compact?: boolean 
                 }
                 required
               />
+              <p className="form-note">
+                For example: 18 months, 2 years, or 2 years 6 months.
+              </p>
               {shouldShowMonths(child.age) && (
                 <div className="months-reveal">
                   <label htmlFor={`extra-child-months-${child.id}`}>
