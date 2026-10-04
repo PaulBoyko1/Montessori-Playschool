@@ -1351,7 +1351,8 @@
   }
 
   .home-page .home-mobile-hero-wordmark {
-    bottom: 76px;
+    /* Follow the visible bottom of the contained 3:4 photo, not the viewport. */
+    bottom: auto;
     display: block;
     height: auto;
     left: 50%;
@@ -1359,7 +1360,8 @@
     max-width: none;
     object-fit: contain;
     position: absolute;
-    transform: translateX(-50%);
+    top: calc(12.5svh + min(133.333333vw, calc(87.5svh - 160px)) - 1.25rem);
+    transform: translate(-50%, -100%);
     width: calc(95% - 57px);
     z-index: 4;
   }

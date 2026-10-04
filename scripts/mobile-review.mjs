@@ -150,6 +150,27 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
           const button = await page.locator(".hero-actions .button").boundingBox();
           if (!button || button.y < 0 || button.y + button.height > viewport.height + 2) failures.push("home tour button is outside the opening screen");
         }
+        if (route === "/" && viewport.width <= 760 && viewport.height > viewport.width) {
+          const placement = await page.evaluate(() => {
+            const photo = document.querySelector(".hero-image");
+            const frame = photo.getBoundingClientRect();
+            const scale = Math.min(frame.width / photo.naturalWidth, frame.height / photo.naturalHeight);
+            const visibleWidth = photo.naturalWidth * scale;
+            const visibleHeight = photo.naturalHeight * scale;
+            const logo = document.querySelector(".home-mobile-hero-wordmark").getBoundingClientRect();
+            return {
+              photo: { left: frame.left + (frame.width - visibleWidth) / 2, right: frame.left + (frame.width + visibleWidth) / 2, top: frame.top, bottom: frame.top + visibleHeight },
+              logo: { left: logo.left, right: logo.right, top: logo.top, bottom: logo.bottom },
+            };
+          });
+          if (placement.logo.left < placement.photo.left - 2 || placement.logo.right > placement.photo.right + 2 || placement.logo.top < placement.photo.top || placement.logo.bottom > placement.photo.bottom - 10) {
+            failures.push("phone wordmark must sit fully inside the visible photo: " + JSON.stringify(placement));
+          }
+          if (engine === "chromium") {
+            const bytes = await page.screenshot({ type: "jpeg", quality: 80, animations: "disabled" });
+            console.log("MOBILE_IMAGE phone-home-" + viewport.width + " " + bytes.toString("base64"));
+          }
+        }
         if (metrics.scrollWidth > metrics.width + 2) failures.push("document overflows horizontally");
         if (metrics.overflow.length) failures.push("clipped/overflowing content: " + JSON.stringify(metrics.overflow));
         if (route === "/gallery" && metrics.images.filter((img) => img.src.includes("/photos/")).length !== 9) failures.push("gallery should contain nine photos");
