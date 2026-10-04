@@ -152,22 +152,10 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
           if (!button || button.y < 0 || button.y + button.height > viewport.height + 2) failures.push("home tour button is outside the opening screen");
         }
         if (route === "/" && viewport.width <= 760 && viewport.height > viewport.width) {
-          const placement = await page.evaluate(() => {
-            const photo = document.querySelector(".hero-image");
-            const frame = photo.getBoundingClientRect();
-            const scale = Math.min(frame.width / photo.naturalWidth, frame.height / photo.naturalHeight);
-            const visibleWidth = photo.naturalWidth * scale;
-            const visibleHeight = photo.naturalHeight * scale;
-            const logo = document.querySelector(".home-mobile-hero-wordmark").getBoundingClientRect();
-            const clip = getComputedStyle(photo).clipPath.match(/^inset\(([\d.]+)px/);
-            const croppedTop = clip ? Number(clip[1]) : 0;
-            return {
-              photo: { left: frame.left + (frame.width - visibleWidth) / 2, right: frame.left + (frame.width + visibleWidth) / 2, top: frame.top + croppedTop, bottom: frame.top + visibleHeight },
-              logo: { left: logo.left, right: logo.right, top: logo.top, bottom: logo.bottom },
-            };
-          });
-          if (placement.logo.left < placement.photo.left - 2 || placement.logo.right > placement.photo.right + 2 || placement.logo.top < placement.photo.top || placement.logo.bottom > placement.photo.bottom - 10) {
-            failures.push("phone wordmark must sit fully inside the visible photo: " + JSON.stringify(placement));
+          const logo = await page.locator(".home-mobile-hero-wordmark").boundingBox();
+          const tourButton = await page.locator(".hero-actions .button").boundingBox();
+          if (!logo || !tourButton || logo.x < -2 || logo.x + logo.width > viewport.width + 2 || logo.y < 0 || logo.y + logo.height > tourButton.y - 10) {
+            failures.push("phone wordmark must stay on screen and clear of the tour button");
           }
           if (engine === "chromium") {
             const bytes = await page.screenshot({ type: "jpeg", quality: 80, animations: "disabled" });

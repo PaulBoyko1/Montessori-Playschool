@@ -1320,7 +1320,7 @@
     display: block;
     /* Cover subpixel rounding at the photo's lower edge. */
     height: calc(var(--home-photo-height) + 1px);
-    inset: calc(12.5svh - var(--home-photo-crop)) 0 auto;
+    inset: 12.5svh 0 auto;
     position: absolute;
     z-index: 2;
   }
@@ -1356,7 +1356,7 @@
   }
 
   .home-page .home-mobile-hero-wordmark {
-    /* Follow the visible bottom of the contained 3:4 photo, not the viewport. */
+    /* Keep the wordmark anchored to the original photo area while the photo moves. */
     bottom: auto;
     display: block;
     height: auto;
@@ -1365,7 +1365,7 @@
     max-width: min(100%, calc((87.5svh - 160px) * 0.75));
     object-fit: contain;
     position: absolute;
-    top: calc(12.5svh + var(--home-photo-height) - var(--home-photo-crop) - 1.25rem);
+    top: calc(12.5svh + var(--home-photo-height) - 1.25rem);
     transform: translate(-50%, -100%);
     width: calc(95% - 57px);
     z-index: 4;
