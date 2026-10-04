@@ -1314,7 +1314,8 @@
       #ffffff 100%
     );
     display: block;
-    height: min(133.333333vw, calc(87.5svh - 160px));
+    /* Cover subpixel rounding at the photo's lower edge. */
+    height: calc(min(133.333333vw, calc(87.5svh - 160px)) + 1px);
     inset: 12.5svh 0 auto;
     position: absolute;
     z-index: 2;
