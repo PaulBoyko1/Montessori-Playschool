@@ -216,17 +216,8 @@
 }
 
 /* Per-photo focal points: preserve faces/hands when cards change aspect ratio. */
-.photo-gallery-group:nth-child(1) .photo-card:nth-child(1) img {
-  object-position: 60% center;
-}
 
-.photo-gallery-group:nth-child(1) .photo-card:nth-child(2) img {
-  object-position: 58% 34%;
-}
 
-.photo-gallery-group:nth-child(1) .photo-card:nth-child(3) img {
-  object-position: 48% center;
-}
 
 .photo-gallery-group:nth-child(2) .photo-card:nth-child(1) img {
   object-position: 62% center;
@@ -426,18 +417,6 @@
 
 /* Gallery focal points follow the actual ten selected photos rather than
    generic center crops. */
-.gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(1) img {
-  object-position: 66% 48%;
-}
-.gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(2) img {
-  object-position: 50% 30%;
-}
-.gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(3) img {
-  object-position: 50% 43%;
-}
-.gallery-page .photo-gallery-group:nth-child(1) .photo-card:nth-child(4) img {
-  object-position: 50% 38%;
-}
 .gallery-page .photo-gallery-group:nth-child(2) .photo-card:nth-child(1) img {
   object-position: 42% 43%;
 }
@@ -511,5 +490,21 @@
 
   .tuition-page .inner-hero-image img {
     object-position: 50% 38%;
+  }
+}
+
+/* The first gallery group pairs one portrait with two wider photographs. */
+.gallery-page .photo-gallery-group:first-child .photo-card-tall img {
+  object-position: 50% 30%;
+}
+.gallery-page .photo-gallery-group:first-child .photo-card:nth-child(2) img {
+  object-position: 50% 43%;
+}
+.gallery-page .photo-gallery-group:first-child .photo-card:nth-child(3) img {
+  object-position: 50% 38%;
+}
+@media (min-width: 761px) {
+  .gallery-page .photo-gallery-group:first-child .photo-card-tall {
+    grid-row: span 2;
   }
 }

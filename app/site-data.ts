@@ -14,8 +14,8 @@ export const school = {
     "https://www.google.com/maps/dir/?api=1&destination=2925+Root+Ave%2C+Carmichael%2C+CA+95608",
   mapUrl:
     "https://www.google.com/maps?q=2925+Root+Ave%2C+Carmichael%2C+CA+95608&output=embed",
-  instagramName: "@montesori_playschool",
-  instagramUrl: "https://www.instagram.com/montesori_playschool/",
+  instagramName: "@montessori_playschool",
+  instagramUrl: "https://www.instagram.com/montessori_playschool/",
   facebookName: "Montessori Playschool",
   facebookUrl:
     "https://www.facebook.com/search/top?q=Montessori%20Playschool",
