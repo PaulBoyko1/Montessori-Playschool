@@ -1308,14 +1308,14 @@
   .home-page .hero-wash {
     background: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0) 68%,
-      rgba(255, 255, 255, 0.18) 75%,
-      rgba(255, 255, 255, 0.78) 88%,
+      rgba(255, 255, 255, 0) 65%,
+      rgba(255, 255, 255, 0.65) 75%,
+      rgba(255, 255, 255, 0.9) 90%,
       #ffffff 100%
     );
     display: block;
-    inset: 0;
+    height: min(133.333333vw, calc(87.5svh - 160px));
+    inset: 12.5svh 0 auto;
     position: absolute;
     z-index: 2;
   }
