@@ -1357,7 +1357,7 @@
     height: auto;
     left: 50%;
     max-height: 16.15svh;
-    max-width: none;
+    max-width: min(100%, calc((87.5svh - 160px) * 0.75));
     object-fit: contain;
     position: absolute;
     top: calc(12.5svh + min(133.333333vw, calc(87.5svh - 160px)) - 1.25rem);

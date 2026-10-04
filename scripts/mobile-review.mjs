@@ -11,6 +11,7 @@ const viewports = [
   { width: 667, height: 375 }, { width: 844, height: 390 },
   { width: 932, height: 430 },
   { width: 1024, height: 768 }, { width: 1440, height: 900 },
+  { width: 320, height: 480 },
 ];
 const results = [];
 const issues = [];
@@ -100,7 +101,7 @@ async function photoSheet(browser, page, label) {
 
 for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]) {
   const browser = await browserType.launch();
-  const sizes = engine === "webkit" ? [viewports[0], viewports[3], viewports[7]] : viewports;
+  const sizes = engine === "webkit" ? [viewports[0], viewports[3], viewports[7], viewports.at(-1)] : viewports;
   for (const viewport of sizes) {
     const context = await browser.newContext({
       viewport, isMobile: viewport.width < 1024, hasTouch: viewport.width < 1440, deviceScaleFactor: 1,
@@ -168,7 +169,7 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
           }
           if (engine === "chromium") {
             const bytes = await page.screenshot({ type: "jpeg", quality: 80, animations: "disabled" });
-            console.log("MOBILE_IMAGE phone-home-" + viewport.width + " " + bytes.toString("base64"));
+            console.log("MOBILE_IMAGE phone-home-" + viewport.width + "x" + viewport.height + " " + bytes.toString("base64"));
           }
         }
         if (metrics.scrollWidth > metrics.width + 2) failures.push("document overflows horizontally");
