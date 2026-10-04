@@ -1,13 +1,13 @@
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { access, mkdir, readFile, rm } from "node:fs/promises";
+import { access, mkdir, readFile, readdir, rm } from "node:fs/promises";
 import path from "node:path";
 
 const root = process.cwd();
 const archive = path.join(root, "photo-source", "photo-assets-final.tgz");
 const output = path.join(root, "public", "images", "photos", "selected");
 const expectedArchiveSha256 =
-  "c1c1243cc0d18b33521968e88fa9a4e517438f56bedd24f147ba27e635a91617";
+  "1b6a50d6c1296101f2c6d7a35cdf866b243e96d25abc29d509a37779b164a25c";
 
 const expectedFiles = [
   "airplanes.webp",
@@ -15,7 +15,6 @@ const expectedFiles = [
   "child-playdough.webp",
   "community.webp",
   "group-circle.webp",
-  "home-hero.webp",
   "school-age.webp",
   "teacher-art.webp",
   "teacher-group.webp",
@@ -39,6 +38,11 @@ execFileSync("tar", ["-xzf", archive, "-C", output], {
 
 for (const name of expectedFiles) {
   await access(path.join(output, name));
+}
+
+const actualFiles = (await readdir(output)).sort();
+if (actualFiles.join("\n") !== [...expectedFiles].sort().join("\n")) {
+  throw new Error("Photo archive contains unexpected files");
 }
 
 console.log(`Prepared ${expectedFiles.length} verified website photos.`);

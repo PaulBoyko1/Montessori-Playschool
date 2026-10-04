@@ -75,11 +75,16 @@ export default function TuitionPage() {
             <p className="section-label">Tuition</p>
             <h2>Monthly care by age and schedule.</h2>
           </div>
+          <div>
           <p>
             Day-program rates cover 7:00 AM–5:00 PM. Evening-program rates
             cover 5:00 PM–10:00 PM. Montessori Playschool is open
             Monday–Saturday from 7:00 AM–10:00 PM and is closed on Sundays.
           </p>
+          <a className="inline-arrow" href="#assistance">
+            Explore childcare assistance <span aria-hidden="true">→</span>
+          </a>
+          </div>
         </section>
 
         <section className="rate-sheet-facts rate-sheet-facts-clean content-section" aria-label="School details">

@@ -26,22 +26,22 @@ const parentEssentials = [
 
 const featuredMoments = [
   {
-    src: "/images/photos/selected/airplanes.webp",
-    alt: "Children proudly holding red model airplanes during a classroom activity",
-    label: "Creative projects",
-    className: "home-moment-large",
+    src: "/images/photos/selected/school-age.webp",
+    alt: "Two school-age children smiling together during a classroom activity",
+    label: "Growing together",
+    className: "home-moment-group",
   },
   {
     src: "/images/photos/selected/teacher-art.webp",
     alt: "An educator and child smiling together during an art activity",
     label: "Caring guidance",
-    className: "home-moment-small",
+    className: "home-moment-portrait",
   },
   {
-    src: "/images/photos/selected/school-age.webp",
-    alt: "Two school-age children smiling together during a classroom activity",
-    label: "Growing together",
-    className: "home-moment-small",
+    src: "/images/photos/selected/airplanes.webp",
+    alt: "Children proudly holding red model airplanes during a classroom activity",
+    label: "Creative projects",
+    className: "home-moment-group",
   },
 ];
 

@@ -9,6 +9,8 @@ const viewports = [
   { width: 375, height: 667 }, { width: 390, height: 844 },
   { width: 412, height: 915 }, { width: 430, height: 932 },
   { width: 667, height: 375 }, { width: 844, height: 390 },
+  { width: 932, height: 430 },
+  { width: 1024, height: 768 }, { width: 1440, height: 900 },
 ];
 const results = [];
 const issues = [];
@@ -55,12 +57,53 @@ async function screenshotStrip(browser, page, route) {
   console.log("MOBILE_IMAGE " + (route.slice(1) || "home") + " " + dataURL.slice(dataURL.indexOf(",") + 1));
 }
 
+
+async function photoSheet(browser, page, label) {
+  const headerStyle = await page.addStyleTag({ content: ".site-header { visibility: hidden !important; }" });
+  const photos = page.locator('main img[src*="/photos/"]');
+  const tiles = [];
+  for (let i = 0; i < await photos.count(); i++) {
+    const img = photos.nth(i);
+    if (!await img.isVisible()) continue;
+    const source = await img.getAttribute("src");
+    const bytes = await img.screenshot({ type: "jpeg", quality: 70, animations: "disabled" });
+    tiles.push({ label: source.split("/").at(-1), source: "data:image/jpeg;base64," + bytes.toString("base64") });
+  }
+  await headerStyle.evaluate((el) => el.remove());
+  if (!tiles.length) return;
+  const canvasPage = await browser.newPage();
+  await canvasPage.setContent('<canvas></canvas>');
+  const dataURL = await canvasPage.evaluate(async (tiles) => {
+    const canvas = document.querySelector("canvas");
+    canvas.width = 1080;
+    canvas.height = Math.ceil(tiles.length / 3) * 520;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#eee";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "16px Arial";
+    for (let i = 0; i < tiles.length; i++) {
+      const img = new Image();
+      img.src = tiles[i].source;
+      await img.decode();
+      const x = (i % 3) * 360;
+      const y = Math.floor(i / 3) * 520;
+      ctx.fillStyle = "#111";
+      ctx.fillText(tiles[i].label, x + 8, y + 20);
+      const scale = Math.min(352 / img.width, 480 / img.height);
+      ctx.drawImage(img, x + 4, y + 32, img.width * scale, img.height * scale);
+    }
+    return canvas.toDataURL("image/jpeg", 0.7);
+  }, tiles);
+  await canvasPage.close();
+  console.log("MOBILE_IMAGE " + label + " " + dataURL.split(",")[1]);
+}
+
 for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]) {
   const browser = await browserType.launch();
   const sizes = engine === "webkit" ? [viewports[0], viewports[3], viewports[7]] : viewports;
   for (const viewport of sizes) {
     const context = await browser.newContext({
-      viewport, isMobile: true, hasTouch: true, deviceScaleFactor: 1,
+      viewport, isMobile: viewport.width < 1024, hasTouch: viewport.width < 1440, deviceScaleFactor: 1,
       reducedMotion: "reduce",
     });
     await context.route("**/*", (route) => {
@@ -83,7 +126,7 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
             return style.display !== "none" && style.visibility !== "hidden" && box.width > 1 && box.height > 1;
           };
           const selector = (el) => el.tagName.toLowerCase() + (el.id ? "#" + el.id : "") + (el.className && typeof el.className === "string" ? "." + el.className.trim().replace(/\s+/g, ".") : "");
-          const overflow = Array.from(document.querySelectorAll("main h1,main h2,main h3,main p,main a,main button,main input,main select,main textarea,footer a"))
+          const overflow = Array.from(document.querySelectorAll("main h1,main h2,main h3,main p,main a,main button,main input,main select,main textarea,main li,main dt,main dd,main label,main figcaption,footer a"))
             .filter(visible).filter((el) => {
               const box = el.getBoundingClientRect();
               return box.left < -2 || box.right > innerWidth + 2;
@@ -103,8 +146,15 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
           return { width: innerWidth, scrollWidth: document.documentElement.scrollWidth, height: document.documentElement.scrollHeight, overflow, images, order, h1Hidden: !h1 || getComputedStyle(h1).display === "none" || getComputedStyle(h1).visibility === "hidden" };
         });
         const failures = [];
+        if (route === "/" && viewport.width <= 932) {
+          const button = await page.locator(".hero-actions .button").boundingBox();
+          if (!button || button.y < 0 || button.y + button.height > viewport.height + 2) failures.push("home tour button is outside the opening screen");
+        }
         if (metrics.scrollWidth > metrics.width + 2) failures.push("document overflows horizontally");
         if (metrics.overflow.length) failures.push("clipped/overflowing content: " + JSON.stringify(metrics.overflow));
+        if (route === "/gallery" && metrics.images.filter((img) => img.src.includes("/photos/")).length !== 9) failures.push("gallery should contain nine photos");
+        if (metrics.images.some((img) => img.src.endsWith("/home-hero.webp"))) failures.push("removed photo is still displayed");
+        if (await page.locator('footer a[href="https://www.instagram.com/montessori_playschool/"]').count() !== 1) failures.push("incorrect Instagram link");
         if (metrics.images.some((img) => img.natural[0] === 0)) failures.push("broken visible image");
         if (metrics.h1Hidden) failures.push("missing accessible main heading");
         if (runtimeErrors.length) failures.push("runtime errors: " + runtimeErrors.join("; "));
@@ -114,12 +164,29 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
         if (engine === "chromium" && viewport.width === 390) {
           console.log("MOBILE_METRICS " + JSON.stringify({ key, ...metrics }));
           await screenshotStrip(browser, page, route);
+          await photoSheet(browser, page, "photos-390-" + (route.slice(1) || "home"));
+        }
+        if (engine === "chromium" && viewport.width >= 1024 && ["/", "/gallery"].includes(route)) {
+          const sections = page.locator(route === "/" ? ".home-moments" : ".photo-gallery-group");
+          for (let i = 0; i < await sections.count(); i++) {
+            const bytes = await sections.nth(i).screenshot({ type: "jpeg", quality: 70, animations: "disabled" });
+            console.log("MOBILE_IMAGE wide-" + viewport.width + "-" + (route.slice(1) || "home") + "-" + i + " " + bytes.toString("base64"));
+          }
+        }
+        if (engine === "chromium" && viewport.width === 320 && ["/", "/gallery"].includes(route)) {
+          await photoSheet(browser, page, "photos-320-" + (route.slice(1) || "home"));
+        }
+        if (engine === "chromium" && ((viewport.width === 844 || viewport.width === 932) || (viewport.width === 667 && route === "/"))) {
+          await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
+          const bytes = await page.screenshot({ type: "jpeg", quality: 70, animations: "disabled" });
+          console.log("MOBILE_IMAGE landscape-" + viewport.width + "-" + (route.slice(1) || "home") + " " + bytes.toString("base64"));
         }
       } catch (error) {
         issues.push({ key, failures: [error.message] });
       }
     }
 
+    if (viewport.width <= 1320) {
     try {
       await loadPage(page, "/about");
       const menuButton = page.getByRole("button", { name: "Open navigation menu" });
@@ -133,15 +200,25 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
       await page.waitForURL(baseURL + "/");
       assert.equal(await page.locator(".mobile-menu-button").getAttribute("aria-expanded"), "false");
 
+      await page.getByRole("button", { name: "Open navigation menu" }).click();
+      await page.goBack({ waitUntil: "networkidle" });
+      await page.waitForURL(baseURL + "/about");
+      await page.locator("main.about-page h1").waitFor({ state: "visible" });
+      await page.waitForLoadState("networkidle");
+      assert.equal(await page.locator(".mobile-menu-button").getAttribute("aria-expanded"), "false");
+
       await loadPage(page, "/contact#tour");
       const placement = await page.locator("#tour").evaluate((el) => ({
         top: el.getBoundingClientRect().top,
         headerBottom: document.querySelector("header").getBoundingClientRect().bottom,
         screen: innerHeight,
       }));
+      console.log("MOBILE_ANCHOR " + JSON.stringify({ engine, viewport, ...placement }));
       assert.ok(placement.top >= placement.headerBottom - 2 && placement.top < placement.screen, "tour form should land below the header and within the screen");
     } catch (error) {
       issues.push({ key: engine + "-" + viewport.width + "x" + viewport.height + "-navigation", failures: [error.message] });
+    }
+
     }
 
     if (viewport.width === 390) {

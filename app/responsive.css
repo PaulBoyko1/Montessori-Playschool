@@ -212,6 +212,7 @@
   }
 
   .section-heading {
+    grid-template-columns: 1fr;
     gap: 1.15rem;
     margin-bottom: 2.25rem;
   }
@@ -272,9 +273,12 @@
     transform: none;
   }
 
-  .about-page .inner-hero-image,
-.programs-page .inner-hero-image {
+  .about-page .inner-hero-image {
     aspect-ratio: 4 / 5;
+  }
+
+  .programs-page .inner-hero-image {
+    aspect-ratio: 4 / 3;
   }
 
   .meals-page .inner-hero-image,
@@ -1286,7 +1290,7 @@
   .home-page .hero-image {
     bottom: auto;
     display: block;
-    height: calc(100% - 12.5svh);
+    height: calc(100% - 12.5svh - 160px);
     left: 0;
     max-width: none;
     object-fit: contain;
@@ -1373,4 +1377,247 @@
     min-height: 48px;
     width: min(100%, 280px);
   }
+}
+
+/* Featured photographs stay compact, with group photos shown in full. */
+.home-page .home-moment-grid {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: none;
+  margin-inline: auto;
+  max-width: 1120px;
+  min-height: 0;
+}
+
+.home-page .home-moment-grid figure {
+  aspect-ratio: auto;
+  grid-column: auto;
+  grid-row: auto;
+  height: auto;
+  min-width: 0;
+}
+
+.home-page .home-moment-grid img {
+  aspect-ratio: 4 / 3;
+  background: var(--cream);
+  display: block;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+  width: 100%;
+}
+
+.home-page .home-moment-portrait img {
+  object-fit: cover;
+  object-position: 50% 36%;
+}
+
+.home-page .home-moment-grid figcaption {
+  font-size: 0.95rem;
+  padding: 0.7rem 0.9rem;
+  position: static;
+}
+
+@media (max-width: 760px) {
+  .home-page .home-moment-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+
+  .home-page .home-moment-group img {
+    aspect-ratio: auto;
+  }
+}
+
+.home-page .home-moment-grid figure:hover img {
+  transform: none;
+}
+
+/* Short landscape screens need a compact header and a horizontal opening. */
+@media (orientation: landscape) and (max-width: 1024px) and (max-height: 500px) {
+  html { scroll-padding-top: 76px; }
+
+  .site-header {
+    min-height: 72px;
+    padding: 0.25rem 0.8rem;
+  }
+
+  .brand { min-height: 58px; }
+  .brand-logo { height: 48px; max-width: 188px; }
+  .mobile-menu-button { height: 46px; min-height: 46px; min-width: 46px; width: 46px; }
+
+  .mobile-menu nav {
+    left: auto;
+    max-height: calc(100dvh - 84px);
+    position: fixed;
+    right: 0.75rem;
+    top: 76px;
+    width: min(360px, calc(100vw - 1.5rem));
+  }
+
+  .home-site-header {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
+
+  .home-site-header.is-home-scrolled,
+  .home-site-header.is-menu-open {
+    background: var(--paper);
+  }
+
+  .home-page .hero {
+    display: block;
+    height: 100svh;
+    min-height: 0;
+  }
+
+  .home-page .hero::before,
+  .home-page .hero-wash,
+  .home-page .home-mobile-hero-symbol,
+  .home-page .home-mobile-hero-wordmark {
+    display: none;
+  }
+
+  .home-page .hero-image {
+    bottom: 0;
+    height: calc(100% - 72px);
+    left: auto;
+    max-width: none;
+    object-fit: contain;
+    object-position: center;
+    right: 2vw;
+    top: 72px;
+    transform: none;
+    width: 44%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .home-page .hero-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    inset: 72px 48% 0 2vw;
+    justify-content: center;
+    margin: 0;
+    max-width: none;
+    padding: 0.75rem;
+    pointer-events: auto;
+    position: absolute;
+    transform: none;
+    width: auto;
+  }
+
+  .home-page .home-hero-logo {
+    display: block;
+    height: auto;
+    margin: 0;
+    max-height: calc(100svh - 160px);
+    max-width: 100%;
+    object-fit: contain;
+    width: min(100%, 300px);
+  }
+
+  .home-page .hero-actions {
+    margin: 0;
+    position: static;
+    width: 100%;
+  }
+
+  .home-page .hero-actions .button {
+    min-height: 48px;
+    width: min(100%, 280px);
+  }
+
+  .inner-hero,
+  .programs-page .inner-hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    height: auto;
+    min-height: 0;
+  }
+
+  .inner-hero-copy { padding: 2rem 1.25rem; }
+  .inner-hero h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); }
+
+  .inner-hero .inner-hero-image {
+    aspect-ratio: auto;
+    height: calc(100svh - 72px);
+    min-height: 0;
+  }
+
+  .inner-hero .inner-hero-image img {
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+/* Keep gallery frames modest and show each complete photo on wider screens. */
+@media (min-width: 761px) {
+  .gallery-page .photo-gallery-grid {
+    align-items: start;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 1120px;
+  }
+
+  .gallery-page .photo-card {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    grid-column: auto;
+    grid-row: auto;
+    height: auto;
+  }
+
+  .gallery-page .photo-card img {
+    aspect-ratio: 4 / 3;
+    background: var(--cream);
+    display: block;
+    height: auto;
+    object-fit: contain;
+    transform: none;
+  }
+
+  .gallery-page .photo-card:hover img {
+    transform: none;
+  }
+
+  .gallery-page .photo-card figcaption {
+    background: rgba(21, 57, 47, 0.9);
+    padding: 0.7rem 0.9rem;
+    position: static;
+  }
+
+  .gallery-page .photo-gallery-group:first-child .photo-card-tall {
+    align-self: stretch;
+    grid-row: span 2;
+  }
+
+  .gallery-page .photo-gallery-group:first-child .photo-card-tall img {
+    aspect-ratio: auto;
+    flex: 1;
+    height: 0;
+    min-height: 0;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 1024px) and (max-height: 500px) {
+  .home-site-header.is-home-scrolled .home-header-brand,
+  .home-site-header.is-menu-open .home-header-brand {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    visibility: visible;
+  }
+
+  .inner-hero-image::before { display: none; }
 }

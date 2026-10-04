@@ -16,12 +16,6 @@ const galleryGroups = [
       "Attentive educators join children at their level—guiding, encouraging, and sharing in the work of the day.",
     images: [
       {
-        src: "/images/photos/selected/home-hero.webp",
-        alt: "An educator engaging with two young children at their level in a bright classroom",
-        caption: "Meeting children where they are",
-        className: "photo-card photo-card-wide",
-      },
-      {
         src: "/images/photos/selected/teacher-art.webp",
         alt: "An educator and child smiling together during an art activity",
         caption: "Caring guidance",
@@ -37,7 +31,7 @@ const galleryGroups = [
         src: "/images/photos/selected/teacher-sensory.webp",
         alt: "An educator guiding children through a colorful hands-on sensory activity",
         caption: "Exploring side by side",
-        className: "photo-card",
+        className: "photo-card photo-card-wide",
       },
     ],
   },
