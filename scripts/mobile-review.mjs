@@ -9,6 +9,8 @@ const viewports = [
   { width: 375, height: 667 }, { width: 390, height: 844 },
   { width: 412, height: 915 }, { width: 430, height: 932 },
   { width: 667, height: 375 }, { width: 844, height: 390 },
+  { width: 932, height: 430 },
+  { width: 1024, height: 768 }, { width: 1440, height: 900 },
 ];
 const results = [];
 const issues = [];
@@ -101,7 +103,7 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
   const sizes = engine === "webkit" ? [viewports[0], viewports[3], viewports[7]] : viewports;
   for (const viewport of sizes) {
     const context = await browser.newContext({
-      viewport, isMobile: true, hasTouch: true, deviceScaleFactor: 1,
+      viewport, isMobile: viewport.width < 1024, hasTouch: viewport.width < 1440, deviceScaleFactor: 1,
       reducedMotion: "reduce",
     });
     await context.route("**/*", (route) => {
@@ -144,6 +146,10 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
           return { width: innerWidth, scrollWidth: document.documentElement.scrollWidth, height: document.documentElement.scrollHeight, overflow, images, order, h1Hidden: !h1 || getComputedStyle(h1).display === "none" || getComputedStyle(h1).visibility === "hidden" };
         });
         const failures = [];
+        if (route === "/" && viewport.width <= 932) {
+          const button = await page.locator(".hero-actions .button").boundingBox();
+          if (!button || button.y < 0 || button.y + button.height > viewport.height + 2) failures.push("home tour button is outside the opening screen");
+        }
         if (metrics.scrollWidth > metrics.width + 2) failures.push("document overflows horizontally");
         if (metrics.overflow.length) failures.push("clipped/overflowing content: " + JSON.stringify(metrics.overflow));
         if (route === "/gallery" && metrics.images.filter((img) => img.src.includes("/photos/")).length !== 9) failures.push("gallery should contain nine photos");
@@ -160,19 +166,25 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
           await screenshotStrip(browser, page, route);
           await photoSheet(browser, page, "photos-390-" + (route.slice(1) || "home"));
         }
+        if (engine === "chromium" && viewport.width >= 1024 && ["/", "/gallery"].includes(route)) {
+          const section = page.locator(route === "/" ? ".home-moments" : ".photo-gallery-group").first();
+          const bytes = await section.screenshot({ type: "jpeg", quality: 70, animations: "disabled" });
+          console.log("MOBILE_IMAGE wide-" + viewport.width + "-" + (route.slice(1) || "home") + " " + bytes.toString("base64"));
+        }
         if (engine === "chromium" && viewport.width === 320 && ["/", "/gallery"].includes(route)) {
           await photoSheet(browser, page, "photos-320-" + (route.slice(1) || "home"));
         }
-        if (engine === "chromium" && viewport.width === 844) {
+        if (engine === "chromium" && ((viewport.width === 844 || viewport.width === 932) || (viewport.width === 667 && route === "/"))) {
           await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
           const bytes = await page.screenshot({ type: "jpeg", quality: 70, animations: "disabled" });
-          console.log("MOBILE_IMAGE landscape-" + (route.slice(1) || "home") + " " + bytes.toString("base64"));
+          console.log("MOBILE_IMAGE landscape-" + viewport.width + "-" + (route.slice(1) || "home") + " " + bytes.toString("base64"));
         }
       } catch (error) {
         issues.push({ key, failures: [error.message] });
       }
     }
 
+    if (viewport.width <= 1320) {
     try {
       await loadPage(page, "/about");
       const menuButton = page.getByRole("button", { name: "Open navigation menu" });
@@ -188,6 +200,8 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
 
       await page.goBack({ waitUntil: "networkidle" });
       await page.waitForURL(baseURL + "/about");
+      await page.locator("main.about-page h1").waitFor({ state: "visible" });
+      await page.waitForLoadState("networkidle");
       assert.equal(await page.locator(".mobile-menu-button").getAttribute("aria-expanded"), "false");
 
       await loadPage(page, "/contact#tour");
@@ -200,6 +214,8 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
       assert.ok(placement.top >= placement.headerBottom - 2 && placement.top < placement.screen, "tour form should land below the header and within the screen");
     } catch (error) {
       issues.push({ key: engine + "-" + viewport.width + "x" + viewport.height + "-navigation", failures: [error.message] });
+    }
+
     }
 
     if (viewport.width === 390) {

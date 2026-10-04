@@ -25,31 +25,6 @@ jobs:
         with:
           node-version: "22.13.0"
       - run: npm ci
-      - name: Prepare photo archive without the removed image
-        run: |
-          node --input-type=module <<'NODE'
-          import { readFileSync } from "node:fs";
-          import { gunzipSync, gzipSync } from "node:zlib";
-          import { createHash } from "node:crypto";
-          const tar = gunzipSync(readFileSync("photo-source/photo-assets-final.tgz"));
-          const entries = [];
-          let removed = 0;
-          for (let offset = 0; offset + 512 <= tar.length;) {
-            const header = tar.subarray(offset, offset + 512);
-            const name = header.subarray(0, 100).toString().replace(/\0.*$/, "");
-            if (!name) break;
-            const size = parseInt(header.subarray(124, 136).toString().replace(/\0.*$/, "").trim(), 8) || 0;
-            const length = 512 + Math.ceil(size / 512) * 512;
-            if (name.split("/").at(-1) === "home-hero.webp") removed++;
-            else entries.push(tar.subarray(offset, offset + length));
-            offset += length;
-          }
-          if (removed !== 1) throw new Error("Expected exactly one removed photo");
-          const clean = gzipSync(Buffer.concat([...entries, Buffer.alloc(1024)]), { level: 9 });
-          console.log("PHOTO_ARCHIVE_SHA256 " + createHash("sha256").update(clean).digest("hex"));
-          const base64 = clean.toString("base64");
-          for (let i = 0; i < base64.length; i += 6000) console.log("PHOTO_ARCHIVE_CHUNK " + base64.slice(i, i + 6000));
-          NODE
       - name: Install pinned browser tooling
         run: |
           npm install --no-save --package-lock=false playwright@1.63.0
