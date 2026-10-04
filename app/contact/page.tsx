@@ -22,6 +22,9 @@ export default function ContactPage() {
               <br />
               <em>your family.</em>
             </h1>
+            <a className="inline-arrow" href="#tour">
+              Schedule a tour <span aria-hidden="true">→</span>
+            </a>
           </div>
         </section>
 

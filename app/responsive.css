@@ -212,6 +212,7 @@
   }
 
   .section-heading {
+    grid-template-columns: 1fr;
     gap: 1.15rem;
     margin-bottom: 2.25rem;
   }
@@ -272,9 +273,12 @@
     transform: none;
   }
 
-  .about-page .inner-hero-image,
-.programs-page .inner-hero-image {
+  .about-page .inner-hero-image {
     aspect-ratio: 4 / 5;
+  }
+
+  .programs-page .inner-hero-image {
+    aspect-ratio: 4 / 3;
   }
 
   .meals-page .inner-hero-image,
@@ -1372,5 +1376,57 @@
   .home-page .hero-actions .button {
     min-height: 48px;
     width: min(100%, 280px);
+  }
+}
+
+/* Featured photographs stay compact, with group photos shown in full. */
+.home-page .home-moment-grid {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: none;
+  margin-inline: auto;
+  max-width: 1120px;
+  min-height: 0;
+}
+
+.home-page .home-moment-grid figure {
+  grid-column: auto;
+  grid-row: auto;
+  height: auto;
+  min-width: 0;
+}
+
+.home-page .home-moment-grid img {
+  aspect-ratio: 4 / 3;
+  background: var(--cream);
+  display: block;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+  width: 100%;
+}
+
+.home-page .home-moment-portrait img {
+  object-fit: cover;
+  object-position: 50% 36%;
+}
+
+.home-page .home-moment-grid figcaption {
+  font-size: 0.95rem;
+  padding: 0.7rem 0.9rem;
+  position: static;
+}
+
+@media (max-width: 760px) {
+  .home-page .home-moment-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+
+  .home-page .home-moment-group img {
+    aspect-ratio: auto;
   }
 }

@@ -78,6 +78,9 @@ export default function MealsPage() {
               and dinner at 5:00 PM. Whole grains, fruits, vegetables, proteins,
               milk, and water are offered throughout the week.
             </p>
+            <a className="inline-arrow" href="#sample-menu">
+              See the sample weekly menu <span aria-hidden="true">→</span>
+            </a>
           </div>
         </section>
 
@@ -96,7 +99,7 @@ export default function MealsPage() {
           ))}
         </section>
 
-        <section className="sample-menu content-section">
+        <section className="sample-menu content-section" id="sample-menu">
           <div className="sample-menu-heading">
             <div>
               <p className="section-label">Sample weekly menu</p>
