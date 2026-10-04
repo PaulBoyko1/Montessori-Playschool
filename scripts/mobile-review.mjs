@@ -167,9 +167,11 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
           await photoSheet(browser, page, "photos-390-" + (route.slice(1) || "home"));
         }
         if (engine === "chromium" && viewport.width >= 1024 && ["/", "/gallery"].includes(route)) {
-          const section = page.locator(route === "/" ? ".home-moments" : ".photo-gallery-group").first();
-          const bytes = await section.screenshot({ type: "jpeg", quality: 70, animations: "disabled" });
-          console.log("MOBILE_IMAGE wide-" + viewport.width + "-" + (route.slice(1) || "home") + " " + bytes.toString("base64"));
+          const sections = page.locator(route === "/" ? ".home-moments" : ".photo-gallery-group");
+          for (let i = 0; i < await sections.count(); i++) {
+            const bytes = await sections.nth(i).screenshot({ type: "jpeg", quality: 70, animations: "disabled" });
+            console.log("MOBILE_IMAGE wide-" + viewport.width + "-" + (route.slice(1) || "home") + "-" + i + " " + bytes.toString("base64"));
+          }
         }
         if (engine === "chromium" && viewport.width === 320 && ["/", "/gallery"].includes(route)) {
           await photoSheet(browser, page, "photos-320-" + (route.slice(1) || "home"));
@@ -198,6 +200,7 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
       await page.waitForURL(baseURL + "/");
       assert.equal(await page.locator(".mobile-menu-button").getAttribute("aria-expanded"), "false");
 
+      await page.getByRole("button", { name: "Open navigation menu" }).click();
       await page.goBack({ waitUntil: "networkidle" });
       await page.waitForURL(baseURL + "/about");
       await page.locator("main.about-page h1").waitFor({ state: "visible" });

@@ -1559,3 +1559,65 @@
     object-position: center;
   }
 }
+
+/* Keep gallery frames modest and show each complete photo on wider screens. */
+@media (min-width: 761px) {
+  .gallery-page .photo-gallery-grid {
+    align-items: start;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 1120px;
+  }
+
+  .gallery-page .photo-card {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    grid-column: auto;
+    grid-row: auto;
+    height: auto;
+  }
+
+  .gallery-page .photo-card img {
+    aspect-ratio: 4 / 3;
+    background: var(--cream);
+    display: block;
+    height: auto;
+    object-fit: contain;
+    transform: none;
+  }
+
+  .gallery-page .photo-card:hover img {
+    transform: none;
+  }
+
+  .gallery-page .photo-card figcaption {
+    background: rgba(21, 57, 47, 0.9);
+    padding: 0.7rem 0.9rem;
+    position: static;
+  }
+
+  .gallery-page .photo-gallery-group:first-child .photo-card-tall {
+    align-self: stretch;
+    grid-row: span 2;
+  }
+
+  .gallery-page .photo-gallery-group:first-child .photo-card-tall img {
+    aspect-ratio: auto;
+    flex: 1;
+    height: 0;
+    min-height: 0;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 1024px) and (max-height: 500px) {
+  .home-site-header.is-home-scrolled .home-header-brand,
+  .home-site-header.is-menu-open .home-header-brand {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    visibility: visible;
+  }
+
+  .inner-hero-image::before { display: none; }
+}
