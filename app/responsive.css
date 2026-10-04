@@ -1319,8 +1319,8 @@
     );
     display: block;
     /* Cover subpixel rounding at the photo's lower edge. */
-    height: calc(var(--home-photo-height) - var(--home-photo-crop) + 1px);
-    inset: 12.5svh 0 auto;
+    height: calc(var(--home-photo-height) + 1px);
+    inset: calc(12.5svh - var(--home-photo-crop)) 0 auto;
     position: absolute;
     z-index: 2;
   }
