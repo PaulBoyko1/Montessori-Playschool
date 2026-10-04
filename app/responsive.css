@@ -1275,6 +1275,9 @@
   }
 
   .home-page .hero {
+    --home-photo-height: min(133.333333vw, calc(87.5svh - 160px));
+    /* Keep the children in view when the photo is small on short phones. */
+    --home-photo-crop: min(100px, calc(var(--home-photo-height) * 0.2));
     background: #ffffff;
     display: block;
     height: 100svh;
@@ -1289,6 +1292,7 @@
 
   .home-page .hero-image {
     bottom: auto;
+    clip-path: inset(var(--home-photo-crop) 0 0);
     display: block;
     height: calc(100% - 12.5svh - 160px);
     left: 0;
@@ -1297,7 +1301,7 @@
     object-position: center top;
     position: absolute;
     right: 0;
-    top: 12.5svh;
+    top: calc(12.5svh - var(--home-photo-crop));
     transform: none;
     width: 100%;
     z-index: 1;
@@ -1315,7 +1319,7 @@
     );
     display: block;
     /* Cover subpixel rounding at the photo's lower edge. */
-    height: calc(min(133.333333vw, calc(87.5svh - 160px)) + 1px);
+    height: calc(var(--home-photo-height) - var(--home-photo-crop) + 1px);
     inset: 12.5svh 0 auto;
     position: absolute;
     z-index: 2;
@@ -1361,7 +1365,7 @@
     max-width: min(100%, calc((87.5svh - 160px) * 0.75));
     object-fit: contain;
     position: absolute;
-    top: calc(12.5svh + min(133.333333vw, calc(87.5svh - 160px)) - 1.25rem);
+    top: calc(12.5svh + var(--home-photo-height) - var(--home-photo-crop) - 1.25rem);
     transform: translate(-50%, -100%);
     width: calc(95% - 57px);
     z-index: 4;
@@ -1491,6 +1495,7 @@
 
   .home-page .hero-image {
     bottom: 0;
+    clip-path: none;
     height: calc(100% - 72px);
     left: auto;
     max-width: none;

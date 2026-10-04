@@ -159,8 +159,10 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
             const visibleWidth = photo.naturalWidth * scale;
             const visibleHeight = photo.naturalHeight * scale;
             const logo = document.querySelector(".home-mobile-hero-wordmark").getBoundingClientRect();
+            const clip = getComputedStyle(photo).clipPath.match(/^inset\(([\d.]+)px/);
+            const croppedTop = clip ? Number(clip[1]) : 0;
             return {
-              photo: { left: frame.left + (frame.width - visibleWidth) / 2, right: frame.left + (frame.width + visibleWidth) / 2, top: frame.top, bottom: frame.top + visibleHeight },
+              photo: { left: frame.left + (frame.width - visibleWidth) / 2, right: frame.left + (frame.width + visibleWidth) / 2, top: frame.top + croppedTop, bottom: frame.top + visibleHeight },
               logo: { left: logo.left, right: logo.right, top: logo.top, bottom: logo.bottom },
             };
           });
