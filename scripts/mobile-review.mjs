@@ -11,6 +11,7 @@ const viewports = [
   { width: 667, height: 375 }, { width: 844, height: 390 },
   { width: 932, height: 430 },
   { width: 1024, height: 768 }, { width: 1440, height: 900 },
+  { width: 320, height: 480 },
 ];
 const results = [];
 const issues = [];
@@ -100,7 +101,7 @@ async function photoSheet(browser, page, label) {
 
 for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]) {
   const browser = await browserType.launch();
-  const sizes = engine === "webkit" ? [viewports[0], viewports[3], viewports[7]] : viewports;
+  const sizes = engine === "webkit" ? [viewports[0], viewports[3], viewports[7], viewports.at(-1)] : viewports;
   for (const viewport of sizes) {
     const context = await browser.newContext({
       viewport, isMobile: viewport.width < 1024, hasTouch: viewport.width < 1440, deviceScaleFactor: 1,
@@ -149,6 +150,17 @@ for (const [engine, browserType] of [["chromium", chromium], ["webkit", webkit]]
         if (route === "/" && viewport.width <= 932) {
           const button = await page.locator(".hero-actions .button").boundingBox();
           if (!button || button.y < 0 || button.y + button.height > viewport.height + 2) failures.push("home tour button is outside the opening screen");
+        }
+        if (route === "/" && viewport.width <= 760 && viewport.height > viewport.width) {
+          const logo = await page.locator(".home-mobile-hero-wordmark").boundingBox();
+          const tourButton = await page.locator(".hero-actions .button").boundingBox();
+          if (!logo || !tourButton || logo.x < -2 || logo.x + logo.width > viewport.width + 2 || logo.y < 0 || logo.y + logo.height > tourButton.y - 10) {
+            failures.push("phone wordmark must stay on screen and clear of the tour button");
+          }
+          if (engine === "chromium") {
+            const bytes = await page.screenshot({ type: "jpeg", quality: 80, animations: "disabled" });
+            console.log("MOBILE_IMAGE phone-home-" + viewport.width + "x" + viewport.height + " " + bytes.toString("base64"));
+          }
         }
         if (metrics.scrollWidth > metrics.width + 2) failures.push("document overflows horizontally");
         if (metrics.overflow.length) failures.push("clipped/overflowing content: " + JSON.stringify(metrics.overflow));
