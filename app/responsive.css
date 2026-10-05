@@ -1277,7 +1277,7 @@
   .home-page .hero {
     --home-photo-height: min(133.333333vw, calc(87.5svh - 160px));
     /* Keep the children in view when the photo is small on short phones. */
-    --home-photo-crop: min(100px, calc(var(--home-photo-height) * 0.2));
+    --home-photo-crop: min(50px, calc(var(--home-photo-height) * 0.1));
     background: #ffffff;
     display: block;
     height: 100svh;
@@ -1313,8 +1313,8 @@
     background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0) 65%,
-      rgba(255, 255, 255, 0.65) 75%,
-      rgba(255, 255, 255, 0.9) 90%,
+      rgba(255, 255, 255, 0.35) 75%,
+      rgba(255, 255, 255, 0.7) 90%,
       #ffffff 100%
     );
     display: block;
